@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/**
+ * @copyright	Copyright (c) 2013 Skyline Software (http://extstore.com). All rights reserved.
+ * @license		GNU General Public License version 2 or later; see LICENSE.txt
+ */
+-->
+<extension type="module" version="1.7" client="site" method="upgrade">
+	<name>Skyline Snow Falling</name>
+	<author>Pham Minh Tuan</author>
+	<creationDate>December 2011</creationDate>
+	<copyright>Copyright (c) 2013 Skyline. All rights reserved.</copyright>
+	<authorEmail> (admin@extstore.com)</authorEmail>
+	<authorUrl>http://extstore.com</authorUrl>
+	<version>1.1.0</version>
+	<description>
+	<![CDATA[
+		Snow Falling Module For Joomla 1.7<br /><br />Developed by Skyline Software (<a target="_blank" href="http://extstore.com">http://extstore.com</a>).
+	]]>
+	</description>
+
+	<files>
+		<filename module="mod_sl_snowfalling">mod_sl_snowfalling.php</filename>
+		<filename>index.html</filename>
+		<folder>assets</folder>
+		<folder>tmpl</folder>
+	</files>
+
+	<languages>
+		<language tag="en-GB">en-GB.mod_sl_snowfalling.ini</language>
+		<language tag="en-GB">en-GB.mod_sl_snowfalling.sys.ini</language>
+	</languages>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+
+				<field
+					name="flakesMax"
+					type="text"
+					label="MOD_SL_SNOWFALLING_FIELD_FLAKESMAX_LABEL"
+					description="MOD_SL_SNOWFALLING_FIELD_FLAKESMAX_DESC"
+					default="128"
+				/>
+
+				<field
+					name="flakesMaxActive"
+					type="text"
+					label="MOD_SL_SNOWFALLING_FIELD_FLAKESMAXACTIVE_LABEL"
+					description="MOD_SL_SNOWFALLING_FIELD_FLAKESMAXACTIVE_DESC"
+					default="64"
+				/>
+
+				<field
+					name="animationInterval"
+					type="text"
+					label="MOD_SL_SNOWFALLING_FIELD_ANIMATIONINTERVAL_LABEL"
+					description="MOD_SL_SNOWFALLING_FIELD_ANIMATIONINTERVAL_DESC"
+					default="33"
+				/>
+
+				<field
+					name="followMouse"
+					type="list"
+					label="MOD_SL_SNOWFALLING_FIELD_FOLLOWMOUSE_LABEL"
+					description="MOD_SL_SNOWFALLING_FIELD_FOLLOWMOUSE_DESC"
+					default="0"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+				<field
+					name="snowColor"
+					type="text"
+					label="MOD_SL_SNOWFALLING_FIELD_SNOWCOLOR_LABEL"
+					description="MOD_SL_SNOWFALLING_FIELD_SNOWCOLOR_DESC"
+					default="#fff"
+				/>
+
+				<field
+					name="snowCharacter"
+					type="text"
+					label="MOD_SL_SNOWFALLING_FIELD_SNOWCHARACTER_LABEL"
+					description="MOD_SL_SNOWFALLING_FIELD_SNOWCHARACTER_DESC"
+					default="&amp;bull;"
+				/>
+
+				<field
+					name="snowStick"
+					type="list"
+					label="MOD_SL_SNOWFALLING_FIELD_SNOWSTICK_LABEL"
+					description="MOD_SL_SNOWFALLING_FIELD_SNOWSTICK_DESC"
+					default="1"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+
+			</fieldset>
+		</fields>
+	</config>
+</extension>

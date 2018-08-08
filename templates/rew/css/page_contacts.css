@@ -1,0 +1,160 @@
+div.page_contacts{
+}
+div.page_contacts h1.contacts_title {
+    color: rgb(47, 120, 199);
+    font-size: 22px;
+    font-family: "Tahoma";
+    font-weight: bold;
+    margin-bottom: 10px;
+	padding-bottom:10px;
+    margin-top: -15px;
+}
+div.page_contacts div.page_contacts_left {
+	float:left;
+	width:535px;
+	margin: 0px 25px 0px 10px;
+        position: relative;
+}
+div.page_contacts div.page_contacts_right {
+	float: right;
+	width: 404px;
+	height:414px;
+	border:3px solid #ddd;
+	border-radius: 3px;
+}
+div.page_contacts div.page_contacts_left hr {
+	margin: 20px 0px;
+	height:0; 
+  	border:0; 
+  	border-top:1px solid #dfdfdf;
+}
+div.page_contacts div.page_contacts_left div.contacats_l {
+	float: left;
+	font: normal 13px "Tahoma";
+	color:#505050;
+	line-height: 21px;
+}
+div.page_contacts div.page_contacts_left div.contacats_l p{
+        max-width: 340px;
+    
+}
+div.page_contacts div.page_contacts_left div.contacats_l a {
+	color: #034ea2;
+}
+div.page_contacts div.page_contacts_left div.contacats_r {
+	float: right;
+        position: absolute;
+        top: 0;
+        right: 0;
+}
+div.page_contacts div.page_contacts_left div.contacats_r2 {
+	float: right;
+        position: absolute;
+        top: 205px;
+        right: 0px;
+}
+div.page_contacts div.page_contacts_left div.contacats_r3 {
+	float: right;
+        position: absolute;
+        top: 236px;
+        right: 0px;
+}
+div.page_contacts div.page_contacts_left div.contacats_r a{
+	width: 212px;
+	height: 140px;
+	display: block;
+}
+div.page_contacts div.page_contacts_left div.contacats_r a {
+	background:transparent url("../images/contacts_img/img_2.png") no-repeat;
+	width: 212px;
+	height: 140px;
+	position: relative;
+}
+div.page_contacts div.page_contacts_left div.contacats_r a img {
+	position: absolute;
+	top:50px;
+	left: 90px
+}
+
+div.page_contacts div.page_contacts_left div.contacats_r2 a {
+	background:transparent url("../images/contacts_img/img_2.png") no-repeat;
+	width: 212px;
+	height: 140px;
+	position: relative;
+}
+div.page_contacts div.page_contacts_left div.contacats_r3 a {
+	background:transparent url("../images/contacts_img/img_2.png") no-repeat;
+	width: 212px;
+	height: 140px;
+	position: relative;
+}
+div.page_contacts div.page_contacts_left div.contacats_r2 a img {
+	position: absolute;
+	top:50px;
+	left: 90px
+}
+div.page_contacts div.page_contacts_left div.contacats_r3 a img {
+	position: absolute;
+	top:50px;
+	left: 90px
+}
+
+div.page_contacts table {
+	width:100%;
+	margin: 30px 0px 0px;
+}
+div.page_contacts table tr td{
+	padding:5px 0px;
+	font: normal 12px/1em "Tahoma";
+	color:#424242;
+}
+div.page_contacts table tr td:first-child {
+	width:30%;
+	vertical-align: top;
+}
+
+div.page_contacts table tr td:last-child {
+	width:70%;
+}
+div.page_contacts table tr td input {
+	width:180px;
+	border:1px solid #c6c6c6;
+	background-color: #fefefe;
+	border-radius: 7px;
+	padding:5px 10px;
+}
+div.page_contacts table tr td select {
+	border:1px solid #c6c6c6;
+	background-color: #fefefe;
+	border-radius: 5px;
+	padding:5px 10px;
+	font: normal 11px "Tahoma";
+	color:#464646;
+}
+div.page_contacts table tr td input[type=submit] {
+	margin-top: 5px;
+	width:120px;
+	border:2px solid #e1e1e1;
+	background-color: #1d61b2;
+	border-radius: 5px;
+	padding:7px 10px;
+	font: bold 12px "Tahoma";
+	color:#e1e1e1;
+	float: left;
+	margin-left: 150px;
+}
+div.page_contacts table tr td input[type=reset] {
+	margin-top: 5px;
+	width:100px;
+	border:2px solid #e1e1e1;
+	background-color: #c7c7c7;
+	border-radius: 5px;
+	padding:5px 10px;
+	font: bold 12px "Tahoma";
+	color:#5f5f5f;
+	float: left;
+	margin-left: 10px;
+}
+.na_vremia{
+    margin-top: 150px !important;
+}

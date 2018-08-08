@@ -1,0 +1,52 @@
+div.vtem-contact-form {
+	color:#424242;
+	float: left;
+}
+ 
+div.vtem-contact-form .vt_inputbox,
+div.vtem-contact-form .vtem_contact_button{
+border:1px solid #ddd;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
+padding:3px 5px;
+}
+
+div.vtem-contact-form textarea.vt_inputbox{overflow:auto;}
+div.vtem-contact-form .invalid{
+border:1px solid #c00;
+background-color:#FFECEC;
+}
+
+div.vtem-contact-form div.vtem_contact_intro_text{
+	color:#333333;
+	font: bold 14px "Tahoma";
+}
+
+div.vtem-contact-form .vtem_contact_button{
+background-color:#f80; 
+font-weight:bold; 
+border:1px solid #c60; 
+cursor:pointer;
+padding:5px 10px;
+}
+
+.vt_captcha{
+background-image:url(captcha.png); 
+width:80px; 
+height:30px; 
+font-weight:bold; 
+display:block; 
+text-align:center; 
+line-height:30px; 
+font-size:20px;
+color:#333;
+}
+
+div.vtem-contact-form textarea {
+	resize:none;
+}
+
+.vt_captcha:after{
+content:'=';
+}

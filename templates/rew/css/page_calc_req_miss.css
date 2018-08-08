@@ -1,0 +1,338 @@
+div.page_calc{
+}
+div.form_img {
+     float: right;
+     width: 45%;
+     display: block;
+     background: transparent url('../images/calc_big.png') no-repeat center;
+     height: 460px;
+}
+div.page_calc h3.page_title {
+    color: rgb(47, 120, 199);
+    font-size: 22px;
+    font-family: "Tahoma";
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: -15px;
+}
+
+div.page_calc .field{
+     float:left;
+     clear:both;
+     color:#484848;
+     font-family:"Tahoma";
+     font-size:12px;
+}
+div.page_calc .fieldbox{
+     float:left;
+     color:#484848;
+     font-family:"Tahoma";
+     font-size:12px;
+     height:30px;
+}
+div.page_calc  label.calc_s_title{
+     font-size: 15px;
+     font-weight: bold;
+     line-height: 30px;
+     padding:5px 0px;
+     height: 30px;
+     color:#484848;
+     font-family:"Tahoma";
+}
+div.page_calc  label {
+     font-size: 12px;
+     margin: 0px;
+     line-height: 35px;
+     padding: 0px;
+     height: 30px;
+     color: rgb(72, 72, 72);
+     font-family: "Tahoma";
+     float: left;
+}
+div.page_calc #letter_sub .field label {
+width: 230px;
+}
+div.page_calc #letter_sub .field .field label  {
+width: auto;
+}
+div.page_calc  p {
+     font-size: 12px;
+     margin: 0px;
+     line-height: 50px;
+     padding:0px;
+     height: 30px;
+     color:#484848;
+     font-family:"Tahoma";
+     float:left;
+     width:90px;
+}
+div.page_calc #letter_sub p {width:230px;}
+div.page_calc  p.line {
+     font-size: 12px;
+     margin: 0px;
+     line-height: 35px;
+     padding:0px;
+     height: 30px;
+     color:#484848;
+     font-family:"Tahoma";
+     float:left;
+     width:150px;
+}
+div.page_calc  input {
+     font-size: 12px;
+     width: 280px;
+     background-color: #fcfcfc;
+     line-height: 31px;
+     height: 30px;
+     border: 1px solid #c9c9c9;
+     -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+     border-radius: 5px;
+     margin: 10px 3px 0px 0px;
+     color:#484848;
+     font-family:"Tahoma";
+     padding-left: 10px;
+}
+
+div.page_calc  input.short {
+     width: 76px;
+}
+div.page_calc  input[type="radio"] {
+     width: auto;
+     height: auto;
+}
+div.page_calc  input[type="radio"].last {
+     width: auto;
+     height: auto;
+     margin-left: 55px;
+}
+div.page_calc  select{
+     font-size: 12px;
+     width: 293px;
+     background-color: #fcfcfc;
+     line-height: 31px;
+     height: 30px;
+     border: 1px solid #c9c9c9;
+     -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+     border-radius: 3px;
+     margin: 10px 5px 0px 0px;
+     color:#484848;
+     font-family:"Tahoma";
+     vertical-align:middle;
+     padding: 5px;
+}
+div.page_calc  select option{
+     padding: 5px;
+}
+div.page_calc  button, div.page_calc  a.btn{
+     margin: 30px 0px 35px 270px;
+     background-color: rgb(29, 100, 182);
+     -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+     border-radius: 3px;
+     color:#fff;
+     cursor: pointer;
+     font-size: 13px;
+     text-align: center !important;
+     width: auto !important;
+     padding: 0px 20px;
+     height: 25px;
+     line-height: 25px;
+     display: inline-block;
+     border:2px solid #e1e1e1;
+}
+div.page_calc table.calc_response {
+     width: 100%;
+}
+
+div.page_calc table.calc_response tr {
+     border-bottom: 1px dotted #333;
+}
+
+div.page_calc table.calc_response tr:last-child {
+     border-bottom: 0px dotted #333;
+}
+
+div.page_calc table.calc_response th {
+     color: #1f1f1f;
+     font-size: 17px;
+     text-align: left;
+     padding-bottom: 10px;
+     padding-top: 5px;
+}
+
+div.page_calc table.calc_response td {
+     color: #1f1f1f;
+     font-size: 15px;
+     padding: 10px 10px 0px;
+}
+
+div.page_calc table.calc_response td.data {
+     color: #333; 
+     font-size: 16px;
+     font-weight: bold;
+     padding-right: 30px;
+     text-align: right;
+}
+
+div.page_calc table.calc_response td.info {
+     color: #111;
+     font-size: 15px;
+}
+
+
+/* ================================================================ */
+#result { border: 1px solid green; width: 300px; margin: 0 0 35px 0; padding: 10px 20px; font-weight: bold; }
+#change-image { font-size: 0.8em; }
+
+div.page_miss_call {
+     color: #3f3f3f;
+     font: normal 14px "Arial";
+}
+div.page_miss_call h3.miss_call_title {
+    color: rgb(47, 120, 199);
+    font-size: 22px;
+    font-family: "Tahoma";
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: -15px;
+}
+div.page_miss_call div.miss_call_desc {
+     font: normal 13px "Arial";
+     margin-bottom: 20px;
+}
+div.page_miss_call div.miss_call_page_left {
+     width:430px;
+     float:left;
+     border: 1px solid #e1e1e1;
+     border-radius: 5px;
+     padding:15px 5px 35px 10px;
+}
+div.page_miss_call div.miss_call_page_right {
+     width: 485px;
+     float: right;
+     border: 1px solid #e1e1e1;
+     border-radius: 10px;
+     padding:5px 5px 5px 15px;
+}
+div.page_miss_call div.miss_call_page_right div.desc_left {
+     float:left;
+}
+div.page_miss_call div.miss_call_page_right button {
+     margin: 0px 15px 0px 0px;
+     background: rgb(125, 195, 15);
+     background: -moz-linear-gradient(90deg, rgb(125, 195, 15) 0%, rgb(86, 148, 13) 100%);
+     background: -webkit-linear-gradient(90deg, rgb(125, 195, 15) 0%, rgb(86, 148, 13) 100%);
+     background: -o-linear-gradient(90deg, rgb(125, 195, 15) 0%, rgb(86, 148, 13) 100%);
+     background: -ms-linear-gradient(90deg, rgb(125, 195, 15) 0%, rgb(86, 148, 13) 100%);
+     background: linear-gradient(180deg, rgb(125, 195, 15) 0%, rgb(86, 148, 13) 100%);
+     color:#fff;
+     cursor: pointer;
+     font-size: 12px;
+     font-weight: bold;
+     font-family: "Arial";
+     text-align: center !important;
+     width: auto !important;
+     padding: 5px 15px;
+     line-height: 23px;
+     border:0px;
+     float: right;
+}
+div.page_miss_call div.miss_call_page_right_bottom {
+     width: 485px;
+     float: right;
+     border: 1px solid #e1e1e1;
+     margin-top: 10px;
+     border-radius: 5px;
+     padding:25px 5px 10px 15px;
+}
+
+div.page_miss_call div.miss_call_page_left table {
+     width:100%;
+     margin: 15px 0px 0px;
+     margin-bottom: 18px;
+}
+div.page_miss_call div.miss_call_page_left table tr td{
+     padding:5px 0px;
+     font: normal 13px "Arial";
+}
+div.page_miss_call div.miss_call_page_left table tr td:first-child {
+     width:30%;
+     vertical-align: middle;
+}
+div.page_miss_call div.miss_call_page_left table tr td:last-child {
+     width:70%;
+}
+div.page_miss_call div.miss_call_page_left table tr td input {
+     width:250px;
+     border:1px solid #c6c6c6;
+     background-color: #fefefe;
+     -moz-border-radius:7px;
+     -webkit-border-radius:7px;
+     border-radius:7px;
+     padding:5px 10px;
+}
+div.page_miss_call div.miss_call_page_left table tr td input[type=submit] {
+     margin-top: 10px;
+     width:150px;
+     border:2px solid #e1e1e1;
+     background-color: #1d61b2;
+     border-radius: 5px;
+     padding:5px 10px;
+     font: bold 12px "Tahoma";
+     color:#e1e1e1;
+}
+
+div.page_miss_call div.miss_call_page_right_bottom table {
+     width:100%;
+     margin: 30px 0px 0px;
+}
+div.page_miss_call div.miss_call_page_right_bottom table tr td{
+     padding:5px 0px;
+     font: normal 13px "Arial";
+}
+div.page_miss_call div.miss_call_page_right_bottom table tr td:first-child {
+     width:30%;
+     vertical-align: middle;
+}
+}
+div.page_miss_call div.miss_call_page_right_bottom table tr td:last-child {
+     width:70%;
+}
+div.page_miss_call div.miss_call_page_right_bottom table tr td input {
+     width:250px;
+     border:1px solid #c6c6c6;
+     background-color: #fefefe;
+     -moz-border-radius:7px;
+     -webkit-border-radius:7px;
+     border-radius:7px;
+     padding:5px 10px;
+}
+div.page_miss_call div.miss_call_page_right_bottom table tr td input[type=submit] {
+     margin-top: 10px;
+     width:150px;
+     border:2px solid #e1e1e1;
+     background-color: #1d61b2;
+     border-radius: 5px;
+     padding:5px 10px;
+     font: bold 12px "Tahoma";
+     color:#e1e1e1;
+}
+div.page_miss_call table tr td textarea {
+     font-size: 12px;
+     width: 260px;
+     background-color: #fcfcfc;
+     line-height: 20px;
+     height: 60px;
+     border: 1px solid #c9c9c9;
+     -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+     border-radius: 5px;
+     margin: 10px 3px 0px 0px;
+     color:#484848;
+     font-family:"Tahoma";
+     padding-left: 10px;
+     resize:none;
+}
+#weight2,#weights{display:none;}

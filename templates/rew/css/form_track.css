@@ -1,0 +1,171 @@
+h3.main_title {
+    color: rgb(47, 120, 199);
+    font-size: 22px;
+    font-family: "Tahoma";
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: -15px;
+}
+h5 {
+    color: #3c3c3c;
+    font-size: 13px;
+    font-family: "Tahoma";
+    margin-bottom: 10px;
+	width:224px;
+	margin-right:55px;
+	float:left;
+}
+
+div.profile_track {
+	height: auto;
+	margin-right: 10px;
+	background-color: #f4f4f4;
+	border:1px solid #dedede;
+}
+div.profile_track  h3.profile_track_title{
+	font-size:19px;
+	color:#fff;
+	line-height:50px;
+	height:50px;
+	text-align:center;
+	background: transparent url('../images/track_header.png') center center repeat-x;
+	text-transform:uppercase;
+	font-weight:bold;
+	width:50%;
+}
+div.profile_track  .field{
+	width:48%;
+	float:left;
+	margin-left:2%;
+}
+div.profile_track  label {
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 10px;
+	line-height: 32px;
+	padding:6px 0px;
+	height: 32px;
+	color:#444545;
+}
+div.profile_track  input {
+	font-size: 13px;
+	width: 220px;
+	background-color: #fcfcfc;
+	line-height: 31px;
+	height: 31px;
+	border: 1px solid #c9c9c9;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin: 25px 0px 0px 0px;
+	color:#000;
+	font-family:"Arial";
+	text-indent: 5px;
+}
+
+div.user_profile span#loading img{
+	margin-top:5px;
+	margin-left:30px;
+	float:left;
+	
+}
+div.profile_track  button.sub{
+	width: 298px;
+	height: 61px;
+	margin: 35px 43px 35px 0px;
+	padding: 13px 15px 10px 50px;
+	background: transparent url('../images/track_button_bg.png') no-repeat;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	border:0px;
+	color:#fff;
+	font-size:25px;
+	font-family: "DS_Dots";
+	float:right;
+	cursor:pointer;
+}
+div.profile_track  button.back{
+	width: 20%;
+	background-color: transparent;
+	border: 0px none;
+	color: rgb(28, 89, 168);
+	font-size: 14px;
+	font-family: "Arial";
+	cursor: pointer;
+	float: right;
+	margin-top: -50px;
+	height: 50px;
+	text-decoration: underline;
+}
+
+div.profile_track p.left{
+	width: 190px;
+	float: left;
+	line-height: 20px;
+	display: block;
+	padding: 5px 0px 5px 35px;
+	font-family:"Arial";
+	font-size:13px;
+	color:#333333;
+	clear: left;
+}
+div.profile_track p.right{
+	width:300px;
+	float:left;
+	display:block;
+	line-height:20px;
+	padding: 5px 0px;
+	font-family:"Arial";
+	font-size:13px;
+	color:#333333;
+}
+div.profile_track p.right a.a_track{
+	font-family:"Arial";
+	font-size:13px;
+	color:#1c57a6;
+	text-decoration:underline;
+}
+.profile_hr {
+	height:1px;
+	color:#cecece;
+	width:96%;
+	margin:0px auto;
+}
+div.profile_track h3.profile_track_history_title {
+	font-size:14px;
+	font-family:"Arial";
+	font-weight:bold;
+	color:#333333;
+	margin:10px 15px;
+	padding:5px 0px;
+}
+div.profile_track table.history {
+	width:97%;
+	margin:10px 15px 20px 15px;
+}
+div.profile_track table.history th {
+	font-size:13px;
+	font-family:"Arial";
+	color:#fff;
+	padding:5px 0px;
+	text-align:center;
+	background-color:#034ea2;
+	border:1px solid #034ea2;
+	border-bottom:none;
+}
+div.profile_track table.history td{
+	text-align:center;
+	background-color:#fff;
+	border:1px solid #abaaaa;
+	padding:5px 0px;
+	font-size:12px;
+	font-family:"Arial";
+	color:#333333;
+}
+div.track_notice {
+	color: #3c3c3c;
+    font-size: 15px;
+    font-family: "Tahoma";
+    margin:10px 15px;
+}

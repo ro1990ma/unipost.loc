@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension
+    type="module"
+    version="3.0"
+    client="site"
+    method="upgrade">
+    <name>Klixo Particles</name>
+    <author>JF Thier - Klixo.se</author>
+    <authorEmail>http://www.klixo.se/en/contact-us</authorEmail>
+    <authorUrl>http://www.klixo.se</authorUrl>
+    <creationDate>April 2014</creationDate>
+    <copyright>Copyright (C) 2011-2014 Klixo.se All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <version>1.5.2</version>
+    <description>MOD_KLIXO_PARTICLES_DESC</description>
+    <files folder="modules/mod_klixo_particles">
+        <filename module="mod_klixo_particles">mod_klixo_particles.php</filename>
+        <filename>mod_klixo_particles.xml</filename>
+        <filename>index.html</filename>
+        <folder>customfields</folder>      
+        <folder>images</folder>
+        <folder>js</folder>
+        <folder>sprites</folder>
+        <folder>tmpl</folder>
+        <folder>language</folder>      
+        <filename>language/en-GB/en-GB.mod_klixo_particles.sys.ini</filename>
+        <filename>language/en-GB/en-GB.mod_klixo_particles.ini</filename> 
+    </files>
+    <config>
+        <fields name="params" addfieldpath="/modules/mod_klixo_particles/customfields">
+            <fieldset name="basic">
+                 <field name="code_version" type="list" default="1" label="LIB_VERSION_LABEL" description="LIB_VERSION_DESC">
+                    <option value="jQueryLib">JQuery</option>
+                    <option value="MootoolsLib">Mootools</option>
+                </field>
+                 <field name="load_js_lib" type="list" default="1" label="INCLUDE_LIBRARY_LABEL" description="INCLUDE_LIBRARY_DESC">
+                    <option value="1">JYes</option>
+                    <option value="0">JNo</option>
+                </field>
+                <field name="spriteGraphic" type="imagelist" default="snowflake_01.png" hide_default="1" hide_none="1" label="IMG_LABEL" description="IMG_DESC" directory="/modules/mod_klixo_particles/sprites" exclude="" stripext="" />
+                <field name="customSprite" type="media" directory="" label="CUSTOM_IMG_LABEL" description="CUSTOM_IMG_DESC" />
+                <field name="spritesQty" type="text" size="5" default="15" label="PARTICLES_QTY_LABEL" description="PARTICLES_QTY_DESC" />
+                <field name="vSpeed" type="slider" default="1.2" range ="0,200" divider="10" label="V_SPEED_LABEL" description="V_SPEED_DESC" />
+                <field name="vDir" type="list" default="0" label="V_DIR_LABEL" description="V_DIR_DESC">
+                    <option value="0">FALLING_LABEL</option>
+                    <option value="1">RAISING_LABEL</option>
+                </field>
+                <field name="hSpeed" type="slider" default="0.4" range ="0,200" divider="10" label="H_SPEED_LABEL" description="H_SPEED_DESC" /> 
+                <field name="hDir" type="list" default="0" label="H_DIR_LABEL" description="H_DIR_DESC">
+                    <option value="0">LEFT_TO_RIGHT</option>
+                    <option value="1">RIGHT_TO_LEFT</option>
+                </field>
+                <field name="turbulence" type="slider" default="50" range ="0,100" divider="1" label="OSCIL_LABEL" description="OSCIL_DESC" />
+                <field name="refreshRate" type="slider" default="5" range ="1,20" divider="1" label="REFRESH_LABEL" description="REFRESH_DESC" />
+                <field name="playMode" type="list" default="screen" label="PLAY_MODE_LABEL" description="PLAY_MODE_DESC">
+                    <option value="screen">SCREEN_LABEL</option>
+                    <option value="module">MODULE_LABEL</option>
+                    <option value="position">POSITION_LABEL</option>
+                </field>
+                <field name="moduleWidth" type="text" size="5" default="" label="MODULE_WIDTH_LABEL" description="MODULE_WIDTH_DESC" />
+                <field name="moduleHeight" type="text" size="5" default="" label="MODULE_HEIGHT_LABEL" description="MODULE_HEIGHT_DESC" />
+            </fieldset>
+            <fieldset name="advanced">
+                <field 
+                    name="moduleclass_sfx"
+                    type="text" default=""
+                    label="MOD_CLASS_SUFFIX_LABEL"
+                    description="MOD_CLASS_SUFFIX_DESC" />
+                <field name="cache" type="list" default="0" label="Caching" description="Caching">
+                    <option value="1">JYes</option>
+                    <option value="0">JNo</option>
+                </field>
+                <field name="cache_time" type="text" default="300" label="Cache time" description="Cache time" />
+            </fieldset>
+        </fields>     
+    </config>
+     <updateservers>
+                <server type="extension" priority="1" name="Klixo Updates">http://www.update.klixo.se/updates/klixo_updates.xml</server>
+        </updateservers>
+</extension>

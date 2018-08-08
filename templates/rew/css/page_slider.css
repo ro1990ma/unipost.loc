@@ -1,0 +1,19 @@
+div.page_slider{
+}
+div.page_slider h3.slider_page_title {
+    color: rgb(47, 120, 199);
+    font-size: 22px;
+    font-family: "Tahoma";
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: -15px;
+}
+div.page_slider p {
+	color:#373737;
+	font: normal 13px/27px "Tahoma";
+}
+
+div.page_slider img {
+	float: right;
+	margin: 0px 0px 10px 10px;
+}

@@ -1,0 +1,3 @@
+[00:26:04] - XSS GET, IP: 127.0.0.1, Query String: 
+[15:05:35] - BAD LINK, IP: 127.0.0.1, Query String: hawb_nr%5B%5D=123&hawb_nr%5B%5D=234&hawb_nr%5B%5D=345&hawb_nr%5B%5D=456&hawb_nr%5B%5D=567&hawb_nr%5B%5D=678&track_do=&show_form=track_profile
+[15:06:28] - BAD LINK, IP: 127.0.0.1, Query String: hawb_nr%5B%5D=123&hawb_nr%5B%5D=234&hawb_nr%5B%5D=345&hawb_nr%5B%5D=456&hawb_nr%5B%5D=567&hawb_nr%5B%5D=678&track_do=&show_form=track_profile

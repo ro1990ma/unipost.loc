@@ -1,0 +1,60 @@
+div.item-page_about h1 {
+    color: rgb(47, 120, 199);
+    font-size: 22px;
+    font-family: "Tahoma";
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: -15px;
+    padding-left: 15px; 
+}
+div.item-page_about div.content p.bg{
+	color:#3f3f3f;
+	font-family:"Arial";
+	font-size:13px;
+	background-color: #eaeaea;
+	margin: 0px;
+	padding: 20px 15px 10px;
+}
+div.item-page_about div.content p.bg2{
+	color:#3f3f3f;
+	font: bold 14px "Arial";
+	margin: 0px;
+	padding: 20px 15px 10px;
+}
+div.item-page_about div.content p.bg strong{
+	color:#3f3f3f;
+	font: bold 14px "Arial";
+}
+div.item-page_about div.content p{
+	color:#3f3f3f;
+	font-family:"Arial";
+	font-size:13px;
+	margin: 10px 20px;
+	line-height: 21px;
+}
+div.item-page_about div.content p.left{
+	color:#3f3f3f;
+	font-family:"Arial";
+	font-size:13px;
+	float: left;
+	width: 536px;
+}
+div.item-page_about div.content p{
+	color:#3f3f3f;
+	font-family:"Arial";
+	font-size:13px;
+	margin: 20px 15px;
+}
+div.item-page_about div.content img{
+	float: right;
+	border: 0px none;
+	margin: 20px 0px 10px !important;
+}
+div.item-page_about div.content p a{
+	color:#034ea2;
+	font: normal 13px "Arial";
+	text-decoration: underline;
+}
+div.item-page_about div.content p a:hover{
+	text-decoration: none;
+}

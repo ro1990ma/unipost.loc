@@ -1,0 +1,1297 @@
+DEBUG   |180526 14:40:58|*** Batching successive steps (nesting level 1)
+DEBUG   |180526 14:40:58|====== Starting Step number 1 ======
+DEBUG   |180526 14:40:58|Kettenrad :: BREAKING STEP BEFORE SWITCHING DOMAIN
+DEBUG   |180526 14:40:58|Akeeba\Engine\Core\Domain\Init :: New instance
+DEBUG   |180526 14:40:58|----- Finished operation 1 ------
+DEBUG   |180526 14:40:58|Successful Smart algorithm on Akeeba\Engine\Core\Domain\Init
+DEBUG   |180526 14:40:58|====== Finished Step number 1 ======
+DEBUG   |180526 14:40:58|*** Engine steps batching: Break flag detected.
+DEBUG   |180526 14:40:58|*** Batching of engine steps finished. I will now return control to the caller.
+DEBUG   |180526 14:40:58|Sleeping for 1987.104177475 msec, using usleep()
+DEBUG   |180526 14:41:00|Saving Kettenrad instance backend
+DEBUG   |180526 14:41:00|Kettenrad :: Attempting to load from database (backend) [backend.id5]
+DEBUG   |180526 14:41:00| -- Loaded stored Akeeba Factory (backend) [backend.id5]
+DEBUG   |180526 14:41:00|====== Starting Step number 2 ======
+INFO    |180526 14:41:00|--------------------------------------------------------------------------------
+INFO    |180526 14:41:00|Akeeba Backup 4.1.1 (2015-01-11)
+INFO    |180526 14:41:00|Got backup?
+INFO    |180526 14:41:00|--------------------------------------------------------------------------------
+INFO    |180526 14:41:00|--- System Information ---
+INFO    |180526 14:41:00|PHP Version        :5.6.36
+INFO    |180526 14:41:00|PHP OS             :Linux
+INFO    |180526 14:41:00|PHP SAPI           :litespeed
+INFO    |180526 14:41:00|OS Version         :Linux
+INFO    |180526 14:41:00|DB Version         :5.5.58-cll
+INFO    |180526 14:41:00|Web Server         :LiteSpeed
+INFO    |180526 14:41:00|Joomla! version    :2.5.16
+INFO    |180526 14:41:00|Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.181 Safari/537.36
+INFO    |180526 14:41:00|Safe mode          :
+INFO    |180526 14:41:00|Display errors     :
+INFO    |180526 14:41:00|Error reporting    :E_ERROR | E_WARNING | E_PARSE
+INFO    |180526 14:41:00|Error display      :off
+INFO    |180526 14:41:00|Disabled functions :
+INFO    |180526 14:41:00|open_basedir restr.:
+INFO    |180526 14:41:00|Max. exec. time    :0
+INFO    |180526 14:41:00|Memory limit       :256M
+INFO    |180526 14:41:00|Current mem. usage :3745496
+INFO    |180526 14:41:00|GZIP Compression   : available (good)
+INFO    |180526 14:41:00|JPATH_BASE         :<root>/administrator
+INFO    |180526 14:41:00|JPATH_SITE         :<root>
+INFO    |180526 14:41:00|JPATH_ROOT         :<root>
+INFO    |180526 14:41:00|JPATH_CACHE        :<root>/cache
+INFO    |180526 14:41:00|Computed root      :<root>
+INFO    |180526 14:41:00|Output directory   :<root>/administrator/components/com_akeeba/backup
+INFO    |180526 14:41:00|Part size (bytes)  :0
+INFO    |180526 14:41:00|--------------------------------------------------------------------------------
+INFO    |180526 14:41:00|Akeeba Backup has detected the following potential problems:
+INFO    |180526 14:41:00|- 203 Default output directory in use (low)
+INFO    |180526 14:41:00|You probably do not have to worry about them, but you should be aware of them.
+INFO    |180526 14:41:00|--------------------------------------------------------------------------------
+INFO    |180526 14:41:00|Loaded profile #1
+DEBUG   |180526 14:41:00|Archive template name: site-[HOST]-[DATE]-[TIME]
+DEBUG   |180526 14:41:00|Expanded template name: site-www.unipost.md-20180526-154100
+DEBUG   |180526 14:41:00|Backup type is now set to 'dbonly'
+DEBUG   |180526 14:41:00|----- Finished operation 1 ------
+DEBUG   |180526 14:41:00|----- Finished operation 2 ------
+DEBUG   |180526 14:41:00|Successful Smart algorithm on Akeeba\Engine\Core\Domain\Init
+DEBUG   |180526 14:41:00|Kettenrad :: Domain 'init' has finished.
+DEBUG   |180526 14:41:00|====== Finished Step number 2 ======
+DEBUG   |180526 14:41:00|*** Engine steps batching: Break flag detected.
+DEBUG   |180526 14:41:00|*** Batching of engine steps finished. I will now return control to the caller.
+DEBUG   |180526 14:41:00|Sleeping for 1989.1240596771 msec, using usleep()
+DEBUG   |180526 14:41:02|Saving Kettenrad instance backend
+DEBUG   |180526 14:41:03|Kettenrad :: Attempting to load from database (backend) [backend.id5]
+DEBUG   |180526 14:41:03| -- Loaded stored Akeeba Factory (backend) [backend.id5]
+DEBUG   |180526 14:41:03|====== Starting Step number 3 ======
+DEBUG   |180526 14:41:03|Kettenrad :: BREAKING STEP BEFORE SWITCHING DOMAIN
+DEBUG   |180526 14:41:03|Akeeba\Engine\Core\Domain\Db :: New instance
+DEBUG   |180526 14:41:03|Akeeba\Engine\Core\Domain\Db :: Preparing instance
+DEBUG   |180526 14:41:03|Fetching filter data from database
+DEBUG   |180526 14:41:03|Loading filters
+DEBUG   |180526 14:41:03|-- Loading filter Skipdirs
+DEBUG   |180526 14:41:03|-- Loading filter Regexskipfiles
+DEBUG   |180526 14:41:03|-- Loading filter Directories
+DEBUG   |180526 14:41:03|-- Loading filter Tabledata
+DEBUG   |180526 14:41:03|-- Loading filter Tables
+DEBUG   |180526 14:41:03|-- Loading filter Regextabledata
+DEBUG   |180526 14:41:03|-- Loading filter Regexfiles
+DEBUG   |180526 14:41:03|-- Loading filter Regextables
+DEBUG   |180526 14:41:03|-- Loading filter Regexskipdirs
+DEBUG   |180526 14:41:03|-- Loading filter Files
+DEBUG   |180526 14:41:03|-- Loading filter Multidb
+DEBUG   |180526 14:41:03|-- Loading filter Incremental
+DEBUG   |180526 14:41:03|-- Loading filter Regexdirectories
+DEBUG   |180526 14:41:03|-- Loading filter Extradirs
+DEBUG   |180526 14:41:03|-- Loading filter Skipfiles
+DEBUG   |180526 14:41:03|-- Loading filter Siteroot
+DEBUG   |180526 14:41:03|-- Loading filter Excludefiles
+DEBUG   |180526 14:41:03|-- Loading filter SRPFiles
+DEBUG   |180526 14:41:03|-- Loading filter Joomlaskipdirs
+DEBUG   |180526 14:41:03|-- Loading filter Excludefolders
+DEBUG   |180526 14:41:03|-- Loading filter Systemcachefiles
+DEBUG   |180526 14:41:03|-- Loading filter Sitedb
+DEBUG   |180526 14:41:03|-- Loading filter SRPDirectories
+DEBUG   |180526 14:41:03|-- Loading filter Excludetabledata
+DEBUG   |180526 14:41:03|-- Loading filter SRPSkipData
+DEBUG   |180526 14:41:03|-- Loading filter SRPSkipFiles
+DEBUG   |180526 14:41:03|-- Loading filter SRPData
+DEBUG   |180526 14:41:03|-- Loading filter Libraries
+DEBUG   |180526 14:41:03|-- Loading filter Joomlaskipfiles
+DEBUG   |180526 14:41:03|Loading optional filters
+DEBUG   |180526 14:41:03|-- Loading optional filter Stack\StackFinder
+DEBUG   |180526 14:41:03|Akeeba\Engine\Core\Domain\Db :: Adding only main database
+DEBUG   |180526 14:41:03|----- Finished operation 1 ------
+DEBUG   |180526 14:41:03|Successful Smart algorithm on Akeeba\Engine\Core\Domain\Db
+DEBUG   |180526 14:41:03|====== Finished Step number 3 ======
+DEBUG   |180526 14:41:03|*** Engine steps batching: Break flag detected.
+DEBUG   |180526 14:41:03|*** Batching of engine steps finished. I will now return control to the caller.
+DEBUG   |180526 14:41:03|Sleeping for 1962.110042572 msec, using usleep()
+DEBUG   |180526 14:41:05|Saving Kettenrad instance backend
+DEBUG   |180526 14:41:05|Kettenrad :: Attempting to load from database (backend) [backend.id5]
+DEBUG   |180526 14:41:05| -- Loaded stored Akeeba Factory (backend) [backend.id5]
+DEBUG   |180526 14:41:05|====== Starting Step number 4 ======
+DEBUG   |180526 14:41:05|Akeeba\Engine\Core\Domain\Db :: Iterating next database
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native :: New instance
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native :: Processing parameters
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native :: Instanciating new native database dump engine \Akeeba\Engine\Dump\Native\Mysql
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: New instance
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Base :: Processing parameters
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Finding tables to include in the backup set
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding city (internal name city)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding country (internal name country)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding r_cities (internal name r_cities)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding r_regions (internal name r_regions)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding r_zones (internal name r_zones)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding region (internal name region)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding shipment (internal name shipment)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding state (internal name state)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding status (internal name status)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_advancedmodules (internal name #__advancedmodules)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_ak_profiles (internal name #__ak_profiles)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_ak_stats (internal name #__ak_stats)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_ak_storage (internal name #__ak_storage)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_akeeba_common (internal name #__akeeba_common)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_assets (internal name #__assets)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_associations (internal name #__associations)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_banner_clients (internal name #__banner_clients)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_banner_tracks (internal name #__banner_tracks)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_banners (internal name #__banners)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_categories (internal name #__categories)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_city (internal name #__city)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_contact_details (internal name #__contact_details)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_content (internal name #__content)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_content_frontpage (internal name #__content_frontpage)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_content_rating (internal name #__content_rating)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_core_log_searches (internal name #__core_log_searches)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_countries (internal name #__countries)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_countries_sng (internal name #__countries_sng)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_country (internal name #__country)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_currency (internal name #__currency)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_dbcache (internal name #__dbcache)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_extensions (internal name #__extensions)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_falang_content (internal name #__falang_content)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_falang_tableinfo (internal name #__falang_tableinfo)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_filters (internal name #__finder_filters)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links (internal name #__finder_links)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms0 (internal name #__finder_links_terms0)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms1 (internal name #__finder_links_terms1)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms2 (internal name #__finder_links_terms2)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms3 (internal name #__finder_links_terms3)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms4 (internal name #__finder_links_terms4)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms5 (internal name #__finder_links_terms5)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms6 (internal name #__finder_links_terms6)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms7 (internal name #__finder_links_terms7)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms8 (internal name #__finder_links_terms8)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_terms9 (internal name #__finder_links_terms9)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_termsa (internal name #__finder_links_termsa)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_termsb (internal name #__finder_links_termsb)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_termsc (internal name #__finder_links_termsc)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_termsd (internal name #__finder_links_termsd)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_termse (internal name #__finder_links_termse)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_links_termsf (internal name #__finder_links_termsf)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_taxonomy (internal name #__finder_taxonomy)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_taxonomy_map (internal name #__finder_taxonomy_map)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_terms (internal name #__finder_terms)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_terms_common (internal name #__finder_terms_common)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_tokens (internal name #__finder_tokens)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_tokens_aggregate (internal name #__finder_tokens_aggregate)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_finder_types (internal name #__finder_types)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_form_history (internal name #__form_history)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_form_in (internal name #__form_in)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_form_in_ol (internal name #__form_in_ol)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_form_out (internal name #__form_out)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_languages (internal name #__languages)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_menu (internal name #__menu)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_menu_types (internal name #__menu_types)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_messages (internal name #__messages)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_messages_cfg (internal name #__messages_cfg)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_modules (internal name #__modules)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_modules_menu (internal name #__modules_menu)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_newsfeeds (internal name #__newsfeeds)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_overrider (internal name #__overrider)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_prices (internal name #__prices)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_prices_sng (internal name #__prices_sng)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_redirect_links (internal name #__redirect_links)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_region (internal name #__region)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_calculations (internal name #__rsform_calculations)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_component_type_fields (internal name #__rsform_component_type_fields)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_component_types (internal name #__rsform_component_types)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_components (internal name #__rsform_components)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_condition_details (internal name #__rsform_condition_details)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_conditions (internal name #__rsform_conditions)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_config (internal name #__rsform_config)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_directory (internal name #__rsform_directory)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_directory_fields (internal name #__rsform_directory_fields)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_emails (internal name #__rsform_emails)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_forms (internal name #__rsform_forms)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_mappings (internal name #__rsform_mappings)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_pdfs (internal name #__rsform_pdfs)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_posts (internal name #__rsform_posts)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_properties (internal name #__rsform_properties)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_submission_columns (internal name #__rsform_submission_columns)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_submission_values (internal name #__rsform_submission_values)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_submissions (internal name #__rsform_submissions)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_rsform_translations (internal name #__rsform_translations)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_schemas (internal name #__schemas)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sef_statistics_bak (internal name #__sef_statistics_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sef_subdomains_bak (internal name #__sef_subdomains_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sefaliases_bak (internal name #__sefaliases_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sefexts_bak (internal name #__sefexts_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sefexttexts_bak (internal name #__sefexttexts_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_seflog_bak (internal name #__seflog_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sefmoved_bak (internal name #__sefmoved_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sefurls_bak (internal name #__sefurls_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sefurlword_xref_bak (internal name #__sefurlword_xref_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sefwords_bak (internal name #__sefwords_bak)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_session (internal name #__session)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sh404sef_aliases (internal name #__sh404sef_aliases)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sh404sef_metas (internal name #__sh404sef_metas)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sh404sef_pageids (internal name #__sh404sef_pageids)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_sh404sef_urls (internal name #__sh404sef_urls)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_template_styles (internal name #__template_styles)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_ukraine (internal name #__ukraine)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_update_categories (internal name #__update_categories)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_update_sites (internal name #__update_sites)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_update_sites_extensions (internal name #__update_sites_extensions)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_updates (internal name #__updates)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_user_notes (internal name #__user_notes)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_user_profiles (internal name #__user_profiles)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_user_usergroup_map (internal name #__user_usergroup_map)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_usergroups (internal name #__usergroups)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_users (internal name #__users)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_viewlevels (internal name #__viewlevels)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_weblinks (internal name #__weblinks)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding uni_wf_profiles (internal name #__wf_profiles)
+INFO    |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Adding users (internal name users)
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Starting CREATE TABLE and dependency scanning
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Got database connection
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Got SHOW TABLES
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Got table list
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Native\Mysql :: Processed dependencies
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Base :: Getting temporary file
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Base :: Temporary file is <root>/administrator/components/com_akeeba/backup/47474c9f.sql
+DEBUG   |180526 14:41:05|AkeebaDomainDBBackup :: SQL temp file is <root>/administrator/components/com_akeeba/backup/47474c9f.sql
+DEBUG   |180526 14:41:05|AkeebaDomainDBBackup :: SQL file location in archive is <root>/administrator/components/com_akeeba/backup/site-www.unipost.md-20180526-154100.sql
+DEBUG   |180526 14:41:05|AkeebaDomainDBBackup :: Deleting leftover files, if any
+DEBUG   |180526 14:41:05|Akeeba\Engine\Dump\Base :: Initializing algorithm for first run
+DEBUG   |180526 14:41:05|----- Finished operation 1 ------
+DEBUG   |180526 14:41:05|Rows on city : 6
+DEBUG   |180526 14:41:05|Writing data dump preamble for city
+INFO    |180526 14:41:05|Beginning dump of city
+DEBUG   |180526 14:41:05|Done dumping city
+DEBUG   |180526 14:41:05|Writing data dump epilogue for city
+DEBUG   |180526 14:41:05|----- Finished operation 2 ------
+DEBUG   |180526 14:41:05|Rows on country : 2
+DEBUG   |180526 14:41:05|Writing data dump preamble for country
+INFO    |180526 14:41:05|Beginning dump of country
+DEBUG   |180526 14:41:05|Done dumping country
+DEBUG   |180526 14:41:05|Writing data dump epilogue for country
+DEBUG   |180526 14:41:05|----- Finished operation 3 ------
+DEBUG   |180526 14:41:05|Rows on #__prices_sng : 5
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__prices_sng
+INFO    |180526 14:41:05|Beginning dump of #__prices_sng
+DEBUG   |180526 14:41:05|Done dumping #__prices_sng
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__prices_sng
+DEBUG   |180526 14:41:05|----- Finished operation 4 ------
+DEBUG   |180526 14:41:05|Rows on #__prices : 190
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__prices
+INFO    |180526 14:41:05|Beginning dump of #__prices
+DEBUG   |180526 14:41:05|Done dumping #__prices
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__prices
+DEBUG   |180526 14:41:05|----- Finished operation 5 ------
+DEBUG   |180526 14:41:05|Rows on r_cities : 187
+DEBUG   |180526 14:41:05|Writing data dump preamble for r_cities
+INFO    |180526 14:41:05|Beginning dump of r_cities
+DEBUG   |180526 14:41:05|Done dumping r_cities
+DEBUG   |180526 14:41:05|Writing data dump epilogue for r_cities
+DEBUG   |180526 14:41:05|----- Finished operation 6 ------
+DEBUG   |180526 14:41:05|Rows on r_regions : 63
+DEBUG   |180526 14:41:05|Writing data dump preamble for r_regions
+INFO    |180526 14:41:05|Beginning dump of r_regions
+DEBUG   |180526 14:41:05|Done dumping r_regions
+DEBUG   |180526 14:41:05|Writing data dump epilogue for r_regions
+DEBUG   |180526 14:41:05|----- Finished operation 7 ------
+DEBUG   |180526 14:41:05|Rows on r_zones : 2
+DEBUG   |180526 14:41:05|Writing data dump preamble for r_zones
+INFO    |180526 14:41:05|Beginning dump of r_zones
+DEBUG   |180526 14:41:05|Done dumping r_zones
+DEBUG   |180526 14:41:05|Writing data dump epilogue for r_zones
+DEBUG   |180526 14:41:05|----- Finished operation 8 ------
+DEBUG   |180526 14:41:05|Rows on region : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for region
+DEBUG   |180526 14:41:05|Done dumping region
+DEBUG   |180526 14:41:05|Writing data dump epilogue for region
+DEBUG   |180526 14:41:05|----- Finished operation 9 ------
+DEBUG   |180526 14:41:05|Rows on state : 5
+DEBUG   |180526 14:41:05|Writing data dump preamble for state
+INFO    |180526 14:41:05|Beginning dump of state
+DEBUG   |180526 14:41:05|Done dumping state
+DEBUG   |180526 14:41:05|Writing data dump epilogue for state
+DEBUG   |180526 14:41:05|----- Finished operation 10 ------
+DEBUG   |180526 14:41:05|Rows on #__weblinks : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__weblinks
+DEBUG   |180526 14:41:05|Done dumping #__weblinks
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__weblinks
+DEBUG   |180526 14:41:05|----- Finished operation 11 ------
+DEBUG   |180526 14:41:05|Rows on #__user_notes : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__user_notes
+DEBUG   |180526 14:41:05|Done dumping #__user_notes
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__user_notes
+DEBUG   |180526 14:41:05|----- Finished operation 12 ------
+DEBUG   |180526 14:41:05|Rows on #__messages : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__messages
+DEBUG   |180526 14:41:05|Done dumping #__messages
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__messages
+DEBUG   |180526 14:41:05|----- Finished operation 13 ------
+INFO    |180526 14:41:05|Skipping dumping data of #__finder_taxonomy
+DEBUG   |180526 14:41:05|Done dumping #__finder_taxonomy
+DEBUG   |180526 14:41:05|----- Finished operation 14 ------
+INFO    |180526 14:41:05|Skipping dumping data of #__finder_links
+DEBUG   |180526 14:41:05|Done dumping #__finder_links
+DEBUG   |180526 14:41:05|----- Finished operation 15 ------
+DEBUG   |180526 14:41:05|Rows on #__finder_filters : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__finder_filters
+DEBUG   |180526 14:41:05|Done dumping #__finder_filters
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__finder_filters
+DEBUG   |180526 14:41:05|----- Finished operation 16 ------
+DEBUG   |180526 14:41:05|Rows on #__extensions : 164
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__extensions
+INFO    |180526 14:41:05|Beginning dump of #__extensions
+DEBUG   |180526 14:41:05|Writing 172151 bytes to the dump file
+DEBUG   |180526 14:41:05|Done dumping #__extensions
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__extensions
+DEBUG   |180526 14:41:05|----- Finished operation 17 ------
+DEBUG   |180526 14:41:05|Rows on #__content : 28
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__content
+INFO    |180526 14:41:05|Beginning dump of #__content
+DEBUG   |180526 14:41:05|Writing 168067 bytes to the dump file
+DEBUG   |180526 14:41:05|Done dumping #__content
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__content
+DEBUG   |180526 14:41:05|----- Finished operation 18 ------
+DEBUG   |180526 14:41:05|Rows on #__contact_details : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__contact_details
+DEBUG   |180526 14:41:05|Done dumping #__contact_details
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__contact_details
+DEBUG   |180526 14:41:05|----- Finished operation 19 ------
+DEBUG   |180526 14:41:05|Rows on #__banners : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__banners
+DEBUG   |180526 14:41:05|Done dumping #__banners
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__banners
+DEBUG   |180526 14:41:05|----- Finished operation 20 ------
+DEBUG   |180526 14:41:05|Rows on #__banner_clients : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__banner_clients
+DEBUG   |180526 14:41:05|Done dumping #__banner_clients
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__banner_clients
+DEBUG   |180526 14:41:05|----- Finished operation 21 ------
+DEBUG   |180526 14:41:05|Rows on status : 59
+DEBUG   |180526 14:41:05|Writing data dump preamble for status
+INFO    |180526 14:41:05|Beginning dump of status
+DEBUG   |180526 14:41:05|Done dumping status
+DEBUG   |180526 14:41:05|Writing data dump epilogue for status
+DEBUG   |180526 14:41:05|----- Finished operation 22 ------
+DEBUG   |180526 14:41:05|Rows on #__ak_stats : 5
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__ak_stats
+INFO    |180526 14:41:05|Beginning dump of #__ak_stats
+DEBUG   |180526 14:41:05|Done dumping #__ak_stats
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__ak_stats
+DEBUG   |180526 14:41:05|----- Finished operation 23 ------
+DEBUG   |180526 14:41:05|Rows on shipment : 1811
+DEBUG   |180526 14:41:05|Writing data dump preamble for shipment
+INFO    |180526 14:41:05|Beginning dump of shipment
+DEBUG   |180526 14:41:05|Writing 153847 bytes to the dump file
+DEBUG   |180526 14:41:05|----- Finished operation 24 ------
+INFO    |180526 14:41:05|Continuing dump of shipment from record #1000
+DEBUG   |180526 14:41:05|Writing 167894 bytes to the dump file
+DEBUG   |180526 14:41:05|Done dumping shipment
+DEBUG   |180526 14:41:05|Writing data dump epilogue for shipment
+DEBUG   |180526 14:41:05|----- Finished operation 25 ------
+DEBUG   |180526 14:41:05|Rows on #__advancedmodules : 26
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__advancedmodules
+INFO    |180526 14:41:05|Beginning dump of #__advancedmodules
+DEBUG   |180526 14:41:05|Done dumping #__advancedmodules
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__advancedmodules
+DEBUG   |180526 14:41:05|----- Finished operation 26 ------
+DEBUG   |180526 14:41:05|Rows on #__ak_profiles : 1
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__ak_profiles
+INFO    |180526 14:41:05|Beginning dump of #__ak_profiles
+DEBUG   |180526 14:41:05|Done dumping #__ak_profiles
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__ak_profiles
+DEBUG   |180526 14:41:05|----- Finished operation 27 ------
+DEBUG   |180526 14:41:05|Rows on #__ak_storage : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__ak_storage
+DEBUG   |180526 14:41:05|Done dumping #__ak_storage
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__ak_storage
+DEBUG   |180526 14:41:05|----- Finished operation 28 ------
+DEBUG   |180526 14:41:05|Rows on #__akeeba_common : 3
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__akeeba_common
+INFO    |180526 14:41:05|Beginning dump of #__akeeba_common
+DEBUG   |180526 14:41:05|Done dumping #__akeeba_common
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__akeeba_common
+DEBUG   |180526 14:41:05|----- Finished operation 29 ------
+DEBUG   |180526 14:41:05|Rows on #__assets : 103
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__assets
+INFO    |180526 14:41:05|Beginning dump of #__assets
+DEBUG   |180526 14:41:05|Done dumping #__assets
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__assets
+DEBUG   |180526 14:41:05|----- Finished operation 30 ------
+DEBUG   |180526 14:41:05|Rows on #__associations : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__associations
+DEBUG   |180526 14:41:05|Done dumping #__associations
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__associations
+DEBUG   |180526 14:41:05|----- Finished operation 31 ------
+DEBUG   |180526 14:41:05|Rows on #__banner_tracks : 0
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__banner_tracks
+DEBUG   |180526 14:41:05|Done dumping #__banner_tracks
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__banner_tracks
+DEBUG   |180526 14:41:05|----- Finished operation 32 ------
+DEBUG   |180526 14:41:05|Rows on #__categories : 10
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__categories
+INFO    |180526 14:41:05|Beginning dump of #__categories
+DEBUG   |180526 14:41:05|Done dumping #__categories
+DEBUG   |180526 14:41:05|Writing data dump epilogue for #__categories
+DEBUG   |180526 14:41:05|----- Finished operation 33 ------
+DEBUG   |180526 14:41:05|Rows on #__city : 10969
+DEBUG   |180526 14:41:05|Writing data dump preamble for #__city
+INFO    |180526 14:41:05|Beginning dump of #__city
+DEBUG   |180526 14:41:06|----- Finished operation 34 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #1000 using auto_increment column city_id and value 1170
+DEBUG   |180526 14:41:06|Writing 156658 bytes to the dump file
+DEBUG   |180526 14:41:06|----- Finished operation 35 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #2000 using auto_increment column city_id and value 2358
+DEBUG   |180526 14:41:06|----- Finished operation 36 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #3000 using auto_increment column city_id and value 3494
+DEBUG   |180526 14:41:06|----- Finished operation 37 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #4000 using auto_increment column city_id and value 4523
+DEBUG   |180526 14:41:06|Writing 140719 bytes to the dump file
+DEBUG   |180526 14:41:06|----- Finished operation 38 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #5000 using auto_increment column city_id and value 5557
+DEBUG   |180526 14:41:06|----- Finished operation 39 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #6000 using auto_increment column city_id and value 6597
+DEBUG   |180526 14:41:06|----- Finished operation 40 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #7000 using auto_increment column city_id and value 7608
+DEBUG   |180526 14:41:06|Writing 140576 bytes to the dump file
+DEBUG   |180526 14:41:06|----- Finished operation 41 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #8000 using auto_increment column city_id and value 8621
+DEBUG   |180526 14:41:06|----- Finished operation 42 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #9000 using auto_increment column city_id and value 9637
+DEBUG   |180526 14:41:06|----- Finished operation 43 ------
+INFO    |180526 14:41:06|Continuing dump of #__city from record #10000 using auto_increment column city_id and value 10780
+DEBUG   |180526 14:41:06|Writing 142394 bytes to the dump file
+DEBUG   |180526 14:41:06|Done dumping #__city
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__city
+DEBUG   |180526 14:41:06|----- Finished operation 44 ------
+DEBUG   |180526 14:41:06|Rows on #__content_frontpage : 0
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__content_frontpage
+DEBUG   |180526 14:41:06|Done dumping #__content_frontpage
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__content_frontpage
+DEBUG   |180526 14:41:06|----- Finished operation 45 ------
+DEBUG   |180526 14:41:06|Rows on #__content_rating : 0
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__content_rating
+DEBUG   |180526 14:41:06|Done dumping #__content_rating
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__content_rating
+DEBUG   |180526 14:41:06|----- Finished operation 46 ------
+DEBUG   |180526 14:41:06|Rows on #__core_log_searches : 0
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__core_log_searches
+DEBUG   |180526 14:41:06|Done dumping #__core_log_searches
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__core_log_searches
+DEBUG   |180526 14:41:06|----- Finished operation 47 ------
+DEBUG   |180526 14:41:06|Rows on #__countries : 193
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__countries
+INFO    |180526 14:41:06|Beginning dump of #__countries
+DEBUG   |180526 14:41:06|Done dumping #__countries
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__countries
+DEBUG   |180526 14:41:06|----- Finished operation 48 ------
+DEBUG   |180526 14:41:06|Rows on #__countries_sng : 5
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__countries_sng
+INFO    |180526 14:41:06|Beginning dump of #__countries_sng
+DEBUG   |180526 14:41:06|Done dumping #__countries_sng
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__countries_sng
+DEBUG   |180526 14:41:06|----- Finished operation 49 ------
+DEBUG   |180526 14:41:06|Rows on #__country : 106
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__country
+INFO    |180526 14:41:06|Beginning dump of #__country
+DEBUG   |180526 14:41:06|Done dumping #__country
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__country
+DEBUG   |180526 14:41:06|----- Finished operation 50 ------
+DEBUG   |180526 14:41:06|Rows on #__currency : 1
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__currency
+INFO    |180526 14:41:06|Beginning dump of #__currency
+DEBUG   |180526 14:41:06|Done dumping #__currency
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__currency
+DEBUG   |180526 14:41:06|----- Finished operation 51 ------
+DEBUG   |180526 14:41:06|Rows on #__dbcache : 0
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__dbcache
+DEBUG   |180526 14:41:06|Done dumping #__dbcache
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__dbcache
+DEBUG   |180526 14:41:06|----- Finished operation 52 ------
+DEBUG   |180526 14:41:06|Rows on #__falang_content : 274
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__falang_content
+INFO    |180526 14:41:06|Beginning dump of #__falang_content
+DEBUG   |180526 14:41:06|Writing 180309 bytes to the dump file
+DEBUG   |180526 14:41:06|Writing 252611 bytes to the dump file
+DEBUG   |180526 14:41:06|Done dumping #__falang_content
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__falang_content
+DEBUG   |180526 14:41:06|----- Finished operation 53 ------
+DEBUG   |180526 14:41:06|Rows on #__falang_tableinfo : 6
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__falang_tableinfo
+INFO    |180526 14:41:06|Beginning dump of #__falang_tableinfo
+DEBUG   |180526 14:41:06|Done dumping #__falang_tableinfo
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__falang_tableinfo
+DEBUG   |180526 14:41:06|----- Finished operation 54 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms0
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms0
+DEBUG   |180526 14:41:06|----- Finished operation 55 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms1
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms1
+DEBUG   |180526 14:41:06|----- Finished operation 56 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms2
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms2
+DEBUG   |180526 14:41:06|----- Finished operation 57 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms3
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms3
+DEBUG   |180526 14:41:06|----- Finished operation 58 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms4
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms4
+DEBUG   |180526 14:41:06|----- Finished operation 59 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms5
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms5
+DEBUG   |180526 14:41:06|----- Finished operation 60 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms6
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms6
+DEBUG   |180526 14:41:06|----- Finished operation 61 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms7
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms7
+DEBUG   |180526 14:41:06|----- Finished operation 62 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms8
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms8
+DEBUG   |180526 14:41:06|----- Finished operation 63 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_terms9
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_terms9
+DEBUG   |180526 14:41:06|----- Finished operation 64 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_termsa
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_termsa
+DEBUG   |180526 14:41:06|----- Finished operation 65 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_termsb
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_termsb
+DEBUG   |180526 14:41:06|----- Finished operation 66 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_termsc
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_termsc
+DEBUG   |180526 14:41:06|----- Finished operation 67 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_termsd
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_termsd
+DEBUG   |180526 14:41:06|----- Finished operation 68 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_termse
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_termse
+DEBUG   |180526 14:41:06|----- Finished operation 69 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_links_termsf
+DEBUG   |180526 14:41:06|Done dumping #__finder_links_termsf
+DEBUG   |180526 14:41:06|----- Finished operation 70 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_taxonomy_map
+DEBUG   |180526 14:41:06|Done dumping #__finder_taxonomy_map
+DEBUG   |180526 14:41:06|----- Finished operation 71 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_terms
+DEBUG   |180526 14:41:06|Done dumping #__finder_terms
+DEBUG   |180526 14:41:06|----- Finished operation 72 ------
+DEBUG   |180526 14:41:06|Rows on #__finder_terms_common : 115
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__finder_terms_common
+INFO    |180526 14:41:06|Beginning dump of #__finder_terms_common
+DEBUG   |180526 14:41:06|Done dumping #__finder_terms_common
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__finder_terms_common
+DEBUG   |180526 14:41:06|----- Finished operation 73 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_tokens
+DEBUG   |180526 14:41:06|Done dumping #__finder_tokens
+DEBUG   |180526 14:41:06|----- Finished operation 74 ------
+INFO    |180526 14:41:06|Skipping dumping data of #__finder_tokens_aggregate
+DEBUG   |180526 14:41:06|Done dumping #__finder_tokens_aggregate
+DEBUG   |180526 14:41:06|----- Finished operation 75 ------
+DEBUG   |180526 14:41:06|Rows on #__finder_types : 0
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__finder_types
+DEBUG   |180526 14:41:06|Done dumping #__finder_types
+DEBUG   |180526 14:41:06|Writing data dump epilogue for #__finder_types
+DEBUG   |180526 14:41:06|----- Finished operation 76 ------
+DEBUG   |180526 14:41:06|Rows on #__form_history : 42890
+DEBUG   |180526 14:41:06|Writing data dump preamble for #__form_history
+INFO    |180526 14:41:06|Beginning dump of #__form_history
+DEBUG   |180526 14:41:06|Writing 138209 bytes to the dump file
+DEBUG   |180526 14:41:06|----- Finished operation 77 ------
+INFO    |180526 14:41:06|Continuing dump of #__form_history from record #1000 using auto_increment column id and value 1325
+DEBUG   |180526 14:41:06|----- Finished operation 78 ------
+INFO    |180526 14:41:06|Continuing dump of #__form_history from record #2000 using auto_increment column id and value 2325
+DEBUG   |180526 14:41:06|Writing 201087 bytes to the dump file
+DEBUG   |180526 14:41:06|----- Finished operation 79 ------
+INFO    |180526 14:41:06|Continuing dump of #__form_history from record #3000 using auto_increment column id and value 3325
+DEBUG   |180526 14:41:06|----- Finished operation 80 ------
+INFO    |180526 14:41:06|Continuing dump of #__form_history from record #4000 using auto_increment column id and value 4325
+DEBUG   |180526 14:41:06|Writing 200858 bytes to the dump file
+DEBUG   |180526 14:41:06|----- Finished operation 81 ------
+INFO    |180526 14:41:06|Continuing dump of #__form_history from record #5000 using auto_increment column id and value 5325
+DEBUG   |180526 14:41:06|----- Finished operation 82 ------
+INFO    |180526 14:41:06|Continuing dump of #__form_history from record #6000 using auto_increment column id and value 6325
+DEBUG   |180526 14:41:06|Writing 200973 bytes to the dump file
+DEBUG   |180526 14:41:06|----- Finished operation 83 ------
+INFO    |180526 14:41:06|Continuing dump of #__form_history from record #7000 using auto_increment column id and value 7325
+DEBUG   |180526 14:41:06|----- Finished operation 84 ------
+INFO    |180526 14:41:06|Continuing dump of #__form_history from record #8000 using auto_increment column id and value 8325
+DEBUG   |180526 14:41:07|Writing 200003 bytes to the dump file
+DEBUG   |180526 14:41:07|----- Finished operation 85 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #9000 using auto_increment column id and value 9325
+DEBUG   |180526 14:41:07|----- Finished operation 86 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #10000 using auto_increment column id and value 10326
+DEBUG   |180526 14:41:07|Writing 201098 bytes to the dump file
+DEBUG   |180526 14:41:07|----- Finished operation 87 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #11000 using auto_increment column id and value 11326
+DEBUG   |180526 14:41:07|----- Finished operation 88 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #12000 using auto_increment column id and value 12326
+DEBUG   |180526 14:41:07|Writing 202123 bytes to the dump file
+DEBUG   |180526 14:41:07|----- Finished operation 89 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #13000 using auto_increment column id and value 13326
+DEBUG   |180526 14:41:07|----- Finished operation 90 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #14000 using auto_increment column id and value 14326
+DEBUG   |180526 14:41:07|Writing 202884 bytes to the dump file
+DEBUG   |180526 14:41:07|----- Finished operation 91 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #15000 using auto_increment column id and value 15328
+DEBUG   |180526 14:41:07|----- Finished operation 92 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #16000 using auto_increment column id and value 16328
+DEBUG   |180526 14:41:07|Writing 201404 bytes to the dump file
+DEBUG   |180526 14:41:07|----- Finished operation 93 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #17000 using auto_increment column id and value 17328
+DEBUG   |180526 14:41:07|----- Finished operation 94 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #18000 using auto_increment column id and value 18328
+DEBUG   |180526 14:41:07|Writing 201947 bytes to the dump file
+DEBUG   |180526 14:41:07|----- Finished operation 95 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #19000 using auto_increment column id and value 19328
+DEBUG   |180526 14:41:07|----- Finished operation 96 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #20000 using auto_increment column id and value 20328
+DEBUG   |180526 14:41:07|Writing 201613 bytes to the dump file
+DEBUG   |180526 14:41:07|----- Finished operation 97 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #21000 using auto_increment column id and value 21328
+DEBUG   |180526 14:41:07|----- Finished operation 98 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #22000 using auto_increment column id and value 22328
+DEBUG   |180526 14:41:07|Writing 201508 bytes to the dump file
+DEBUG   |180526 14:41:07|----- Finished operation 99 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #23000 using auto_increment column id and value 23328
+DEBUG   |180526 14:41:07|----- Finished operation 100 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #24000 using auto_increment column id and value 24328
+DEBUG   |180526 14:41:07|Writing 201264 bytes to the dump file
+DEBUG   |180526 14:41:07|----- Finished operation 101 ------
+INFO    |180526 14:41:07|Continuing dump of #__form_history from record #25000 using auto_increment column id and value 25328
+DEBUG   |180526 14:41:08|----- Finished operation 102 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #26000 using auto_increment column id and value 26328
+DEBUG   |180526 14:41:08|Writing 201533 bytes to the dump file
+DEBUG   |180526 14:41:08|----- Finished operation 103 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #27000 using auto_increment column id and value 27328
+DEBUG   |180526 14:41:08|----- Finished operation 104 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #28000 using auto_increment column id and value 28328
+DEBUG   |180526 14:41:08|Writing 202292 bytes to the dump file
+DEBUG   |180526 14:41:08|----- Finished operation 105 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #29000 using auto_increment column id and value 29328
+DEBUG   |180526 14:41:08|----- Finished operation 106 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #30000 using auto_increment column id and value 30328
+DEBUG   |180526 14:41:08|Writing 201639 bytes to the dump file
+DEBUG   |180526 14:41:08|----- Finished operation 107 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #31000 using auto_increment column id and value 31328
+DEBUG   |180526 14:41:08|----- Finished operation 108 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #32000 using auto_increment column id and value 32328
+DEBUG   |180526 14:41:08|Writing 201786 bytes to the dump file
+DEBUG   |180526 14:41:08|----- Finished operation 109 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #33000 using auto_increment column id and value 33328
+DEBUG   |180526 14:41:08|----- Finished operation 110 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #34000 using auto_increment column id and value 34328
+DEBUG   |180526 14:41:08|Writing 201154 bytes to the dump file
+DEBUG   |180526 14:41:08|----- Finished operation 111 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #35000 using auto_increment column id and value 35328
+DEBUG   |180526 14:41:08|----- Finished operation 112 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #36000 using auto_increment column id and value 36328
+DEBUG   |180526 14:41:08|Writing 199184 bytes to the dump file
+DEBUG   |180526 14:41:08|----- Finished operation 113 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #37000 using auto_increment column id and value 37328
+DEBUG   |180526 14:41:08|----- Finished operation 114 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #38000 using auto_increment column id and value 38328
+DEBUG   |180526 14:41:08|Writing 201302 bytes to the dump file
+DEBUG   |180526 14:41:08|----- Finished operation 115 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #39000 using auto_increment column id and value 39328
+DEBUG   |180526 14:41:08|----- Finished operation 116 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #40000 using auto_increment column id and value 40328
+DEBUG   |180526 14:41:08|Writing 200587 bytes to the dump file
+DEBUG   |180526 14:41:08|----- Finished operation 117 ------
+INFO    |180526 14:41:08|Continuing dump of #__form_history from record #41000 using auto_increment column id and value 41328
+DEBUG   |180526 14:41:09|----- Finished operation 118 ------
+INFO    |180526 14:41:09|Continuing dump of #__form_history from record #42000 using auto_increment column id and value 42328
+DEBUG   |180526 14:41:09|Writing 189512 bytes to the dump file
+DEBUG   |180526 14:41:09|Done dumping #__form_history
+DEBUG   |180526 14:41:09|Writing data dump epilogue for #__form_history
+DEBUG   |180526 14:41:09|----- Finished operation 119 ------
+DEBUG   |180526 14:41:09|Rows on #__form_in : 12035
+DEBUG   |180526 14:41:09|Writing data dump preamble for #__form_in
+INFO    |180526 14:41:09|Beginning dump of #__form_in
+DEBUG   |180526 14:41:09|Writing 133281 bytes to the dump file
+DEBUG   |180526 14:41:09|Writing 261459 bytes to the dump file
+DEBUG   |180526 14:41:09|----- Finished operation 120 ------
+INFO    |180526 14:41:09|Continuing dump of #__form_in from record #1000 using auto_increment column form_id and value 1007
+DEBUG   |180526 14:41:09|Writing 186982 bytes to the dump file
+DEBUG   |180526 14:41:09|Writing 261626 bytes to the dump file
+DEBUG   |180526 14:41:09|----- Finished operation 121 ------
+INFO    |180526 14:41:09|Continuing dump of #__form_in from record #2000 using auto_increment column form_id and value 2007
+DEBUG   |180526 14:41:09|Writing 188000 bytes to the dump file
+DEBUG   |180526 14:41:09|Writing 261789 bytes to the dump file
+DEBUG   |180526 14:41:09|----- Finished operation 122 ------
+INFO    |180526 14:41:09|Continuing dump of #__form_in from record #3000 using auto_increment column form_id and value 3007
+DEBUG   |180526 14:41:09|Writing 188085 bytes to the dump file
+DEBUG   |180526 14:41:10|Writing 261775 bytes to the dump file
+DEBUG   |180526 14:41:10|----- Finished operation 123 ------
+INFO    |180526 14:41:10|Continuing dump of #__form_in from record #4000 using auto_increment column form_id and value 4007
+DEBUG   |180526 14:41:10|Writing 187243 bytes to the dump file
+DEBUG   |180526 14:41:10|Writing 261355 bytes to the dump file
+DEBUG   |180526 14:41:10|----- Finished operation 124 ------
+INFO    |180526 14:41:10|Continuing dump of #__form_in from record #5000 using auto_increment column form_id and value 5007
+DEBUG   |180526 14:41:10|Writing 188695 bytes to the dump file
+DEBUG   |180526 14:41:10|Writing 261347 bytes to the dump file
+DEBUG   |180526 14:41:10|----- Finished operation 125 ------
+INFO    |180526 14:41:10|Continuing dump of #__form_in from record #6000 using auto_increment column form_id and value 6007
+DEBUG   |180526 14:41:10|Writing 186605 bytes to the dump file
+DEBUG   |180526 14:41:10|Writing 261635 bytes to the dump file
+DEBUG   |180526 14:41:10|----- Finished operation 126 ------
+INFO    |180526 14:41:10|Continuing dump of #__form_in from record #7000 using auto_increment column form_id and value 7007
+DEBUG   |180526 14:41:10|Writing 188219 bytes to the dump file
+DEBUG   |180526 14:41:10|Writing 261850 bytes to the dump file
+DEBUG   |180526 14:41:11|----- Finished operation 127 ------
+INFO    |180526 14:41:11|Continuing dump of #__form_in from record #8000 using auto_increment column form_id and value 8007
+DEBUG   |180526 14:41:11|Writing 186609 bytes to the dump file
+DEBUG   |180526 14:41:11|Writing 261729 bytes to the dump file
+DEBUG   |180526 14:41:11|----- Finished operation 128 ------
+INFO    |180526 14:41:11|Continuing dump of #__form_in from record #9000 using auto_increment column form_id and value 9007
+DEBUG   |180526 14:41:11|Writing 187185 bytes to the dump file
+DEBUG   |180526 14:41:11|Writing 261718 bytes to the dump file
+DEBUG   |180526 14:41:11|----- Finished operation 129 ------
+INFO    |180526 14:41:11|Continuing dump of #__form_in from record #10000 using auto_increment column form_id and value 10007
+DEBUG   |180526 14:41:11|Writing 185936 bytes to the dump file
+DEBUG   |180526 14:41:11|Writing 261587 bytes to the dump file
+DEBUG   |180526 14:41:11|----- Finished operation 130 ------
+INFO    |180526 14:41:11|Continuing dump of #__form_in from record #11000 using auto_increment column form_id and value 11007
+DEBUG   |180526 14:41:11|Writing 189656 bytes to the dump file
+DEBUG   |180526 14:41:11|Writing 261596 bytes to the dump file
+DEBUG   |180526 14:41:12|----- Finished operation 131 ------
+INFO    |180526 14:41:12|Continuing dump of #__form_in from record #12000 using auto_increment column form_id and value 12007
+DEBUG   |180526 14:41:12|Done dumping #__form_in
+DEBUG   |180526 14:41:12|Writing data dump epilogue for #__form_in
+DEBUG   |180526 14:41:12|----- Finished operation 132 ------
+DEBUG   |180526 14:41:12|Rows on #__form_in_ol : 3
+DEBUG   |180526 14:41:12|Writing data dump preamble for #__form_in_ol
+INFO    |180526 14:41:12|Beginning dump of #__form_in_ol
+DEBUG   |180526 14:41:12|Done dumping #__form_in_ol
+DEBUG   |180526 14:41:12|Writing data dump epilogue for #__form_in_ol
+DEBUG   |180526 14:41:12|----- Finished operation 133 ------
+DEBUG   |180526 14:41:12|Rows on #__form_out : 6491
+DEBUG   |180526 14:41:12|Writing data dump preamble for #__form_out
+INFO    |180526 14:41:12|Beginning dump of #__form_out
+DEBUG   |180526 14:41:12|Writing 212052 bytes to the dump file
+DEBUG   |180526 14:41:12|Writing 261895 bytes to the dump file
+DEBUG   |180526 14:41:12|----- Finished operation 134 ------
+INFO    |180526 14:41:12|Continuing dump of #__form_out from record #1000 using auto_increment column form_id and value 1014
+DEBUG   |180526 14:41:12|Writing 198448 bytes to the dump file
+DEBUG   |180526 14:41:12|Writing 261594 bytes to the dump file
+DEBUG   |180526 14:41:12|----- Finished operation 135 ------
+INFO    |180526 14:41:12|Continuing dump of #__form_out from record #2000 using auto_increment column form_id and value 2014
+DEBUG   |180526 14:41:12|Writing 199008 bytes to the dump file
+DEBUG   |180526 14:41:12|Writing 261523 bytes to the dump file
+DEBUG   |180526 14:41:12|----- Finished operation 136 ------
+INFO    |180526 14:41:12|Continuing dump of #__form_out from record #3000 using auto_increment column form_id and value 3014
+DEBUG   |180526 14:41:12|Writing 198081 bytes to the dump file
+DEBUG   |180526 14:41:12|Writing 261767 bytes to the dump file
+DEBUG   |180526 14:41:12|----- Finished operation 137 ------
+INFO    |180526 14:41:12|Continuing dump of #__form_out from record #4000 using auto_increment column form_id and value 4014
+DEBUG   |180526 14:41:13|Writing 199650 bytes to the dump file
+DEBUG   |180526 14:41:13|Writing 261418 bytes to the dump file
+DEBUG   |180526 14:41:13|----- Finished operation 138 ------
+INFO    |180526 14:41:13|Continuing dump of #__form_out from record #5000 using auto_increment column form_id and value 5014
+DEBUG   |180526 14:41:13|Writing 200163 bytes to the dump file
+DEBUG   |180526 14:41:13|Writing 262004 bytes to the dump file
+DEBUG   |180526 14:41:13|----- Finished operation 139 ------
+INFO    |180526 14:41:13|Continuing dump of #__form_out from record #6000 using auto_increment column form_id and value 6014
+DEBUG   |180526 14:41:13|Writing 198624 bytes to the dump file
+DEBUG   |180526 14:41:13|Done dumping #__form_out
+DEBUG   |180526 14:41:13|Writing data dump epilogue for #__form_out
+DEBUG   |180526 14:41:13|----- Finished operation 140 ------
+DEBUG   |180526 14:41:13|Rows on #__languages : 3
+DEBUG   |180526 14:41:13|Writing data dump preamble for #__languages
+INFO    |180526 14:41:13|Beginning dump of #__languages
+DEBUG   |180526 14:41:13|Done dumping #__languages
+DEBUG   |180526 14:41:13|Writing data dump epilogue for #__languages
+DEBUG   |180526 14:41:13|----- Finished operation 141 ------
+DEBUG   |180526 14:41:13|Rows on #__menu : 48
+DEBUG   |180526 14:41:13|Writing data dump preamble for #__menu
+INFO    |180526 14:41:13|Beginning dump of #__menu
+DEBUG   |180526 14:41:13|Writing 135669 bytes to the dump file
+DEBUG   |180526 14:41:13|Done dumping #__menu
+DEBUG   |180526 14:41:13|Writing data dump epilogue for #__menu
+DEBUG   |180526 14:41:13|----- Finished operation 142 ------
+DEBUG   |180526 14:41:13|Rows on #__menu_types : 2
+DEBUG   |180526 14:41:13|Writing data dump preamble for #__menu_types
+INFO    |180526 14:41:13|Beginning dump of #__menu_types
+DEBUG   |180526 14:41:13|Done dumping #__menu_types
+DEBUG   |180526 14:41:13|Writing data dump epilogue for #__menu_types
+DEBUG   |180526 14:41:13|----- Finished operation 143 ------
+DEBUG   |180526 14:41:13|Rows on #__messages_cfg : 0
+DEBUG   |180526 14:41:13|Writing data dump preamble for #__messages_cfg
+DEBUG   |180526 14:41:13|Done dumping #__messages_cfg
+DEBUG   |180526 14:41:13|Writing data dump epilogue for #__messages_cfg
+DEBUG   |180526 14:41:13|----- Finished operation 144 ------
+DEBUG   |180526 14:41:13|Rows on #__modules : 39
+DEBUG   |180526 14:41:13|Writing data dump preamble for #__modules
+INFO    |180526 14:41:13|Beginning dump of #__modules
+DEBUG   |180526 14:41:13|Done dumping #__modules
+DEBUG   |180526 14:41:13|Writing data dump epilogue for #__modules
+DEBUG   |180526 14:41:13|----- Finished operation 145 ------
+DEBUG   |180526 14:41:13|Rows on #__modules_menu : 40
+DEBUG   |180526 14:41:13|Writing data dump preamble for #__modules_menu
+INFO    |180526 14:41:13|Beginning dump of #__modules_menu
+DEBUG   |180526 14:41:13|Done dumping #__modules_menu
+DEBUG   |180526 14:41:13|Writing data dump epilogue for #__modules_menu
+DEBUG   |180526 14:41:13|----- Finished operation 146 ------
+DEBUG   |180526 14:41:13|Rows on #__newsfeeds : 0
+DEBUG   |180526 14:41:13|Writing data dump preamble for #__newsfeeds
+DEBUG   |180526 14:41:13|Done dumping #__newsfeeds
+DEBUG   |180526 14:41:13|Writing data dump epilogue for #__newsfeeds
+DEBUG   |180526 14:41:13|----- Finished operation 147 ------
+DEBUG   |180526 14:41:13|Rows on #__overrider : 2164
+DEBUG   |180526 14:41:13|Writing data dump preamble for #__overrider
+INFO    |180526 14:41:13|Beginning dump of #__overrider
+DEBUG   |180526 14:41:13|Writing 169258 bytes to the dump file
+DEBUG   |180526 14:41:13|----- Finished operation 148 ------
+INFO    |180526 14:41:13|Continuing dump of #__overrider from record #1000 using auto_increment column id and value 1000
+DEBUG   |180526 14:41:13|Writing 188333 bytes to the dump file
+DEBUG   |180526 14:41:13|----- Finished operation 149 ------
+INFO    |180526 14:41:13|Continuing dump of #__overrider from record #2000 using auto_increment column id and value 2000
+DEBUG   |180526 14:41:13|Done dumping #__overrider
+DEBUG   |180526 14:41:13|Writing data dump epilogue for #__overrider
+DEBUG   |180526 14:41:13|----- Finished operation 150 ------
+DEBUG   |180526 14:41:13|Rows on #__redirect_links : 23972
+DEBUG   |180526 14:41:13|Writing data dump preamble for #__redirect_links
+INFO    |180526 14:41:13|Beginning dump of #__redirect_links
+DEBUG   |180526 14:41:13|Writing 240901 bytes to the dump file
+DEBUG   |180526 14:41:13|----- Finished operation 151 ------
+INFO    |180526 14:41:13|Continuing dump of #__redirect_links from record #1000 using auto_increment column id and value 1016
+DEBUG   |180526 14:41:13|Writing 151338 bytes to the dump file
+DEBUG   |180526 14:41:13|----- Finished operation 152 ------
+INFO    |180526 14:41:13|Continuing dump of #__redirect_links from record #2000 using auto_increment column id and value 2016
+DEBUG   |180526 14:41:13|Writing 135539 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 153 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #3000 using auto_increment column id and value 3016
+DEBUG   |180526 14:41:14|Writing 153653 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 154 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #4000 using auto_increment column id and value 4016
+DEBUG   |180526 14:41:14|Writing 135556 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 155 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #5000 using auto_increment column id and value 5016
+DEBUG   |180526 14:41:14|Writing 134160 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 156 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #6000 using auto_increment column id and value 6031
+DEBUG   |180526 14:41:14|----- Finished operation 157 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #7000 using auto_increment column id and value 7031
+DEBUG   |180526 14:41:14|Writing 256472 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 158 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #8000 using auto_increment column id and value 8047
+DEBUG   |180526 14:41:14|Writing 135726 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 159 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #9000 using auto_increment column id and value 9047
+DEBUG   |180526 14:41:14|Writing 180330 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 160 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #10000 using auto_increment column id and value 10047
+DEBUG   |180526 14:41:14|Writing 134437 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 161 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #11000 using auto_increment column id and value 11163
+DEBUG   |180526 14:41:14|Writing 139827 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 162 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #12000 using auto_increment column id and value 12166
+DEBUG   |180526 14:41:14|Writing 161102 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 163 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #13000 using auto_increment column id and value 13166
+DEBUG   |180526 14:41:14|Writing 156303 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 164 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #14000 using auto_increment column id and value 14166
+DEBUG   |180526 14:41:14|Writing 154536 bytes to the dump file
+DEBUG   |180526 14:41:14|----- Finished operation 165 ------
+INFO    |180526 14:41:14|Continuing dump of #__redirect_links from record #15000 using auto_increment column id and value 15166
+DEBUG   |180526 14:41:15|Writing 162044 bytes to the dump file
+DEBUG   |180526 14:41:15|----- Finished operation 166 ------
+INFO    |180526 14:41:15|Continuing dump of #__redirect_links from record #16000 using auto_increment column id and value 16166
+DEBUG   |180526 14:41:15|Writing 161186 bytes to the dump file
+DEBUG   |180526 14:41:15|----- Finished operation 167 ------
+INFO    |180526 14:41:15|Continuing dump of #__redirect_links from record #17000 using auto_increment column id and value 17166
+DEBUG   |180526 14:41:15|Writing 140602 bytes to the dump file
+DEBUG   |180526 14:41:15|----- Finished operation 168 ------
+INFO    |180526 14:41:15|Continuing dump of #__redirect_links from record #18000 using auto_increment column id and value 18166
+DEBUG   |180526 14:41:15|Writing 152386 bytes to the dump file
+DEBUG   |180526 14:41:15|----- Finished operation 169 ------
+INFO    |180526 14:41:15|Continuing dump of #__redirect_links from record #19000 using auto_increment column id and value 19166
+DEBUG   |180526 14:41:15|----- Finished operation 170 ------
+INFO    |180526 14:41:15|Continuing dump of #__redirect_links from record #20000 using auto_increment column id and value 20166
+DEBUG   |180526 14:41:15|Writing 256753 bytes to the dump file
+DEBUG   |180526 14:41:15|----- Finished operation 171 ------
+INFO    |180526 14:41:15|Continuing dump of #__redirect_links from record #21000 using auto_increment column id and value 21166
+DEBUG   |180526 14:41:15|Writing 132517 bytes to the dump file
+DEBUG   |180526 14:41:15|----- Finished operation 172 ------
+INFO    |180526 14:41:15|Continuing dump of #__redirect_links from record #22000 using auto_increment column id and value 22172
+DEBUG   |180526 14:41:15|Writing 147636 bytes to the dump file
+DEBUG   |180526 14:41:15|----- Finished operation 173 ------
+INFO    |180526 14:41:15|Continuing dump of #__redirect_links from record #23000 using auto_increment column id and value 23178
+DEBUG   |180526 14:41:15|Writing 162650 bytes to the dump file
+DEBUG   |180526 14:41:15|Done dumping #__redirect_links
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__redirect_links
+DEBUG   |180526 14:41:15|----- Finished operation 174 ------
+DEBUG   |180526 14:41:15|Rows on #__region : 922
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__region
+INFO    |180526 14:41:15|Beginning dump of #__region
+DEBUG   |180526 14:41:15|Done dumping #__region
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__region
+DEBUG   |180526 14:41:15|----- Finished operation 175 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_calculations : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_calculations
+DEBUG   |180526 14:41:15|Done dumping #__rsform_calculations
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_calculations
+DEBUG   |180526 14:41:15|----- Finished operation 176 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_component_type_fields : 195
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_component_type_fields
+INFO    |180526 14:41:15|Beginning dump of #__rsform_component_type_fields
+DEBUG   |180526 14:41:15|Breaking dump of #__rsform_component_type_fields after 145 rows; will continue on next step
+DEBUG   |180526 14:41:15|----- Finished operation 177 ------
+DEBUG   |180526 14:41:15|Successful Smart algorithm on Akeeba\Engine\Core\Domain\Db
+DEBUG   |180526 14:41:15|Kettenrad :: More work required in domain 'PackDB'
+DEBUG   |180526 14:41:15|====== Finished Step number 4 ======
+DEBUG   |180526 14:41:15|*** Engine steps batching: Break flag detected.
+DEBUG   |180526 14:41:15|*** Batching of engine steps finished. I will now return control to the caller.
+DEBUG   |180526 14:41:15|No need to sleep; execution time: 10500.504970551 msec; min. exec. time: 2000 msec
+DEBUG   |180526 14:41:15|Saving Kettenrad instance backend
+DEBUG   |180526 14:41:15|Kettenrad :: Attempting to load from database (backend) [backend.id5]
+DEBUG   |180526 14:41:15| -- Loaded stored Akeeba Factory (backend) [backend.id5]
+DEBUG   |180526 14:41:15|====== Starting Step number 5 ======
+INFO    |180526 14:41:15|Continuing dump of #__rsform_component_type_fields from record #145
+DEBUG   |180526 14:41:15|Done dumping #__rsform_component_type_fields
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_component_type_fields
+DEBUG   |180526 14:41:15|----- Finished operation 1 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_component_types : 18
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_component_types
+INFO    |180526 14:41:15|Beginning dump of #__rsform_component_types
+DEBUG   |180526 14:41:15|Done dumping #__rsform_component_types
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_component_types
+DEBUG   |180526 14:41:15|----- Finished operation 2 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_components : 42
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_components
+INFO    |180526 14:41:15|Beginning dump of #__rsform_components
+DEBUG   |180526 14:41:15|Done dumping #__rsform_components
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_components
+DEBUG   |180526 14:41:15|----- Finished operation 3 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_condition_details : 1
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_condition_details
+INFO    |180526 14:41:15|Beginning dump of #__rsform_condition_details
+DEBUG   |180526 14:41:15|Done dumping #__rsform_condition_details
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_condition_details
+DEBUG   |180526 14:41:15|----- Finished operation 4 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_conditions : 1
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_conditions
+INFO    |180526 14:41:15|Beginning dump of #__rsform_conditions
+DEBUG   |180526 14:41:15|Done dumping #__rsform_conditions
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_conditions
+DEBUG   |180526 14:41:15|----- Finished operation 5 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_config : 14
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_config
+INFO    |180526 14:41:15|Beginning dump of #__rsform_config
+DEBUG   |180526 14:41:15|Done dumping #__rsform_config
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_config
+DEBUG   |180526 14:41:15|----- Finished operation 6 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_directory : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_directory
+DEBUG   |180526 14:41:15|Done dumping #__rsform_directory
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_directory
+DEBUG   |180526 14:41:15|----- Finished operation 7 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_directory_fields : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_directory_fields
+DEBUG   |180526 14:41:15|Done dumping #__rsform_directory_fields
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_directory_fields
+DEBUG   |180526 14:41:15|----- Finished operation 8 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_emails : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_emails
+DEBUG   |180526 14:41:15|Done dumping #__rsform_emails
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_emails
+DEBUG   |180526 14:41:15|----- Finished operation 9 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_forms : 3
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_forms
+INFO    |180526 14:41:15|Beginning dump of #__rsform_forms
+DEBUG   |180526 14:41:15|Done dumping #__rsform_forms
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_forms
+DEBUG   |180526 14:41:15|----- Finished operation 10 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_mappings : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_mappings
+DEBUG   |180526 14:41:15|Done dumping #__rsform_mappings
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_mappings
+DEBUG   |180526 14:41:15|----- Finished operation 11 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_pdfs : 1
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_pdfs
+INFO    |180526 14:41:15|Beginning dump of #__rsform_pdfs
+DEBUG   |180526 14:41:15|Done dumping #__rsform_pdfs
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_pdfs
+DEBUG   |180526 14:41:15|----- Finished operation 12 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_posts : 3
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_posts
+INFO    |180526 14:41:15|Beginning dump of #__rsform_posts
+DEBUG   |180526 14:41:15|Done dumping #__rsform_posts
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_posts
+DEBUG   |180526 14:41:15|----- Finished operation 13 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_properties : 357
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_properties
+INFO    |180526 14:41:15|Beginning dump of #__rsform_properties
+DEBUG   |180526 14:41:15|Done dumping #__rsform_properties
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_properties
+DEBUG   |180526 14:41:15|----- Finished operation 14 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_submission_columns : 16
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_submission_columns
+INFO    |180526 14:41:15|Beginning dump of #__rsform_submission_columns
+DEBUG   |180526 14:41:15|Done dumping #__rsform_submission_columns
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_submission_columns
+DEBUG   |180526 14:41:15|----- Finished operation 15 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_submission_values : 40
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_submission_values
+INFO    |180526 14:41:15|Beginning dump of #__rsform_submission_values
+DEBUG   |180526 14:41:15|Done dumping #__rsform_submission_values
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_submission_values
+DEBUG   |180526 14:41:15|----- Finished operation 16 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_submissions : 4
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_submissions
+INFO    |180526 14:41:15|Beginning dump of #__rsform_submissions
+DEBUG   |180526 14:41:15|Done dumping #__rsform_submissions
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_submissions
+DEBUG   |180526 14:41:15|----- Finished operation 17 ------
+DEBUG   |180526 14:41:15|Rows on #__rsform_translations : 1
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__rsform_translations
+INFO    |180526 14:41:15|Beginning dump of #__rsform_translations
+DEBUG   |180526 14:41:15|Done dumping #__rsform_translations
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__rsform_translations
+DEBUG   |180526 14:41:15|----- Finished operation 18 ------
+DEBUG   |180526 14:41:15|Rows on #__schemas : 2
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__schemas
+INFO    |180526 14:41:15|Beginning dump of #__schemas
+DEBUG   |180526 14:41:15|Done dumping #__schemas
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__schemas
+DEBUG   |180526 14:41:15|----- Finished operation 19 ------
+DEBUG   |180526 14:41:15|Rows on #__sef_statistics_bak : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__sef_statistics_bak
+DEBUG   |180526 14:41:15|Done dumping #__sef_statistics_bak
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__sef_statistics_bak
+DEBUG   |180526 14:41:15|----- Finished operation 20 ------
+DEBUG   |180526 14:41:15|Rows on #__sef_subdomains_bak : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__sef_subdomains_bak
+DEBUG   |180526 14:41:15|Done dumping #__sef_subdomains_bak
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__sef_subdomains_bak
+DEBUG   |180526 14:41:15|----- Finished operation 21 ------
+DEBUG   |180526 14:41:15|Rows on #__sefaliases_bak : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__sefaliases_bak
+DEBUG   |180526 14:41:15|Done dumping #__sefaliases_bak
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__sefaliases_bak
+DEBUG   |180526 14:41:15|----- Finished operation 22 ------
+DEBUG   |180526 14:41:15|Rows on #__sefexts_bak : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__sefexts_bak
+DEBUG   |180526 14:41:15|Done dumping #__sefexts_bak
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__sefexts_bak
+DEBUG   |180526 14:41:15|----- Finished operation 23 ------
+DEBUG   |180526 14:41:15|Rows on #__sefexttexts_bak : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__sefexttexts_bak
+DEBUG   |180526 14:41:15|Done dumping #__sefexttexts_bak
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__sefexttexts_bak
+DEBUG   |180526 14:41:15|----- Finished operation 24 ------
+DEBUG   |180526 14:41:15|Rows on #__seflog_bak : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__seflog_bak
+DEBUG   |180526 14:41:15|Done dumping #__seflog_bak
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__seflog_bak
+DEBUG   |180526 14:41:15|----- Finished operation 25 ------
+DEBUG   |180526 14:41:15|Rows on #__sefmoved_bak : 0
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__sefmoved_bak
+DEBUG   |180526 14:41:15|Done dumping #__sefmoved_bak
+DEBUG   |180526 14:41:15|Writing data dump epilogue for #__sefmoved_bak
+DEBUG   |180526 14:41:15|----- Finished operation 26 ------
+DEBUG   |180526 14:41:15|Rows on #__sefurls_bak : 100
+DEBUG   |180526 14:41:15|Writing data dump preamble for #__sefurls_bak
+INFO    |180526 14:41:15|Beginning dump of #__sefurls_bak
+DEBUG   |180526 14:41:16|Writing 147326 bytes to the dump file
+DEBUG   |180526 14:41:16|Done dumping #__sefurls_bak
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__sefurls_bak
+DEBUG   |180526 14:41:16|----- Finished operation 27 ------
+DEBUG   |180526 14:41:16|Rows on #__sefurlword_xref_bak : 0
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__sefurlword_xref_bak
+DEBUG   |180526 14:41:16|Done dumping #__sefurlword_xref_bak
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__sefurlword_xref_bak
+DEBUG   |180526 14:41:16|----- Finished operation 28 ------
+DEBUG   |180526 14:41:16|Rows on #__sefwords_bak : 0
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__sefwords_bak
+DEBUG   |180526 14:41:16|Done dumping #__sefwords_bak
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__sefwords_bak
+DEBUG   |180526 14:41:16|----- Finished operation 29 ------
+INFO    |180526 14:41:16|Skipping dumping data of #__session
+DEBUG   |180526 14:41:16|Done dumping #__session
+DEBUG   |180526 14:41:16|----- Finished operation 30 ------
+DEBUG   |180526 14:41:16|Rows on #__sh404sef_aliases : 0
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__sh404sef_aliases
+DEBUG   |180526 14:41:16|Done dumping #__sh404sef_aliases
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__sh404sef_aliases
+DEBUG   |180526 14:41:16|----- Finished operation 31 ------
+DEBUG   |180526 14:41:16|Rows on #__sh404sef_metas : 0
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__sh404sef_metas
+DEBUG   |180526 14:41:16|Done dumping #__sh404sef_metas
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__sh404sef_metas
+DEBUG   |180526 14:41:16|----- Finished operation 32 ------
+DEBUG   |180526 14:41:16|Rows on #__sh404sef_pageids : 0
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__sh404sef_pageids
+DEBUG   |180526 14:41:16|Done dumping #__sh404sef_pageids
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__sh404sef_pageids
+DEBUG   |180526 14:41:16|----- Finished operation 33 ------
+DEBUG   |180526 14:41:16|Rows on #__sh404sef_urls : 0
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__sh404sef_urls
+DEBUG   |180526 14:41:16|Done dumping #__sh404sef_urls
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__sh404sef_urls
+DEBUG   |180526 14:41:16|----- Finished operation 34 ------
+DEBUG   |180526 14:41:16|Rows on #__template_styles : 6
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__template_styles
+INFO    |180526 14:41:16|Beginning dump of #__template_styles
+DEBUG   |180526 14:41:16|Done dumping #__template_styles
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__template_styles
+DEBUG   |180526 14:41:16|----- Finished operation 35 ------
+DEBUG   |180526 14:41:16|Rows on #__ukraine : 208
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__ukraine
+INFO    |180526 14:41:16|Beginning dump of #__ukraine
+DEBUG   |180526 14:41:16|Done dumping #__ukraine
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__ukraine
+DEBUG   |180526 14:41:16|----- Finished operation 36 ------
+DEBUG   |180526 14:41:16|Rows on #__update_categories : 0
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__update_categories
+DEBUG   |180526 14:41:16|Done dumping #__update_categories
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__update_categories
+DEBUG   |180526 14:41:16|----- Finished operation 37 ------
+DEBUG   |180526 14:41:16|Rows on #__update_sites : 13
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__update_sites
+INFO    |180526 14:41:16|Beginning dump of #__update_sites
+DEBUG   |180526 14:41:16|Done dumping #__update_sites
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__update_sites
+DEBUG   |180526 14:41:16|----- Finished operation 38 ------
+DEBUG   |180526 14:41:16|Rows on #__update_sites_extensions : 15
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__update_sites_extensions
+INFO    |180526 14:41:16|Beginning dump of #__update_sites_extensions
+DEBUG   |180526 14:41:16|Done dumping #__update_sites_extensions
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__update_sites_extensions
+DEBUG   |180526 14:41:16|----- Finished operation 39 ------
+DEBUG   |180526 14:41:16|Rows on #__updates : 237
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__updates
+INFO    |180526 14:41:16|Beginning dump of #__updates
+DEBUG   |180526 14:41:16|Done dumping #__updates
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__updates
+DEBUG   |180526 14:41:16|----- Finished operation 40 ------
+DEBUG   |180526 14:41:16|Rows on #__user_profiles : 156
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__user_profiles
+INFO    |180526 14:41:16|Beginning dump of #__user_profiles
+DEBUG   |180526 14:41:16|Done dumping #__user_profiles
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__user_profiles
+DEBUG   |180526 14:41:16|----- Finished operation 41 ------
+DEBUG   |180526 14:41:16|Rows on #__user_usergroup_map : 26
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__user_usergroup_map
+INFO    |180526 14:41:16|Beginning dump of #__user_usergroup_map
+DEBUG   |180526 14:41:16|Done dumping #__user_usergroup_map
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__user_usergroup_map
+DEBUG   |180526 14:41:16|----- Finished operation 42 ------
+DEBUG   |180526 14:41:16|Rows on #__usergroups : 8
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__usergroups
+INFO    |180526 14:41:16|Beginning dump of #__usergroups
+DEBUG   |180526 14:41:16|Done dumping #__usergroups
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__usergroups
+DEBUG   |180526 14:41:16|----- Finished operation 43 ------
+DEBUG   |180526 14:41:16|Rows on #__users : 26
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__users
+INFO    |180526 14:41:16|Beginning dump of #__users
+DEBUG   |180526 14:41:16|Done dumping #__users
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__users
+DEBUG   |180526 14:41:16|----- Finished operation 44 ------
+DEBUG   |180526 14:41:16|Rows on #__viewlevels : 3
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__viewlevels
+INFO    |180526 14:41:16|Beginning dump of #__viewlevels
+DEBUG   |180526 14:41:16|Done dumping #__viewlevels
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__viewlevels
+DEBUG   |180526 14:41:16|----- Finished operation 45 ------
+DEBUG   |180526 14:41:16|Rows on users : 13
+DEBUG   |180526 14:41:16|Writing data dump preamble for users
+INFO    |180526 14:41:16|Beginning dump of users
+DEBUG   |180526 14:41:16|Done dumping users
+DEBUG   |180526 14:41:16|Writing data dump epilogue for users
+DEBUG   |180526 14:41:16|----- Finished operation 46 ------
+DEBUG   |180526 14:41:16|Rows on #__wf_profiles : 4
+DEBUG   |180526 14:41:16|Writing data dump preamble for #__wf_profiles
+INFO    |180526 14:41:16|Beginning dump of #__wf_profiles
+DEBUG   |180526 14:41:16|Done dumping #__wf_profiles
+DEBUG   |180526 14:41:16|Writing data dump epilogue for #__wf_profiles
+INFO    |180526 14:41:16|End of database detected; flushing the dump buffers...
+DEBUG   |180526 14:41:16|Writing 108800 bytes to the dump file
+INFO    |180526 14:41:16|Database has been successfully dumped to SQL file(s)
+DEBUG   |180526 14:41:16|----- Finished operation 47 ------
+DEBUG   |180526 14:41:16|Adding any extra SQL statements imposed by the filters
+DEBUG   |180526 14:41:16|Closing SQL dump file.
+DEBUG   |180526 14:41:16|Moving the SQL dump to its final location
+DEBUG   |180526 14:41:16|Removing temporary file of final SQL dump
+DEBUG   |180526 14:41:16|-- Removing temporary file 47474c9f.sql
+DEBUG   |180526 14:41:16|Akeeba\Engine\Core\Domain\Db :: No more databases left to iterate
+DEBUG   |180526 14:41:16|----- Finished operation 48 ------
+DEBUG   |180526 14:41:16|Akeeba\Engine\Core\Domain\Db :: Skipping databases.ini
+DEBUG   |180526 14:41:16|----- Finished operation 49 ------
+DEBUG   |180526 14:41:16|Successful Smart algorithm on Akeeba\Engine\Core\Domain\Db
+DEBUG   |180526 14:41:16|Kettenrad :: Domain 'PackDB' has finished.
+DEBUG   |180526 14:41:16|====== Finished Step number 5 ======
+DEBUG   |180526 14:41:16|*** Engine steps batching: Break flag detected.
+DEBUG   |180526 14:41:16|*** Batching of engine steps finished. I will now return control to the caller.
+DEBUG   |180526 14:41:16|Sleeping for 1685.2989196777 msec, using usleep()
+DEBUG   |180526 14:41:17|Saving Kettenrad instance backend
+DEBUG   |180526 14:41:18|Kettenrad :: Attempting to load from database (backend) [backend.id5]
+DEBUG   |180526 14:41:18| -- Loaded stored Akeeba Factory (backend) [backend.id5]
+DEBUG   |180526 14:41:18|====== Starting Step number 6 ======
+DEBUG   |180526 14:41:18|Kettenrad :: BREAKING STEP BEFORE SWITCHING DOMAIN
+DEBUG   |180526 14:41:18|Finalization action queue: remove_temp_files, update_statistics, update_filesizes, run_post_processing, kickstart_post_processing, apply_quotas, apply_remote_quotas, mail_administrators, update_statistics
+DEBUG   |180526 14:41:18|----- Finished operation 1 ------
+DEBUG   |180526 14:41:18|Successful Smart algorithm on Akeeba\Engine\Core\Domain\Finalization
+DEBUG   |180526 14:41:18|Kettenrad :: More work required in domain 'finale'
+DEBUG   |180526 14:41:18|====== Finished Step number 6 ======
+DEBUG   |180526 14:41:18|*** Engine steps batching: Break flag detected.
+DEBUG   |180526 14:41:18|*** Batching of engine steps finished. I will now return control to the caller.
+DEBUG   |180526 14:41:18|Sleeping for 1993.5939311981 msec, using usleep()
+DEBUG   |180526 14:41:20|Saving Kettenrad instance backend
+DEBUG   |180526 14:41:20|Kettenrad :: Attempting to load from database (backend) [backend.id5]
+DEBUG   |180526 14:41:20| -- Loaded stored Akeeba Factory (backend) [backend.id5]
+DEBUG   |180526 14:41:20|====== Starting Step number 7 ======
+DEBUG   |180526 14:41:20|Akeeba\Engine\Core\Domain\Finalization::_run() Running built-in method remove_temp_files
+DEBUG   |180526 14:41:20|Removing temporary files
+DEBUG   |180526 14:41:20|Akeeba\Engine\Core\Domain\Finalization::_run() Running built-in method update_statistics
+DEBUG   |180526 14:41:20|Updating statistics
+DEBUG   |180526 14:41:20|Removing any old records with site-www.unipost.md-20180526-154100.sql filename
+DEBUG   |180526 14:41:20|1 records found
+DEBUG   |180526 14:41:20|Akeeba\Engine\Core\Domain\Finalization::_run() Running built-in method update_filesizes
+DEBUG   |180526 14:41:20|Updating statistics with file sizes
+DEBUG   |180526 14:41:20|Total size of backup archive (in bytes): 18676415
+DEBUG   |180526 14:41:20|Akeeba\Engine\Core\Domain\Finalization::_run() Running built-in method run_post_processing
+DEBUG   |180526 14:41:20|Loading post-processing engine object (none)
+INFO    |180526 14:41:20|Initializing post-processing engine
+DEBUG   |180526 14:41:20|1 files to process found
+INFO    |180526 14:41:20|Beginning post processing file <root>/administrator/components/com_akeeba/backup/site-www.unipost.md-20180526-154100.sql
+INFO    |180526 14:41:20|Finished post-processing file <root>/administrator/components/com_akeeba/backup/site-www.unipost.md-20180526-154100.sql
+DEBUG   |180526 14:41:20|Not removing processed file <root>/administrator/components/com_akeeba/backup/site-www.unipost.md-20180526-154100.sql
+INFO    |180526 14:41:20|Post-processing has finished for all files
+DEBUG   |180526 14:41:20|Akeeba\Engine\Core\Domain\Finalization::_run() Running built-in method kickstart_post_processing
+INFO    |180526 14:41:20|Getting ready to upload Kickstart
+DEBUG   |180526 14:41:20|Akeeba\Engine\Core\Domain\Finalization::_run() Running built-in method apply_quotas
+DEBUG   |180526 14:41:20|Processing count quotas
+DEBUG   |180526 14:41:20|Applying quotas
+DEBUG   |180526 14:41:20|Removing obsolete log files
+DEBUG   |180526 14:41:20|Akeeba\Engine\Core\Domain\Finalization::_run() Running built-in method apply_remote_quotas
+DEBUG   |180526 14:41:20|Akeeba\Engine\Core\Domain\Finalization::_run() Running built-in method mail_administrators
+DEBUG   |180526 14:41:20|Akeeba\Engine\Core\Domain\Finalization::_run() Running built-in method update_statistics
+DEBUG   |180526 14:41:20|Updating statistics
+DEBUG   |180526 14:41:20|Removing any old records with site-www.unipost.md-20180526-154100.sql filename
+DEBUG   |180526 14:41:20|1 records found
+DEBUG   |180526 14:41:20|----- Finished operation 1 ------
+DEBUG   |180526 14:41:20|----- Finished operation 2 ------
+DEBUG   |180526 14:41:20|Successful Smart algorithm on Akeeba\Engine\Core\Domain\Finalization
+DEBUG   |180526 14:41:20|Kettenrad :: Domain 'finale' has finished.
+DEBUG   |180526 14:41:20|====== Finished Step number 7 ======
+DEBUG   |180526 14:41:20|*** Engine steps batching: Break flag detected.
+DEBUG   |180526 14:41:20|*** Batching of engine steps finished. I will now return control to the caller.
+DEBUG   |180526 14:41:20|Sleeping for 1963.2329940796 msec, using usleep()
+DEBUG   |180526 14:41:22|Saving Kettenrad instance backend
+DEBUG   |180526 14:41:22|Kettenrad :: Attempting to load from database (backend) [backend.id5]
+DEBUG   |180526 14:41:22| -- Loaded stored Akeeba Factory (backend) [backend.id5]
+DEBUG   |180526 14:41:22|====== Starting Step number 8 ======
+DEBUG   |180526 14:41:22|Kettenrad :: BREAKING STEP BEFORE SWITCHING DOMAIN
+DEBUG   |180526 14:41:22|Kettenrad :: No more domains to process
+DEBUG   |180526 14:41:22|====== Finished Step number 8 ======
+DEBUG   |180526 14:41:22|*** Engine steps batching: Break flag detected.
+DEBUG   |180526 14:41:22|*** Batching of engine steps finished. I will now return control to the caller.
+DEBUG   |180526 14:41:22|Sleeping for 1999.281167984 msec, using usleep()
+DEBUG   |180526 14:41:24|Saving Kettenrad instance backend
+DEBUG   |180526 14:41:24|Kettenrad :: Attempting to load from database (backend) [backend.id5]
+DEBUG   |180526 14:41:24| -- Loaded stored Akeeba Factory (backend) [backend.id5]
+DEBUG   |180526 14:41:24|Kettenrad :: Just finished
+DEBUG   |180526 14:41:24|*** Batching of engine steps finished. I will now return control to the caller.
+DEBUG   |180526 14:41:24|Sleeping for 1999.3529319763 msec, using usleep()
+DEBUG   |180526 14:41:26|Will not save a finished Kettenrad instance
+DEBUG   |180526 14:41:26|Closing SQL dump file.

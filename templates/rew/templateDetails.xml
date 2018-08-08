@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/1.6/template-install.dtd">
+<extension version="2.5" type="template" client="site">
+	<name>REW</name>
+	<creationDate>01.10.2013</creationDate>
+	<author>EdwardZ</author>
+	<authorEmail>ed1k1992md@gmail.com</authorEmail>
+	<authorUrl>http://e-collection.md/</authorUrl>
+	<copyright>Copyright (C) 2013 - FiveStarsAgency (www.five-stars.md), All rights reserved.</copyright>
+	<license>GNU General Public License version 3 or later.</license>
+	<version>2.5.0</version>
+	<description>Rev[]luti0 Engine Web</description>
+
+	<files>
+		<folder>css</folder>
+		<folder>images</folder>
+		<folder>javascript</folder>
+		<filename>index.html</filename>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+	</files>
+        
+        
+
+
+
+        <!--<field name="myintegervalue" type="integer" default="Some integer" label="Choose an integer" description="" first="1" last="10" step="1" />-->
+
+
+	<positions>
+		<position>debug</position>
+		<position>online-consult</position>
+	</positions>
+        
+        
+
+
+
+<config>
+<fields name="params">
+<fieldset name="advanced">
+    <field name="kol_mest" type="integer" default="Кол-во мест всего в списке" label="Кол-во мест всего в списке" description="Сведения об отправлении" first="1" last="999" step="1" />
+    <field name="kol_mest_def" type="integer" default="Кол-во мест по умолчанию" label="Кол-во мест по умолчанию" description="Сведения об отправлении" first="1" last="999" step="1" />
+    
+</fieldset>
+</fields>
+</config>
+
+
+
+
+
+
+
+
+
+
+</extension>

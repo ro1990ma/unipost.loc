@@ -1,0 +1,401 @@
+div.user_profile{
+	width:100%;
+	height:auto;
+}
+
+div.user_profile h3.main_title {
+    color: rgb(47, 120, 199);
+    font-size: 22px;
+    font-family: "Tahoma";
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: -15px;
+}
+
+div.user_profile h5 {
+    color: #3c3c3c;
+    font-size: 13px;
+    font-family: "Tahoma";
+    margin-bottom: 10px;
+	width:224px;
+	margin-right:55px;
+	float:left;
+}
+
+div.user_profile  div.img_left{
+    float:left;
+	width:224px;
+	height:350px;
+	margin-right:54px;
+	margin-bottom:55px;
+	background: transparent url('../images/profile_left.png') no-repeat;
+}
+
+a.curency {
+	border: 1px solid green;
+	padding: 5px 10px;
+	float: left;
+	margin: 10px;
+	color: #1f1f1f;
+	font-weight: bold;
+}
+
+div.profile_form_right {
+	float: right;
+	width: 700px;
+	height: auto;
+	margin-top: 10px;
+	background-color: #f4f4f4;
+	border:1px solid #dedede;
+}
+
+div.profile_form_right_full {
+	clear: both;
+	width: 980px;
+	height: auto;
+	margin-top: 10px;
+	background-color: #f4f4f4;
+	border:1px solid #dedede;
+}
+
+div.profile_form_info {
+	float: right;
+	width: 700px;
+	height: auto;
+	margin-top: -26px;
+	background-color: #f4f4f4;
+	border:1px solid #dedede;
+}
+
+div.profile_form_right  h3.profile_form_title, div.profile_form_info  h3.profile_form_title, div.profile_form_right_full h3.profile_form_title {
+	font-size:19px;
+	color:#fff;
+	line-height:50px;
+	height:50px;
+	text-align:center;
+	background: transparent url('../images/track_header.png') center center repeat-x;
+	text-transform:uppercase;
+	font-weight:bold;
+	width:50%;
+}
+
+div.profile_form_right  .field{
+	width:48%;
+	float:left;
+	margin-left:2%;
+}
+
+div.profile_form_right label {
+	font-size: 15px;
+	font-weight: bold;
+	margin-left: 10px;
+	line-height: 32px;
+	padding:6px 0px;
+	height: 32px;
+	color:#444545;
+}
+
+div.profile_form_right input {
+	font-size: 13px;
+	width: 220px;
+	background-color: #fcfcfc;
+	line-height: 31px;
+	height: 31px;
+	border: 1px solid #c9c9c9;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin: 25px 0px 0px 0px;
+	color:#000;
+	font-family:"Arial";
+	text-indent: 5px;
+}
+
+div.profile_form_info input[type="text"] {
+	font-size: 13px;
+	background-color: #fcfcfc;
+	line-height: 25px;
+	height: 25px;
+	border: 1px solid #c9c9c9;
+	margin: 0px 5px;
+	color:#000;
+	font-family:"Arial";
+	text-indent: 5px;
+	width: 170px;
+}
+
+div.profile_form_info select  {
+	font-size: 12px;
+	background-color: #FCFCFC;
+	line-height: 30px;
+	height: 27px;
+	border: 1px solid #C9C9C9;
+	color: #000;
+	font-family: "Arial";
+	text-indent: 5px;
+	margin: 3px;
+	padding: 4px;
+	width: 250px;
+	padding-right: 10px;
+}
+
+a.add_item {
+	color:#289151;
+	font-size:12px;
+	font-family:"Arial";
+	font-style:italic;
+	background: transparent url('../images/track_more.png') center left no-repeat;
+	padding: 10px 0px 10px 20px;
+	margin: -15px 0px -10px 80px;
+	display:block;
+}
+
+div.user_profile span#loading img{
+	margin-top:5px;
+	margin-left:30px;
+	float:left;
+}
+
+div.profile_form_right  button.sub{
+	width: 298px;
+	height: 61px;
+	margin: 35px 43px 35px 0px;
+	padding: 13px 15px 10px 50px;
+	background: transparent url('../images/track_button_bg.png') no-repeat;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	border-radius: 7px;
+	border:0px;
+	color:#fff;
+	font-size:25px;
+	font-family: "DS_Dots";
+	float:right;
+	cursor:pointer;
+}
+
+div.profile_form_right  button.back{
+	width: 20%;
+	background-color: transparent;
+	border: 0px none;
+	color: rgb(28, 89, 168);
+	font-size: 14px;
+	font-family: "Arial";
+	cursor: pointer;
+	float: right;
+	margin-top: -50px;
+	height: 50px;
+	text-decoration: underline;
+}
+
+div.profile_form_info  button.back{
+	width: 20%;
+	background-color: transparent;
+	border: 0px none;
+	color: rgb(28, 89, 168);
+	font-size: 14px;
+	font-family: "Arial";
+	cursor: pointer;
+	float: right;
+	margin-top: -50px;
+	height: 50px;
+	text-decoration: underline;
+}
+
+div.profile_form_right_full  button.back{
+	width: 20%;
+	background-color: transparent;
+	border: 0px none;
+	color: rgb(28, 89, 168);
+	font-size: 14px;
+	font-family: "Arial";
+	cursor: pointer;
+	float: right;
+	margin-top: -50px;
+	height: 50px;
+	text-decoration: underline;
+}
+
+div.profile_form_right p.left{
+	width: 190px;
+	float: left;
+	line-height: 20px;
+	display: block;
+	padding: 5px 0px 5px 20px;
+	font-family:"Arial";
+	font-size:13px;
+	color:#333333;
+}
+
+div.profile_form_right p.right{
+	width:300px;
+	float:left;
+	display:block;
+	line-height:20px;
+	padding: 5px 0px;
+	font-family:"Arial";
+	font-size:13px;
+	color:#333333;
+}
+
+div.profile_form_right p.right a.a_track{
+	font-family:"Arial";
+	font-size:13px;
+	color:#1c57a6;
+	text-decoration:underline;
+}
+
+div.profile_form_right_full p.left{
+	width: 210px;
+	float: left;
+	line-height: 20px;
+	display: block;
+	padding: 5px 0px 5px 20px;
+	font-family:"Arial";
+	font-size:13px;
+	color:#333333;
+}
+
+div.profile_form_right_full p.right{
+	width:730px;
+	float:left;
+	display:block;
+	line-height:20px;
+	padding: 5px 0px;
+	font-family:"Arial";
+	font-size:13px;
+	color:#333333;
+}
+
+div.profile_form_right_full p.right a.a_track{
+	font-family:"Arial";
+	font-size:13px;
+	color:#1c57a6;
+	text-decoration:underline;
+}
+
+.profile_hr {
+	height:1px;
+	color:#cecece;
+	width:96%;
+	margin:0px auto;
+}
+
+div.profile_form_right h3.profile_form_history_title, div.profile_form_info h3.profile_form_history_title, div.profile_form_right_full h3.profile_form_history_title {
+	font-size:14px;
+	font-family:"Arial";
+	font-weight:bold;
+	color:#333333;
+	margin:10px 15px;
+	padding:5px 0px;
+}
+
+div.profile_form_info input[type="submit"]  {
+	padding: 3px 10px;
+	background-color: #1D61B2;
+	border: 2px solid #E1E1E1;
+	color: #E1E1E1;
+	font-size: 13px;
+	font-weight: bold;
+	font-family: "Tahoma";
+	cursor: pointer;
+	height: 30px;
+	line-height: 15px;
+	border-radius: 1px;
+	margin: 10px 0px 15px 15px;
+	box-shadow: 0px 0px 5px #333;
+}
+
+div.profile_form_right_full table.history button[type="submit"] {
+	background-color: #1D61B2;
+	border: 2px solid #fff;
+	color: #E1E1E1;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: "Tahoma";
+	cursor: pointer;
+	height: 25px;
+	border-radius: 3px;
+	box-shadow: 0px 0px 7px #555;
+	margin-top: 5px;
+	width: 75px;
+}
+div.profile_form_right_full table.history input[type="submit"] {
+	background-color: #1D61B2;
+	border: 2px solid #fff;
+	color: #E1E1E1;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: "Tahoma";
+	cursor: pointer;
+	height: 25px;
+	border-radius: 3px;
+	box-shadow: 0px 0px 7px #555;
+	margin-top: 5px;
+	width: 75px;
+}
+
+
+div.profile_form_right_full table.history button[name="edit"] {
+	width: 60px;
+}
+
+div.profile_form_right_full table.history {
+	margin:10px 15px 20px 15px;
+	width: 940px;
+}
+
+div.profile_form_info table.history {
+	width:657px;
+	margin:10px 15px 20px 15px;
+}
+
+.history > tbody:nth-child(1) > tr > td:nth-child(6) {
+	width: 150px;
+	vertical-align: middle;
+}
+
+.history > tbody:nth-child(1) > tr > td:nth-child(6) form {
+	float:left;
+	display: inline;
+	margin-left: 3px;
+	margin-right: 3px;
+	margin-bottom: 3px;
+}
+
+div.profile_form_right_full table.history th, div.profile_form_info table.history th {
+	font-size:13px;
+	font-family:"Arial";
+	color:#fff;
+	padding:5px 0px;
+	text-align:center;
+	background-color:#034ea2;
+	border:1px solid #034ea2;
+	border-bottom:none;
+}
+
+div.profile_form_right_full table.history td, div.profile_form_info table.history td {
+	text-align:center;
+	background-color:#fff;
+	border:1px solid #abaaaa;
+	padding:5px 0px;
+	font-size:12px;
+	font-family:"Arial";
+	color:#333333;
+}
+
+div.profile_form_right_full table.history td:first-child {
+	padding:0px 5px;
+	vertical-align: middle;
+}
+
+div.track_notice {
+	color: #3c3c3c;
+    font-size: 15px;
+    font-family: "Tahoma";
+    margin:10px 15px;
+}
+form.history_edit select{width:220px;}
+form.history_edit input[type="text"]{width:130px;}
+
+
+.profile_form_right_full form table.history tr:nth-child(2) td{background-color:#fff!important;}
