@@ -9,7 +9,11 @@ session_start();
 ?>
   <div class="page_calc">
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
-        <div id="clear"></div>
+    <div id="clear"></div>
+    DO:
+    <?php
+      print_r($_POST);
+    ?>
 <?php
   if(isset($_POST['do_page_calc'])){
    $_SESSION['calc_size_kg'] = $_POST['calc_size_kg'];
@@ -100,7 +104,6 @@ header("Refresh: $delay;");
 		 return false;
 
              }
-
             $price = $query_countries_price->$price_suffix != '' ? $query_countries_price->$price_suffix:0;
 
             $price_base = 34;
@@ -111,13 +114,9 @@ header("Refresh: $delay;");
             }else{
              $price=$price_base;
             }
-
-
             (float)$final_price = $price+$query_countries_price->ndox+$query_countries_price->expense+$query_countries_price->other_expense;
             (float)$final_price = (float)$final_price*(float)$EUR;
-          }
-          else {
-
+          }else {
             if (($weight_m3>5.0) && ($weight_m3<=5.5)) {
             $price_inc = $query_countries_price->weight_inc;
           } elseif (($weight_m3>5.5) && ($weight_m3<=6.0)) {
@@ -476,7 +475,7 @@ header("Refresh: $delay;");
       printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",JText::_("PAGE_CALC_RS_WEIGHT"),$weight_m3,JText::_("PAGE_CALC_RS_WEIGHT_KG"));
       printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",JText::_("PAGE_CALC_RS_TERM"),$speed_total,JText::_("PAGE_CALC_RS_TERM_D"));
       printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_PRICE"),$price=='' ? 0:$price+$price_inc);
-        printf("<tr><td class='info'>%s</td><td class='data right'>+%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_NDOX"),$query_countries_price->ndox=='' ? 0:$query_countries_price->ndox);
+      printf("<tr><td class='info'>%s</td><td class='data right'>+%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_NDOX"),$query_countries_price->ndox=='' ? 0:$query_countries_price->ndox);
 
       printf("<tr><td class='info'>%s</td><td class='data right'>+%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_ADD_EXPENSES"),$query_countries_price->expense=='' ? 0:$query_countries_price->expense);
       printf("<tr style='border:none;'><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_BORDER"),$query_countries_price->other_expense=='' ? 0:$query_countries_price->other_expense);
@@ -503,209 +502,215 @@ header("Refresh: $delay;");
       //echo "<a href='./?do=command' class='btl-buttonsubmit btn'>Оформить заказ</a>";
   } else {
   ?>
+    <pre>
+      <?php
+        // print_r($_SESSION);
+      ?>
+    </pre>
       <label><?php echo JText::_("PAGE_CALC_INFO"); ?></label>
       <form id="page_calc" action="" method="post" name="calculate_package">
-      <div style="width:55%; float: left;" class="form_block">
-        <div class="field">
-          <!--<label class="calc_s_title"><?php echo JText::_("PAGE_CALC_SEND_FROM"); ?></label>-->
-        </div>
-
-
-        <div class="field docs">
-            <p style="width:230px;"><label style="line-height:30px;height:30px;" for="type_hu_you"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_WANT"); ?></label></p>
-
-        <!--
-            <select id="DOCS_NDOCS" style="width: 258px;margin:0;" onChange="showMe('letter_wrapper', this,0)" name="input_DOCS_NDOCS">
-                  <option value="1" selected="selected">DOCS</option>
-                  <option value="0">NDOCS</option>
-            </select>-->
-
-            <div id="input_NDOCS" style="display: inline;margin-right:30px;" >
-                  <input style="width:auto;height:auto;float:left;" value="0"
-                    onclick="showMe('letter_wrapper', this,0)"
-                    checked="checked"
-                    type="radio"
-                    id="type_hu_send"
-                    name="type_hu_you"/>
-
-                  <label for="type_hu_send"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_DO_SEND"); ?></label>
-            </div>
-            <div id="input_DOCS" style="display: inline;" >
-                  <input style="width:auto;height:auto;float:left;" value="1"
-                    onclick="hideMe('letter_wrapper', this,0)"
-                    <?php //* echo ($_SESSION['type_hu_you'] == '0') ? 'checked="checked"' : ($_SESSION['type_hu_you'] == '')?'checked="checked"':''; //?>
-                    type="radio"
-                    id="type_hu_rec"
-                    name="type_hu_you"/>
-                  <label for="type_hu_rec"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_DO_REC"); ?></label>
-            </div>
-        </div>
-
-
+      <div class="form_block">
+        <!-- <div class="field">
+          <label class="calc_s_title"><?php echo JText::_("PAGE_CALC_SEND_FROM"); ?></label>
+        </div> -->
 
         <div class="field docs">
-            <p style="width:230px;"><label style="line-height:30px;height:30px;" for="type_speed"><?php echo JText::_("PAGE_CALC_SEND_SELECT_TARIF"); ?></label></p>
+          <p class="calc-p"><label for="type_hu_you"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_WANT"); ?></label></p>
 
-            <div id="_input_DOCS" style="display: inline;margin-right:30px;">
-                  <input style="width:auto;height:auto;" value="1" onclick="hideMe('letter_wrapper', this,0)" <?php echo ($_SESSION['type_speed'] == '1') ? 'checked="checked"' : ($_SESSION['type_speed'] == '')?'checked="checked"':''; ?> type="radio" id="type_speed_eco" name="type_speed"/>
-                  <label for="type_speed_eco" id="lfor_type_speed_eco"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_ECO"); ?></label>
-            </div>
-
-            <div id=_"input_NDOCS" style="display: inline;margin-right:30px;">
-                  <input style="width:auto;height:auto;" value="0" onclick="showMe('letter_wrapper', this,0)" <?php echo ($_SESSION['type_speed'] == '0') ? 'checked="checked"' : ''; ?>  type="radio" id="type_speed_exp" name="type_speed"/>
-                  <label for="type_speed_exp" id="lfor_type_speed_exp"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_EXP"); ?></label>
-            </div>
-            <!--<div id="input_STAND" style="display: inline;margin-right:30px;">
-                  <input style="width:auto;height:auto;" value="2" onclick="hideMe('letter_wrapper', this,0)" <?php echo ($_SESSION['type_speed'] == '2') ? 'checked="checked"' : ($_SESSION['type_speed'] == '')?'checked="checked"':''; ?> type="radio" id="type_speed_sta" name="type_speed"/><?php echo JText::_("PAGE_CALC_TYPE_SPEED_STA"); ?>
-            </div>-->
-        </div>
-
-        <div class="field docs">
-          <p style="width:230px;"><label style="line-height:30px;height:30px;" for=""><?php echo JText::_("PAGE_CALC_SEND_TO_COUNTRYS"); ?></label></p>
-          <div id="countrys_eu" style="display: inline;margin-right:30px;">
-              <input style="width:auto;height:auto;"
-                value="1"
-                onclick="hideMe('letter_wrapper', this,0)"
-                <?php echo ($_SESSION['to_eu'] == '1') ? 'checked="checked"' : ($_SESSION['to_eu'] == '')?'checked="checked"':''; ?>
-                type="radio"
-                id="to_countrys_eu"
-                name="to_countries_eu"/>
-              <?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?>
+          <div id="input_NDOCS">
+            <input style="width:auto;height:auto;" value="0" onclick="" type="radio" id="type_hu_send" name="type_hu_you"/>
+            <label for="type_hu_send"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_DO_SEND"); ?></label>
           </div>
-          <div id="cities_rf" style="display: inline;margin-right:30px;">
-              <input style="width:auto;height:auto;" value="1" onclick="hideMe('letter_wrapper', this,0)" <?php echo ($_SESSION['to_rf'] == '1') ? 'checked="checked"' : ($_SESSION['to_rf'] == '')?'checked="checked"':''; ?> type="radio" id="to_sities_rf" name="to_cities_rf"/>
-              <?php echo JText::_("PAGE_CALC_CITIES_RF"); ?>
+
+          <div id="input_DOCS">
+            <input value="1" onclick="" type="radio" id="type_hu_rec" name="type_hu_you"/>
+            <label for="type_hu_rec"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_DO_REC"); ?></label>
           </div>
         </div>
 
 
+        <div class="field docs">
+          <p class="calc-p"><label for="type_speed"><?php echo JText::_("PAGE_CALC_SEND_SELECT_TARIF"); ?></label></p>
+          <div class="delivery_tarif">
+            <input value="1" onclick="selectTarifType('econom',this)" type="radio" id="type_speed_eco" name="type_speed"
+            <?php //echo ($_SESSION['type_speed'] == '1') ? 'checked="checked"' : ($_SESSION['type_speed'] == '')?'checked="checked"':''; ?> />
+            <label for="type_speed_eco" id="lfor_type_speed_eco"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_ECO"); ?></label>
+          </div>
+
+          <div class="delivery_tarif">
+            <input value="0" onclick="selectTarifType('express',this)" type="radio" id="type_speed_exp" name="type_speed"
+            <?php //echo ($_SESSION['type_speed'] == '0') ? 'checked="checked"' : ''; ?>/>
+            <label for="type_speed_exp" id="lfor_type_speed_exp"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_EXP"); ?></label>
+          </div>
+        </div>
 
 
+        <div class="field docs destinations hidden">
+          <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_SEND_TO_COUNTRYS"); ?></label></p>
+
+          <div id="countrys_eu">
+            <input type="radio" id="to_countrys_eu" name="destination" value="0" onclick="selectES()"
+            <?php //echo ($_SESSION['to_eu'] == '1') ? 'checked="checked"' : ($_SESSION['to_eu'] == '')?'checked="checked"':''; ?> />
+            <label for="to_countrys_eu"> <?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?></label>
+          </div>
+
+          <div id="cities_rf">
+            <input type="radio" id="to_sities_rf" name="destination" value="1" onclick="selectRF()"
+            <?php //echo ($_SESSION['to_rf'] == '1') ? 'checked="checked"' : ($_SESSION['to_rf'] == '')?'checked="checked"':''; ?> />
+            <label for="to_sities_rf"><?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></label>
+          </div>
+        </div>
 
 
+        <div class="field hidden" id="ES-countries">
+          <p>ES-countries</p>
+          <select id="to_es" name="calc_to_es_country" onchange="changeEScountry();">
+            <option value="-1" ><?php echo "select EC-country" ?></option>
+            <?php
+              $disable = '';
+              foreach($query_countries_to as $calc_price_val_to) {?>
+                <option value='<?php echo $calc_price_val_to->id;?>'<?php echo($_SESSION['calc_to_country'] == $calc_price_val_to->id) ? 'selected="selected"' : ''; ?> >
+                  <?php echo $calc_price_val_to->name_en;?>
+                </option>
+            <?php }?>
+          </select>
+        </div>
 
+        <div class="field hidden" id="RF-cities">
+          <p>RF-cityes</p>
+          <select id="to_rf" name="calc_to_rf_cities" onchange="changeRFcity();">
+            <option value="-1" ><?php echo "select RF-city" ?></option>
+            <?php
+              $disable = '';
+              foreach($query_countries_to as $calc_price_val_to) {?>
+                <option value='<?php echo $calc_price_val_to->id;?>' <?php echo ($_SESSION['calc_to_country'] == $calc_price_val_to->id) ? 'selected="selected"' : ''; ?> >
+                  <?php echo $calc_price_val_to->name_en;?>
+                </option>
+            <?php }?>
+          </select>
+        </div>
 
-
-<!--    <div class="field" id="letter_wrapper" style="display:none;">
-            <input style="float:left;width:auto;" type="checkbox" id="letter" name="tariff"/><label style="line-height:45px;height:45px;" for="letter"><?php echo JText::_("PAGE_CALC_SEND_TARIF_DESC"); ?></label>
-            <div id="clear"></div>
-        </div>-->
         <div class="dostupnosti" style="float:left; display:none;color: #129014; font-size: 12px;">
           <?php echo JText::_("USLUGA_LETTER_EXPRESS"); ?>
         </div>
 
-        <div class="field ">
-            <p><?php echo JText::_("PAGE_CALC_SEND_TO"); ?></p>
-            <select id="to_country" name="calc_to_country" onchange="changeFunc();">
-                  <option value="-1" ><?php echo JText::_("PAGE_CALC_SEND_SELECT"); ?></option>
+        <!-- <div class="field ">
+          <p><?php echo JText::_("PAGE_CALC_SEND_TO"); ?></p>
+          <select id="to_country" name="calc_to_country" onchange="changeFunc();">
+            <option value="-1" ><?php echo JText::_("PAGE_CALC_SEND_SELECT"); ?></option>
             <?php
             $disable = '';
-              foreach($query_countries_to as $calc_price_val_to) {?>
-               <option value='<?php echo $calc_price_val_to->id;?>' <?php echo ($_SESSION['calc_to_country'] == $calc_price_val_to->id) ? 'selected="selected"' : ''; ?> ><?php echo $calc_price_val_to->name_en;?></option>
-           <?php     }
-           ?>
-            </select>
+            foreach($query_countries_to as $calc_price_val_to) {?>
+              <option value='<?php echo $calc_price_val_to->id;?>' <?php echo ($_SESSION['calc_to_country'] == $calc_price_val_to->id) ? 'selected="selected"' : ''; ?> ><?php echo $calc_price_val_to->name_en;?></option>
+           <?php }?>
+          </select>
+        </div> -->
 
+        <div id="letter_error" style="float:left; display:none; color:red; font-size:12px;line-height: 30px;">
+          <?php echo JText::_("NET_DOSTUPA_LETTER"); ?>
+        </div>
+        <div id="israel_error" style="float:left; display:none; color:red; font-size:12px;line-height: 30px;">
+          <?php echo JText::_("DOSTUP_NDOX"); ?>
+        </div>
+      <!--         <div class="field city" style="display:none;">
+          <p>Населённый пункт</p>
+                    <select name="calc_to_city" id="city_dropdown">
+                      <option value="-1">Выберите город</option>
+                    </select>
+          <span id="city_loader"></span>
+          onchange="selectState(this.options[this.selectedIndex].value)"
+      </div> -->
+        <div class="field header">
+          <label class="calc_s_title"><?php echo JText::_("PAGE_CALC_SEND_INF"); ?></label>
         </div>
 
-
-
-
-
-                <div id="letter_error" style="float:left; display:none; color:red; font-size:12px;line-height: 30px;">
-                 <?php echo JText::_("NET_DOSTUPA_LETTER"); ?>
-        </div>
-<div id="israel_error" style="float:left; display:none; color:red; font-size:12px;line-height: 30px;">
-  <?php echo JText::_("DOSTUP_NDOX"); ?>
-</div>
-<!--         <div class="field city" style="display:none;">
-    <p>Населённый пункт</p>
-              <select name="calc_to_city" id="city_dropdown">
-                <option value="-1">Выберите город</option>
-              </select>
-    <span id="city_loader"></span>
-    onchange="selectState(this.options[this.selectedIndex].value)"
-</div> -->
-            <div class="field header">
-              <label class="calc_s_title"><?php echo JText::_("PAGE_CALC_SEND_INF"); ?></label>
-            </div>
-        <div class="field docs">
-            <p style="width:230px;"><label style="line-height:30px;height:30px;" for="type_docs_ndocs"><?php echo JText::_("PAGE_CALC_TYPE_DOCS_NDOCS_INF"); ?>:</label></p>
-
-        <!--
-            <select id="DOCS_NDOCS" style="width: 258px;margin:0;" onChange="showMe('letter_wrapper', this,0)" name="input_DOCS_NDOCS">
-                  <option value="1" selected="selected">DOCS</option>
-                  <option value="0">NDOCS</option>
-            </select>-->
-
-      <div id="input_NDOCS" style="display: inline;margin-right:30px;">
+        <div class="field docs content-type">
+          <p class="calc-p"><label for="type_docs_ndocs"><?php echo JText::_("PAGE_CALC_TYPE_DOCS_NDOCS_INF"); ?>:</label></p>
+          <div id="input_NDOCS" style="display: inline;margin-right:30px;">
             <input style="width:auto;height:auto;" value="0" onclick="showMe('letter_wrapper', this,0)" <?php echo ($_SESSION['type_docs_ndocs'] == '0') ? 'checked="checked"' : ''; ?>  type="radio" id="type_docs_ndocs" name="type_docs_ndocs"/>NDOCS
-            </div>
-            <div id="input_DOCS" style="display: inline;">
+          </div>
+          <div id="input_DOCS" style="display: inline;">
             <input style="width:auto;height:auto;" value="1" onclick="hideMe('letter_wrapper', this,0)" <?php echo ($_SESSION['type_docs_ndocs'] == '1') ? 'checked="checked"' : ($_SESSION['type_docs_ndocs'] == '')?'checked="checked"':''; ?> type="radio" id="type_docs_docs" name="type_docs_ndocs"/>DOCS
-            </div>
+          </div>
         </div>
 
         <div id="clear"></div>
         <div id="letter_sub">
-            <div class="field">
+          <div class="field">
+            <div id="package-type">
               <label style="line-height:30px;height:30px;" for="convert"><?php echo JText::_("PAGE_CALC_PACKAGE"); ?></label>
-            <div class="field" style="float:left;clear:none;" onload="hideMe()">
+              <div class="field" style="float:left;clear:none;" onload="hideMe()">
                 <input type="hidden" name="conv" value="0" />
                 <input type="hidden" name="box" value="0" />
                 <input style="width:auto;height:auto;float:left;" id="convert" type="radio" value="1" name="conv" <?php echo ($_SESSION['conv'] == '1') ? 'checked="checked"' : (empty($_SESSION['conv']))?'checked="checked"':''; ?>  onclick="showMe('weights', this, 1)"/><label for="conv"><?php echo JText::_("PAGE_CALC_PACKAGE_CONV"); ?></label>
                 <input style="width:auto;height:auto;float:left;margin-left:26px;" id="box" class="last" type="radio" value="2" name="conv" <?php echo ($_SESSION['conv'] == '2') ? 'checked="checked"' : ''; ?> onclick="hideMe('weights', this, 1)"/><label for="box"><?php echo JText::_("PAGE_CALC_PACKAGE_BOX"); ?></label>
+              </div>
             </div>
 
-            <div class="field">
-                <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG"); ?><?php echo $_SESSION['calc_weight_kg'];?></p>
-                <input id="weight_kg" style="width:86px;" type="text" oninput="proverka()" min="0" max="30" value="<?php echo $_SESSION['calc_weight_kg']; ?>" placeholder=""  name="calc_weight_kg" />
-            <div id="weight_kg_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
-              <?php echo JText::_("FIZICAL_WEIGHT"); ?>
-            </div>
-            </div>
+          <div class="field">
+              <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG"); ?><?php echo $_SESSION['calc_weight_kg'];?></p>
+              <input id="weight_kg" style="width:86px;" type="text" oninput="proverka()" min="0" max="30" value="<?php echo $_SESSION['calc_weight_kg']; ?>" placeholder=""  name="calc_weight_kg" />
+          <div id="weight_kg_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
+            <?php echo JText::_("FIZICAL_WEIGHT"); ?>
+          </div>
+          </div>
 
-            <div class="field"  style="display:none;">
-                <p><?php echo JText::_("PAGE_CALC_SIZE"); ?></p>
-                <input id="calc_size_x" style="width:50px;" type="text" oninput="proverka()" min="0" max="300" value="<?php echo $_SESSION['calc_size_x']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_X"); ?>"  name="calc_size_x" />
-                <input id="calc_size_y" style="width:50px;" type="text" oninput="proverka()" min="0" max="300" value="<?php echo $_SESSION['calc_size_y']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_Y"); ?>"  name="calc_size_y" />
-                <input id="calc_size_z" style="width:50px;" type="text" oninput="proverka()" min="0" max="300" value="<?php echo $_SESSION['calc_size_z']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_Z"); ?>"  name="calc_size_z" />
-            <div id="weight_size_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
-              <?php echo JText::_("PAGE_CALC_SIZE_ERR"); ?>
-            </div>
-            </div>
+          <div class="field"  style="display:none;">
+              <p><?php echo JText::_("PAGE_CALC_SIZE"); ?></p>
+              <input id="calc_size_x" style="width:50px;" type="text" oninput="proverka()" min="0" max="300" value="<?php echo $_SESSION['calc_size_x']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_X"); ?>"  name="calc_size_x" />
+              <input id="calc_size_y" style="width:50px;" type="text" oninput="proverka()" min="0" max="300" value="<?php echo $_SESSION['calc_size_y']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_Y"); ?>"  name="calc_size_y" />
+              <input id="calc_size_z" style="width:50px;" type="text" oninput="proverka()" min="0" max="300" value="<?php echo $_SESSION['calc_size_z']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_Z"); ?>"  name="calc_size_z" />
+          <div id="weight_size_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
+            <?php echo JText::_("PAGE_CALC_SIZE_ERR"); ?>
+          </div>
+          </div>
 
-            <div class="field"  style="display:none;">
-                <p><?php echo JText::_("PAGE_CALC_VOLUME_KG"); ?><?php echo $_SESSION['calc_volume_kg'];?></p>
-                <input id="volume_kg" style="width:86px;" type="text" oninput="proverka()" min="0" max="30" value="<?php echo $_SESSION['calc_volume_kg']; ?>" placeholder=""  name="calc_volume_kg" />
-            <div id="volume_kg_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
-              <?php echo JText::_("FIZICAL_VOLUME"); ?>
-            </div>
-            </div>
+          <div class="field"  style="display:none;">
+              <p><?php echo JText::_("PAGE_CALC_VOLUME_KG"); ?><?php echo $_SESSION['calc_volume_kg'];?></p>
+              <input id="volume_kg" style="width:86px;" type="text" oninput="proverka()" min="0" max="30" value="<?php echo $_SESSION['calc_volume_kg']; ?>" placeholder=""  name="calc_volume_kg" />
+          <div id="volume_kg_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
+            <?php echo JText::_("FIZICAL_VOLUME"); ?>
+          </div>
+          </div>
 
 
-            <div class="max_weight_message" style="float:left; color:red;line-height:30px; display:none;">
-                <?php echo JText::_("MAXIMUM_WEIGHT"); ?>
-            </div>
-            <div class="field field_s" id="weights" style="display:block;">
-                <p><?php echo JText::_("PAGE_CALC_SIZES"); ?></p>
-                <input class="short" type="text" style="width:86px;" id="len" value="<?php echo $_SESSION['calc_size_lenght']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_L"); ?>" name="calc_size_lenght" />x
-                <input class="short" type="text" id="wid" value="<?php echo $_SESSION['calc_size_width']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_W"); ?>" name="calc_size_width" />x
-                <input class="short" type="text" id="hei" value="<?php echo $_SESSION['calc_size_height']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_H"); ?>" name="calc_size_height" />
-            </div>
+          <div class="max_weight_message" style="float:left; color:red;line-height:30px; display:none;">
+              <?php echo JText::_("MAXIMUM_WEIGHT"); ?>
+          </div>
+          <div class="field field_s" id="weights" style="display:block;">
+              <p><?php echo JText::_("PAGE_CALC_SIZES_PLACES"); ?></p>
+              <input class="short" type="text" style="width:86px;" id="len" value="<?php echo $_SESSION['calc_size_lenght']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_L"); ?>" name="calc_size_lenght" />x
+              <input class="short" type="text" id="wid" value="<?php echo $_SESSION['calc_size_width']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_W"); ?>" name="calc_size_width" />x
+              <input class="short" type="text" id="hei" value="<?php echo $_SESSION['calc_size_height']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_H"); ?>" name="calc_size_height" />
+          </div>
 
-            <div class="field" id="weight2" style="display:block;">
-                <p><?php echo JText::_("PAGE_CALC_VOLUME_SIZE"); ?></p>
-                <input style="width:86px;" id="wei" type="text" readonly="readonly" value="<?php echo $_SESSION['calc_size_kg']; ?>" maxlength="7" placeholder="" name="calc_size_kg"/>
-                 <div id="weight2_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
-                 <?php echo JText::_("VOLUME_WEIGHT"); ?>
-                 </div>
-                  </div>
-            </div>
+          <div class="field" id="weight2" style="display:block;">
+              <p><?php echo JText::_("PAGE_CALC_VOLUME_SIZE"); ?></p>
+              <input style="width:86px;" id="wei" type="text" readonly="readonly" value="<?php echo $_SESSION['calc_size_kg']; ?>" maxlength="7" placeholder="" name="calc_size_kg"/>
+               <div id="weight2_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
+               <?php echo JText::_("VOLUME_WEIGHT"); ?>
+               </div>
+                </div>
+          </div>
+
+          <div class="field" id="sentFromOfficeBlock">
+            <label for="sentFromOffice"><?php echo JText::_("PAGE_CALC_SENT_FROME_OFFICE"); ?></label>
+            <input value="1" type="radio" id="sentFromOffice" name="sent_from_office" checked="checked">
+          </div>
+
+          <div class="field" id="getCurrierBlock">
+            <label for="getCurrierToAdress"><?php echo JText::_("PAGE_CALC_GET_CURRIER_TO_ADRESS"); ?></label>
+            <input value="1" type="radio" id="getCurrierToAdress" name="get_currier_to_adress">
+          </div>
 
         </div>
         <div id="clear"></div>
-        <button type="submit" class="btl-buttonsubmit" id="do_calculate"name="do_page_calc"><?php echo JText::_("PAGE_CALC_DO_CALC"); ?></button>
+
+        <div class="btn-group">
+          <button type="submit" class="btl-buttonsubmit" id="do_calculate"name="do_page_calc"><?php echo JText::_("PAGE_CALC_DO_CALC"); ?></button>
+          <button type="button" class="btl-buttonsubmit" id="do_cancel"> <?php echo JText::_("PAGE_CALC_DO_CANCEL"); ?></button>
+        </div>
+
       </div>
       </form>
       <div class="form_img"></div>
@@ -717,6 +722,7 @@ header("Refresh: $delay;");
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
 <script type="text/javascript">
+
 
 
 // Numeric only control handler
@@ -743,16 +749,15 @@ function()
     });
 };
 //проверка физического веса
- function proverka(){
-if ($('#weight_kg').val() > 30){
-           $("#weight_kg_error").css("display","block");
-            $("#do_calculate").attr("disabled", "true");
- } else
-      {
-        $("#weight_kg_error").css("display","none");
-        $("#do_calculate").removeAttr('disabled');
-      }
+  function proverka(){
+    if ($('#weight_kg').val() > 30){
+      $("#weight_kg_error").css("display","block");
+      $("#do_calculate").attr("disabled", "true");
+    }else{
+      $("#weight_kg_error").css("display","none");
+      $("#do_calculate").removeAttr('disabled');
     }
+  }
     // Вычисление объёмного веса
     function funcCalcVolumeWeight(l, w, h) {
         l = Number(l); l = isNaN(l) ? 0 : l;
@@ -761,49 +766,42 @@ if ($('#weight_kg').val() > 30){
 
         return (l * w * h / 5000).toFixed(3);
     }
-    function setCalcHandle() {
-        var fn = function () {
 
-            var volweight = funcCalcVolumeWeight($('#len').attr('value'), $('#wid').attr('value'), $('#hei').attr('value'));
-            $('#wei').attr('value', volweight);
-
+    function setCalcHandle(){
+      var fn = function () {
+      var volweight = funcCalcVolumeWeight($('#len').attr('value'), $('#wid').attr('value'), $('#hei').attr('value'));
+      $('#wei').attr('value', volweight);
       if ($('#wei').val() > 60)
       {
-           $("#weight2_error").css("display","block");
-            $("#do_calculate").attr("disabled", "true");
+        $("#weight2_error").css("display","block");
+        $("#do_calculate").attr("disabled", "true");
       }
       else
       {
-         $("#weight2_error").css("display","none");
+        $("#weight2_error").css("display","none");
         $("#do_calculate").removeAttr('disabled');
       }
-
-
-
-
-
-        }
-
-        $('#len').keyup(fn);
-        $('#wid').keyup(fn);
-        $('#hei').keyup(fn);
-        $('#len').ForceNumericOnly();
-        $('#wid').ForceNumericOnly();
-        $('#hei').ForceNumericOnly();
-        $('#wei').ForceNumericOnly();
-        $('#weight_kg').ForceNumericOnly();
-        fn();
+    }
+      $('#len').keyup(fn);
+      $('#wid').keyup(fn);
+      $('#hei').keyup(fn);
+      $('#len').ForceNumericOnly();
+      $('#wid').ForceNumericOnly();
+      $('#hei').ForceNumericOnly();
+      $('#wei').ForceNumericOnly();
+      $('#weight_kg').ForceNumericOnly();
+      fn();
     }
     setCalcHandle();
-$('select').change(function() {
 
-    $(this)
+    $('select').change(function() {
+      $(this)
         .siblings('select')
         .children('option[value=' + this.value + ']')
         .attr('disabled', true)
         .siblings().removeAttr('disabled');
+    });
 
-});
 $("input#letter").live("click", function(){
         if($(this).is(":checked")) {
           document.getElementById('weight_kg').value='0.49';
@@ -876,19 +874,21 @@ $("input#letter").live("click", function(){
         }
 });
 
-   function changeFunc() {
+  function changeFunc(){
     var selectBox = document.getElementById("to_country");
     var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-     $("#letter_error").css("display","none");
+    $("#letter_error").css("display","none");
+
     if(selectedValue==141){
- $("#input_NDOCS").css("display","none");
-          $("#israel_error").css("display","block");
-          return false;
-    } else {
-          $("#input_NDOCS").css("display","inline-block");
-          $("#israel_error").css("display","none");
-          return true;}
-   }
+      $("#input_NDOCS").css("display","none");
+      $("#israel_error").css("display","block");
+      return false;
+    }else{
+      $("#input_NDOCS").css("display","inline-block");
+      $("#israel_error").css("display","none");
+      return true;
+    }
+  }
 
 
 $("#do_calculate").live("click", function(){
@@ -929,8 +929,19 @@ $("#do_calculate").live("click", function(){
       return true;
     }
 });
-function showMe (it, box, it2) {
 
+$('#do_cancel').live("click", function(){
+  $("#len").val("");
+  $("#wid").val("");
+  $("#hei").val("");
+  $("#wei").val("");
+  $("#weight_kg").val("");
+});
+
+
+function showMe (it, box, it2) {
+  console.log("box:");
+  console.log(box);
   var vis = (box.checked) ? "none" : "block";
   document.getElementById(it).style.display = vis;
   if (it2) {
@@ -968,6 +979,35 @@ $('.my-ctrl-2').click(function(){
   $('.my-field-1').hide();
   $('.my-field-2').show();
 });
+
+  function selectTarifType(type, e){
+    if(type == 'econom'){
+      $('.destinations').removeClass('hidden');
+    }
+
+    if(type == 'express'){
+      console.log(1);
+    }
+  }
+
+  function selectES(){
+    $('#ES-countries').removeClass('hidden');
+    $('#RF-cities').addClass('hidden');
+  }
+  function selectRF(){
+    $('#RF-cities').removeClass('hidden');
+    $('#ES-countries').addClass('hidden');
+  }
+
+  function changeEScountry(){
+    console.log("ESitem");
+    $('.content-type').addClass('hidden');
+    $('#package-type').addClass('hidden');
+  }
+  function changeRFcity(){
+    console.log("RF");
+  }
+
 
 </script>
 <style>
