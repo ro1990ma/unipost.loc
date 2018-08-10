@@ -431,3 +431,10 @@ div.page_miss_call table tr td textarea {
   text-align: center;
   margin: 30px 0px;
 }
+
+#block-ES-countries{
+  float: right;
+}
+#block-RF-cities{
+  float: right;
+}
