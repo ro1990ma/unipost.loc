@@ -336,8 +336,8 @@ div.page_miss_call table tr td textarea {
 }
 #weight2,#weights{display:none;}
 
-#type_speed_eco{ float: left;}
-#type_speed_exp{float: left;}
+/* #type_speed_eco{ float: left;}
+#type_speed_exp{float: left;} */
 
 
 .page_calc .form_img{
@@ -359,31 +359,43 @@ div.page_miss_call table tr td textarea {
   width: 100px;
 }
 
-.page_calc #type_hu_send{
+/* .page_calc #type_hu_send{
   width:auto;
   height:auto;
   float:left;
-}
-.page_calc #type_hu_rec{
+} */
+/* .page_calc #type_hu_rec{
   width:auto;
   height:auto;
   float:left;
-}
+} */
 .page_calc .delivery_tarif{
-  /*display: inline;*/
   display: block;
   float: left;
   width: 100px;
-  /*margin-right:30px;*/
 }
-.page_calc .delivery_tarif #type_speed_eco{
+/* .page_calc .delivery_tarif #type_speed_eco{
   width:auto;
   height:auto;
-}
+} */
 .page_calc .delivery_tarif #type_speed_exp{
   width:auto;
   height:auto;
 }
+
+.radio-block{
+    border: 1px solid red;
+    float: left;
+    display: block;
+    width: 100px;
+}
+
+.radio-block input[type="radio"]{
+  border: 1px solid green;
+  float: left;
+}
+
+
 .page_calc .calc-p{ width:230px;}
 .page_calc .calc-p label{
   /*color: red;*/
@@ -406,19 +418,6 @@ div.page_miss_call table tr td textarea {
   height:auto;
   float: left;
 }
-.page_calc #cities_rf{
-  display: inline;
-  /*margin-right:30px;*/
-  /*border: 1px solid;*/
-  float: left;
-  width: 100px;
-}
-.page_calc #cities_rf #to_sities_rf{
-  width:auto;
-  height:auto;
-  float: left;
-}
-
 .hidden{ display: none;}
 
 #package-type{
@@ -436,5 +435,17 @@ div.page_miss_call table tr td textarea {
   float: right;
 }
 #block-RF-cities{
+  float: right;
+}
+#block-get-import{
+  float: right;
+}
+#block-get-econom-ES{
+  float: right;
+}
+#block-get-econom-RF{
+  float: right;
+}
+#block-get-express-import{
   float: right;
 }

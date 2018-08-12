@@ -267,40 +267,92 @@ $('.my-ctrl-2').click(function(){
 });
 
 
-function selectTarifType(type, e){
-  if(type == 'econom'){
-    if($('#type_hu_send').is(':checked')){
-      $('.destinations').removeClass('hidden');
-      $('#block-all-countries').addClass('hidden');
-      console.log("отправить эконом");
-    }
+// клик Отправить/получить (1й ряд)
+$('.type-send').on("click", function(){
 
-    if($('#type_hu_rec').is(':checked')){
-      console.log("Получить эконом");
-    }
+  if($('.type-econom').is(':checked')){
+    sendEconom();
   }
-
-
-  if(type == 'express'){
-    if($('#type_hu_send').is(':checked')){
-      $('.content-type').removeClass("hidden");
-      $('#package-type').removeClass("hidden");
-      $('.destinations').addClass('hidden');
-
-      $('#block-ES-countries, #block-RF-cities').addClass('hidden');
-      $('#block-all-countries').removeClass('hidden');
-      console.log("отправить экспресс");
-    }
-
-    if($('#type_hu_rec').is(':checked')){
-      console.log("получить экспресс");
-    }
-
+  if($('.type-express').is(':checked')){
+    sendExpress();
   }
-}
+});
+
+$('.type-rec').on("click", function(){
+  if($('.type-econom').is(':checked')){
+    recEconom();
+  }
+  if($('.type-express').is(':checked')){
+    recExpress();
+  }
+});
+//------------------------------------------
+
+//клик Эконом/экспресс (2й ряд)
+
+$('.type-econom').on('click', function(e){
+  if($('.type-send').is(':checked')){
+    sendEconom();
+  }
+  if($('.type-rec').is(':checked')){
+    recEconom();
+  }
+});
+
+
+$('.type-express').on('click', function(e){
+  if($('.type-send').is(':checked')){
+    sendExpress();
+  }
+  if($('.type-rec').is(':checked')){
+    recExpress();
+  }
+});
+
+
+//функции обработчики radiobutton
+  function sendEconom(){
+    console.log("Отправить эконом");
+    $('#block-send-to-ES-RF').removeClass('hidden');
+    $('#block-all-countries').addClass("hidden");
+    $('#block-get-from-ES-RF').addClass("hidden");
+    $('#block-get-express-import').addClass("hidden");
+
+    $('#block-get-econom-ES, #block-get-econom-RF').addClass('hidden');
+    $('#to_countrys_eu, #to_sities_rf').attr('checked', false);
+  }
+  function sendExpress(){
+    console.log("Отправить экспресс");
+    $("#block-all-countries").removeClass("hidden");
+    $('.content-type, #package-type').removeClass('hidden');
+    $('#block-send-to-ES-RF').addClass('hidden');
+    $('#block-ES-countries, #block-RF-cities').addClass('hidden');
+    $('#to_countrys_eu, #to_sities_rf').attr('checked', false)
+
+    $('#block-get-express-import').addClass("hidden");
+  }
+  function recEconom(){
+    console.log("Получить эконом");
+    $("#block-get-from-ES-RF").removeClass("hidden");
+    $('#block-send-to-ES-RF').addClass("hidden");
+    $('#block-ES-countries, #block-RF-cities').addClass("hidden");
+
+    $('#block-get-express-import').addClass("hidden");
+    $('#block-all-countries').addClass("hidden");
+  }
+  function recExpress(){
+    console.log("Получить экспресс");
+    $("#block-get-from-ES-RF").addClass("hidden");
+    $('#block-get-econom-ES, #block-get-econom-RF').addClass("hidden");
+    $('#get_from_country_es, #get_from_town_rf').attr('checked', false);
+
+    $('#block-get-express-import').removeClass("hidden");
+    $('#block-all-countries').addClass("hidden");
+  }
 
 
 function selectES(){
+  console.log("ES");
   $('#block-ES-countries').removeClass('hidden');
   $('#block-RF-cities').addClass('hidden');
 
@@ -308,6 +360,7 @@ function selectES(){
   $('#package-type').addClass('hidden');
 }
 function selectRF(){
+  console.log("RF");
   $('#block-RF-cities').removeClass('hidden');
   $('#block-ES-countries').addClass('hidden');
 
@@ -323,4 +376,16 @@ function changeEScountry(){
 function changeRFcity(){
   $('.content-type').addClass('hidden');
   $('#package-type').addClass('hidden');
+}
+
+function getFromCountryES(){
+  console.log("getFromTownES");
+  $('#block-get-econom-ES').removeClass('hidden');
+  $('#block-get-econom-RF').addClass('hidden');
+}
+
+function getFromTownRF(){
+  console.log("getFromTownRF");
+  $('#block-get-econom-RF').removeClass('hidden');
+  $('#block-get-econom-ES').addClass('hidden');
 }
