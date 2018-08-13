@@ -641,13 +641,13 @@ session_start();
           <label for="tarif_econom_import_ES">страны ЕС:</label>
           <select id="tarif_econom_import_ES" name="tarif_econom_import_ES" onchange="">
 
-            <?php if (isset($query_countries_eu_t4)){ ?>
+            <?php if (isset($econom_import_country_t4)){ ?>
               <option value="-1" ><?php echo  JText::_("PAGE_CALC_SEND_SELECT") ?></option>
             <?php }else{?>
               <option value="-1" ><?php echo JText::_("PAGE_CALC_NO_DATA"); ?></option>
             <?php }?>
 
-            <?php foreach($query_countries_eu_t4 as $country) {?>
+            <?php foreach($econom_import_country_t4 as $country) {?>
               <option value='<?php echo $country->id;?>'<?php echo($_SESSION['country_eu'] == $country->id) ? 'selected="selected"' : ''; ?> >
                 <?php echo $country->name_ru;?>
               </option>
