@@ -753,22 +753,23 @@ session_start();
           </div>
 
 
-          <div class="field" id="send-places">
-            <p><?php echo JText::_("PAGE_CALC_COUNT_PLACES"); ?>1</p>
+          <!-- Количество мест -->
+          <div class="field" id="places-count">
+            <p class="calc-p"><label for="calc_places_lenght"><?php echo JText::_("PAGE_CALC_COUNT_PLACES"); ?></label></p>
 
-            <select class="calc_size_lenght" onchange="addMest()" id="calc_size_lenght" name="calc_size_lenght">
-            <?php
-              $count_mest = 3;
-              for($i=1; $i<=$count_mest; $i++){
-                if($i!=$count_mest_def){
-                  echo '<option value="'.$i.'">'.$i.'</option>';
-                }else{
-                  echo '<option selected="selected" value="'.$i.'">'.$i.'</option>';
-                }
-              }
-            ?>
+            <select class="calc_places_lenght" onchange="addPlaces()" id="calc_places_lenght" name="calc_places_lenght">
+              <option value="-1" ><?php echo "выберите кол-во мест"; ?></option>
 
-          </select>
+              <?php
+                $count_mest=10;
+                for($i=1; $i<=$count_mest; $i++){
+                  echo '<option value="' . $i . '" >' . $i . '</option>';
+                }?>
+
+            </select>
+          </div>
+
+          <div class="field" id="gabarits">
 
           </div>
 

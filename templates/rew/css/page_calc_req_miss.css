@@ -449,3 +449,6 @@ div.page_miss_call table tr td textarea {
 #block-get-express-import{
   float: right;
 }
+#places-count{
+  width: 100%;
+}

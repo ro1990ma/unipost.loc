@@ -389,3 +389,24 @@ function getFromTownRF(){
   $('#block-get-econom-RF').removeClass('hidden');
   $('#block-get-econom-ES').addClass('hidden');
 }
+
+// габариты для мест
+function addPlaces(){
+  var count = $("#calc_places_lenght option:selected").text();
+  var row = "";
+  $('#gabarits').html("");
+
+  for(var i=0; i<count; i++){
+    row = '<div class="places-row">' +
+      '<p>Габариты, см.</p>' +
+
+      '<input class="short" type="text" id="len_' + i + '" value="" placeholder="длина" name="calc_size_lenght">x' +
+
+      '<input class="short" type="text" id="wid_' + i + '" value="" placeholder=" ширина" name="calc_size_width">x' +
+
+      '<input class="short" type="text" id="hei_' + i + '" value="" placeholder=" высота" name="calc_size_height">' +
+
+      '</div>';
+    $('#gabarits').append(row);
+  }
+}
