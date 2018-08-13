@@ -224,6 +224,8 @@ $('#do_cancel').live("click", function(){
   $("#hei").val("");
   $("#wei").val("");
   $("#weight_kg").val("");
+  $('#gabarits').html("");
+  $('#calc_places_lenght').val(0);
 });
 
 

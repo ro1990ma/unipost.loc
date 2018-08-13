@@ -32,10 +32,6 @@ session_start();
   <div class="page_calc">
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
     <div id="clear"></div>
-    DO:
-    <?php
-      print_r($_POST);
-    ?>
 <?php
   if(isset($_POST['do_page_calc'])){
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
@@ -519,11 +515,6 @@ session_start();
     //echo "<a href='./?do=command' class='btl-buttonsubmit btn'>Оформить заказ</a>";
   }else{
   ?>
-    <pre>
-      <?php
-        //  print_r($_SESSION);
-      ?>
-    </pre>
       <label><?php echo JText::_("PAGE_CALC_INFO"); ?></label>
       <form id="page_calc" action="" method="post" name="calculate_package">
       <div class="form_block">
@@ -579,7 +570,13 @@ session_start();
         <!-- отправить эконом в ЕС-->
         <div class="field hidden" id="block-ES-countries">
           <select id="to_es" name="calc_to_es_country" onchange="changeEScountry();">
-            <option value="-1" ><?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?></option>
+            <?php if (isset($query_countries_eu_t1)){ ?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?></option>
+            <?php }else{?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_NO_DATA"); ?></option>
+            <?php }?>
+
+
             <?php
               foreach($query_countries_eu_t1 as $country_eu) {?>
                 <option value='<?php echo $country_eu->id;?>'<?php echo($_SESSION['country_eu'] == $country_eu->id) ? 'selected="selected"' : ''; ?> >
@@ -592,7 +589,12 @@ session_start();
         <!-- отправить эконом в РФ-->
         <div class="field hidden" id="block-RF-cities">
           <select id="to_rf" name="calc_to_rf_cities" onchange="changeRFcity();">
-            <option value="-1" ><?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></option>
+            <?php if (isset($query_city_rf_t2)){ ?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></option>
+            <?php }else{?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_NO_DATA"); ?></option>
+            <?php }?>
+
             <?php
               $disable = '';
               foreach($query_city_rf_t2 as $city_rf) {?>
@@ -606,7 +608,12 @@ session_start();
         <div class="field hidden" id="block-all-countries">
           <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_SEND_TO_COUNTRYS"); ?></label></p>
           <select id="tarif_express_export_countries" name="tarif_express_export_countries" onchange="">
-            <option value="-1" ><?php echo "Выберите страну"; ?></option>
+            <?php if (isset($query_city_rf_t2)){ ?>
+              <option value="-1" ><?php echo "Выберите страну"; ?></option>
+            <?php }else{?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_NO_DATA"); ?></option>
+            <?php }?>
+
             <?php
               foreach($query_tarif_express_export_t3 as $tarif_expres_export) {?>
                 <option value='<?php echo $tarif_expres_export->id;?>' <?php echo ($_SESSION['tarif_expres_export'] == $tarif_expres_export->id) ? 'selected="selected"' : ''; ?> >
@@ -618,7 +625,7 @@ session_start();
 
         <!-- получить эконом -->
         <div class="field hidden" id="block-get-from-ES-RF">
-          <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_GET_FROM"); ?>1</label></p>
+          <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_GET_FROM"); ?></label></p>
           <div class="radio-block">
             <input id="get_from_country_es" type="radio" name="receiver" value="0" onclick="getFromCountryES()"/>
             <label for="get_from_country_es"> <?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?></label>
@@ -633,7 +640,12 @@ session_start();
         <div class="field hidden" id="block-get-econom-ES">
           <label for="tarif_econom_import_ES">страны ЕС:</label>
           <select id="tarif_econom_import_ES" name="tarif_econom_import_ES" onchange="">
-            <option value="-1" ><?php echo  JText::_("PAGE_CALC_SEND_SELECT") ?>ES</option>
+
+            <?php if (isset($query_countries_eu_t4)){ ?>
+              <option value="-1" ><?php echo  JText::_("PAGE_CALC_SEND_SELECT") ?></option>
+            <?php }else{?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_NO_DATA"); ?></option>
+            <?php }?>
 
             <?php foreach($query_countries_eu_t4 as $country) {?>
               <option value='<?php echo $country->id;?>'<?php echo($_SESSION['country_eu'] == $country->id) ? 'selected="selected"' : ''; ?> >
@@ -647,7 +659,13 @@ session_start();
         <div class="field hidden" id="block-get-econom-RF">
           <label for="tarif_econom_import_RF">города РФ:</label>
           <select id="tarif_econom_import_RF" name="" onchange="">
-            <option value="-1" ><?php echo JText::_("PAGE_CALC_SELECT_TOWN") ?>RF</option>
+
+
+            <?php if (isset($towns_rf_t5)){ ?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_SELECT_TOWN") ?></option>
+            <?php }else{?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_NO_DATA"); ?></option>
+            <?php }?>
 
             <?php foreach($towns_rf_t5 as $town) {?>
               <option value='<?php echo $town->id;?>'<?php echo($_SESSION['country_eu'] == $town->id) ? 'selected="selected"' : ''; ?> >
@@ -662,7 +680,11 @@ session_start();
           <p class="calc-p"><label for="tarif_express_import_global">Получить ИЗ:</label></p>
 
           <select id="tarif_express_import_global" name="" onchange="">
-            <option value="-1" ><?php echo JText::_("PAGE_CALC_SEND_SELECT") ?></option>
+            <?php if (isset($express_import_country_t6)){ ?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_SEND_SELECT") ?></option>
+            <?php }else{?>
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_NO_DATA"); ?></option>
+            <?php }?>
 
             <?php foreach($express_import_country_t6 as $country) {?>
               <option value='<?php echo $country->id;?>'<?php echo($_SESSION['country_global'] == $country->id) ? 'selected="selected"' : ''; ?> >
