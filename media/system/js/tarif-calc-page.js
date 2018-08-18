@@ -319,7 +319,6 @@ $('.type-express').on('click', function(e){
     $('#block-all-countries').addClass("hidden");
     $('#block-get-from-ES-RF').addClass("hidden");
     $('#block-get-express-import').addClass("hidden");
-
     $('#block-get-econom-ES, #block-get-econom-RF').addClass('hidden');
     $('#to_countrys_eu, #to_sities_rf').attr('checked', false);
   }
@@ -330,7 +329,6 @@ $('.type-express').on('click', function(e){
     $('#block-send-to-ES-RF').addClass('hidden');
     $('#block-ES-countries, #block-RF-cities').addClass('hidden');
     $('#to_countrys_eu, #to_sities_rf').attr('checked', false)
-
     $('#block-get-express-import').addClass("hidden");
   }
   function recEconom(){
@@ -338,7 +336,6 @@ $('.type-express').on('click', function(e){
     $("#block-get-from-ES-RF").removeClass("hidden");
     $('#block-send-to-ES-RF').addClass("hidden");
     $('#block-ES-countries, #block-RF-cities').addClass("hidden");
-
     $('#block-get-express-import').addClass("hidden");
     $('#block-all-countries').addClass("hidden");
   }
@@ -347,25 +344,20 @@ $('.type-express').on('click', function(e){
     $("#block-get-from-ES-RF").addClass("hidden");
     $('#block-get-econom-ES, #block-get-econom-RF').addClass("hidden");
     $('#get_from_country_es, #get_from_town_rf').attr('checked', false);
-
     $('#block-get-express-import').removeClass("hidden");
     $('#block-all-countries').addClass("hidden");
   }
 
 
 function selectES(){
-  console.log("ES");
   $('#block-ES-countries').removeClass('hidden');
   $('#block-RF-cities').addClass('hidden');
-
   $('.content-type').addClass('hidden');
   $('#package-type').addClass('hidden');
 }
 function selectRF(){
-  console.log("RF");
   $('#block-RF-cities').removeClass('hidden');
   $('#block-ES-countries').addClass('hidden');
-
   $('.content-type').addClass('hidden');
   $('#package-type').addClass('hidden');
 }
@@ -373,6 +365,16 @@ function selectRF(){
 function changeEScountry(){
   $('.content-type').addClass('hidden');
   $('#package-type').addClass('hidden');
+
+  // t1_country = $('#to_es').find(":selected").attr("data-name");
+  // t1_tarif1 = $('#to_es').find(":selected").attr("data-price1");
+  // t1_tarif2 = $('#to_es').find(":selected").attr("data-price2");
+  // t1_terms = $('#to_es').find(":selected").attr("data-terms");
+  //
+  // $("#t1_country").val(t1_country);
+  // $("#t1_tarif1").val(t1_tarif1);
+  // $("#t1_tarif2").val(t1_tarif2);
+  // $("#t1_terms").val(t1_terms);
 }
 
 function changeRFcity(){
@@ -401,14 +403,111 @@ function addPlaces(){
   for(var i=0; i<count; i++){
     row = '<div class="places-row">' +
       '<p>Габариты, см.</p>' +
-
       '<input class="short" type="text" id="len_' + i + '" value="" placeholder="длина" name="calc_size_lenght">x' +
-
       '<input class="short" type="text" id="wid_' + i + '" value="" placeholder=" ширина" name="calc_size_width">x' +
-
       '<input class="short" type="text" id="hei_' + i + '" value="" placeholder=" высота" name="calc_size_height">' +
-
       '</div>';
     $('#gabarits').append(row);
   }
 }
+
+function checkWeight(){
+  //ограничение веса по экспресс эконом для ес
+  if ($("#to_countrys_eu").is(":checked")){
+    if ($('#weight_kg').val() > 60){
+      $("#express_es_error").removeClass("hidden");
+    }else{
+      $("#express_es_error").addClass("hidden");
+    }
+  }
+  // ограничение веса по тариф экспресс эконом для РФ
+  if ($("#to_sities_rf").is(":checked")){
+    if ($('#weight_kg').val() > 70){
+      $("#express_rf_error").removeClass("hidden");
+    }else{
+      $("#express_rf_error").addClass("hidden");
+    }
+  }
+}
+
+
+$("#do_send").on("click", function(){
+
+  if ($("#type_hu_send").is(":checked")){ // отправить
+    if ($("#type_speed_eco").is(":checked")){ //эконом
+      // в страны ес
+      if(($("#to_countrys_eu").is(":checked")) && ($("#to_es option:selected").index() != 0) ){
+        export_econom_to_es();
+      }
+      // в города рф
+      if(($("#to_sities_rf").is(":checked")) && ($("#to_sities_rf option:select").index() != 0)){
+        export_econom_rf();
+      }
+
+    }
+
+    if ($("#type_speed_exp").is(":checked")){ //экспресс
+      console.log("отправить экспресс");
+    }
+  }
+
+
+  if ($("#type_hu_rec").is(":checked")){ //получить
+    if ($("#type_speed_eco").is(":checked")){ // эконом
+      console.log("получить эконом");
+    }
+
+    if ($("#type_speed_exp").is(":checked")){ // экспресс
+      console.log("получить экспресс");
+    }
+  }
+
+
+  function export_econom_to_es(){
+    var country_name = $("#to_es option:selected").data("name");
+    var tarif1 = parseFloat($("#to_es option:selected").data("price1"));
+    var tarif2 = parseFloat($("#to_es option:selected").data("price2"));
+    var terms = $("#to_es option:selected").data("terms");
+    var weight = parseFloat($("#weight_kg").val());
+
+    var ndoc = null; //сбор за недокументы
+    var additional_cost = null; // дополнительные расходы
+    var hawb = null; //сбор за таможенную очистку
+
+    if(weight > 10){
+      weight_over = weight - 10;
+      price = (tarif2 * weight_over) + tarif1;
+    }else{
+      price = $("#es_tarif1").val();
+    }
+
+    $(".response_container").removeClass("hidden");
+    $(".point-country-cell").text(country_name);
+    $(".w-weight-cell").text(weight);
+    $(".terms-cell").text(terms);
+    $(".cost-cell").text(price);
+    $(".ndox-cell").text(ndox-cell);
+    $(".other-price-cell").text(additional_cost);
+    $(".hawb").text(hawb);
+
+    return price;
+  }
+
+
+  function export_econom_rf(){
+    var weight = parseFloat($("#weight_kg").val());
+    var town_names = $("#to_rf option:selected").data("name");
+    var tarif1 = parseFloat($("#to_rf option:selected").data("tarif1"));
+    var tarif2 = parseFloat($("#to_rf option:selected").data("tarif2"));
+
+    if(weight <= 20.50){
+      price = tarif1;
+      console.log(price);
+    }else{
+      var weight_over = Math.floor((weight - 20.50) / 0.5);
+      price = tarif1 + (weight_over * tarif2);
+      console.log(price);
+    }
+  }
+
+});

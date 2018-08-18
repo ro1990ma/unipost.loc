@@ -5,7 +5,7 @@ session_start();
   $db = JFactory::getDbo();
   $db->getQuery(true);
   $db->setQuery("SELECT id,name_en FROM uni_countries WHERE id>100 AND id<=400 ORDER BY name_en ASC");
-  $query_countries_to = $db->loadObjectList();
+  //$query_countries_to = $db->loadObjectList();
 
   //Эконом тариф экспорт страны ЕС EUR 02.07.18 (1)
   $db->setQuery("SELECT * FROM 	uni_tarif1_econom_export_eu ORDER BY name_ru ASC");
@@ -33,7 +33,10 @@ session_start();
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
     <div id="clear"></div>
 <?php
+
   if(isset($_POST['do_page_calc'])){
+
+
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
     $_SESSION['calc_weight_kg'] =      $_POST['calc_weight_kg'];
     $_SESSION['tariff'] =              $_POST['tariff'];
@@ -50,474 +53,217 @@ session_start();
     $_SESSION['calc_size_z'] =         $_POST['calc_size_z'];
     $_SESSION['calc_volume_kg'] =      $_POST['calc_volume_kg'];
 
+    $weight = (float)$_POST['calc_weight_kg'];
 
-    $count_mest=$this->params->get('kol_mest');
-    $count_mest_def=$this->params->get('kol_mest_def');
+    if($_POST['type_hu_you'] == 0){ // отправить
+      if($_POST['type_speed'] == 0){ // эконом
 
+        if($_POST['destination'] == 0){ // страны ес
+          if ($_POST['calc_to_es_country'] != -1){ //если выбранна страна
 
-    (int)$speed_dost = $_POST['type_speed'];
-    (float)$weight_m3 = $_POST['calc_size_kg'];
+            $id = $_POST['calc_to_es_country'] - 1;
+            $country_obj = $query_countries_eu_t1[$id];
+            $target_table = 1;
+            $t1_terms = "6-10";
 
-    if ($_POST['calc_size_kg'] < $_POST['calc_weight_kg']) {
-      (float)$weight_m3 = $_POST['calc_weight_kg'];
-    }
-    if (($weight_m3>0) && ($weight_m3<=0.5)) {
-      $price_suffix = "weight05";
-    } elseif (($weight_m3>0.5) && ($weight_m3<=1.0)) {
-      $price_suffix = "weight10";
-    } elseif (($weight_m3>1.0) && ($weight_m3<=1.5)) {
-      $price_suffix = "weight15";
-    } elseif (($weight_m3>1.5) && ($weight_m3<=2.0)) {
-      $price_suffix = "weight20";
-    } elseif (($weight_m3>2.0) && ($weight_m3<=2.5)) {
-      $price_suffix = "weight25";
-    } elseif (($weight_m3>2.5) && ($weight_m3<=3.0)) {
-      $price_suffix = "weight30";
-    } elseif (($weight_m3>3.0) && ($weight_m3<=3.5)) {
-      $price_suffix = "weight35";
-    } elseif (($weight_m3>3.5) && ($weight_m3<=4.0)) {
-      $price_suffix = "weight40";
-    } elseif (($weight_m3>4.0) && ($weight_m3<=4.5)) {
-      $price_suffix = "weight45";
-    } elseif (($weight_m3>4.5) && ($weight_m3<=5.0)) {
-      $price_suffix = "weight50";
-    } elseif (($weight_m3>5.0) && ($weight_m3<=5.5)) {
-      $price_suffix = "weight50";
-    } else {
-      $price_suffix = "weight05";
-    }
-    $db->getQuery(true);
-    $db->setQuery("SELECT * FROM uni_prices WHERE country=".$_POST['calc_to_country']);
-    $query_countries_price = $db->loadObject();
+            if($weight <= 10){
+              (float)$price = (float)$country_obj->tarif_less_10kg;
+            }else{
+              $weight_over = $weight - 10;
+              (float)$price = ((float)$country_obj->tarif_plus_1kg * (float)$weight_over) + (float)$country_obj->tarif_less_10kg;
+            }
+            (float)$final_price = (float)$price*(float)$EUR;
+          }
+        }
 
-//      print_r($query_countries_price);
-//      echo $query_countries_price->econom." ECONOM<br>";//23
-//      echo $query_countries_price->weight05." weight05<br>";//26
-//      echo $query_countries_price->weight10." weight10<br>";//26
-//      echo $query_countries_price->weight15." weight15<br>";//26
+        if($_POST['destination'] == 1){ // города рф
+          if ($_POST['calc_to_rf_cities'] != -1){
 
+            $id = $_POST['calc_to_rf_cities'] - 1;
+            $city_obj = $query_city_rf_t2[$id];
+            $target_table = 2;
 
-    if ($_POST['tariff'] == true OR $speed_dost==1) {
-      $price1 = $query_countries_price->econom;
-      $price_base = 65;
+            if($weight <= 20.5){
+              (float)$price = (float)$city_obj->tarif_less_20;
+            }else{
+              $weight_over = (float)(($weight - 20.50) / 0.5);
+              (float)$price = (float)$city_obj->tarif_less_20 + ((float)$weight_over * (float)$city_obj->tarif_next_05);
+            }
+            (float)$final_price = (float)$price*(float)$EUR;
 
-      if($weight_m3>10){
-        $weight_count=$weight_m3-10;
-        $price=$price_base+$weight_count*3;
-      }else{
-        $price=$price_base;
+          }
+        }
       }
 
-      $query_countries_price->ndox = 0;
-      (float)$final_price = (int)$price+$query_countries_price->ndox+$query_countries_price->expense+$query_countries_price->other_expense;
-      (float)$final_price = $final_price*(float)$EUR;
+      if($_POST['type_speed'] == 1){ // экспресс
+        if ($_POST['tarif_express_export_countries'] != -1){
+          $id = $_POST['tarif_express_export_countries'] - 1;
+          $country_t3 = $query_tarif_express_export_t3[$id];
+          $target_table = 3;
 
-    }else{
-      if ($_POST['type_docs_ndocs'] == 1){
-        $query_countries_price->ndox = 0;
+          if ($_POST['type_docs_ndocs'] == 1){//документы
+
+            if($weight <= 0.5){
+              (float)$price = (float)$country_t3->doc_less05;
+            }else{
+              (float)$price = (float)$country_t3->doc_less05 + (float)$country_t3->doc_more05;
+            }
+          }
+
+          if ($_POST['type_docs_ndocs'] == 0){//недокументы
+            if($weight <= 0.5){
+              (float)$price = (float)$country_t3->not_doc_less05;
+            }else{
+              $weight_over = floor(((float)$weight / 0.5));
+              (float)$price = (float)$country_t3->not_doc_more05 * (float)$weight_over;
+            }
+          }
+          (float)$final_price = (float)$price*(float)$EUR;
+
+        }
       }
-      $disableda = "";
-      if ($_POST['conv'] == 1) {
-        if ($_POST['calc_weight_kg'] > 0.7){
-          $delay=0;
-          header("Refresh: $delay;");
-		      echo '<script>alert("' . JText::_('ERROR_CONV') . '");</script>';
-		      return false;
-        }
-        $price = $query_countries_price->$price_suffix != '' ? $query_countries_price->$price_suffix:0;
+    }
 
-        $price_base = 34;
+//**************************************************************************
 
-        if($weight_m3>0.5){
-          $weight_count=$weight_m3-0.5;
-          $weight_kol=ceil($weight_count)*2;
-          $price=$price_base+$weight_kol*6;
-        }else{
-         $price=$price_base;
-        }
 
-        (float)$final_price = $price+$query_countries_price->ndox+$query_countries_price->expense+$query_countries_price->other_expense;
-        (float)$final_price = (float)$final_price*(float)$EUR;
-      }else {
+    if ($_POST["type_hu_you"] == 1){ // получить
+      if($_POST['type_speed'] == 0){ //эконом
 
-          if (($weight_m3>5.0) && ($weight_m3<=5.5)) {
-          $price_inc = $query_countries_price->weight_inc;
-        } elseif (($weight_m3>5.5) && ($weight_m3<=6.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 2*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>6.0) && ($weight_m3<=6.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 3*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>6.5) && ($weight_m3<=7.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 4*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>7.0) && ($weight_m3<=7.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 5*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>7.5) && ($weight_m3<=8.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 6*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>8.0) && ($weight_m3<=8.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 7*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>8.5) && ($weight_m3<=9.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 8*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>9.0) && ($weight_m3<=9.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 9*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>9.5) && ($weight_m3<=10.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 10*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>10.0) && ($weight_m3<=10.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 11*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>10.5) && ($weight_m3<=11.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 12*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>11.0) && ($weight_m3<=11.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 13*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>11.5) && ($weight_m3<=12.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 14*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>12.5) && ($weight_m3<=13.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 15*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>13.0) && ($weight_m3<=13.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 16*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>13.5) && ($weight_m3<=14.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 17*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>14.0) && ($weight_m3<=14.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 18*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>14.5) && ($weight_m3<=15.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 19*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>15.0) && ($weight_m3<=15.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 20*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>15.5) && ($weight_m3<=16.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 21*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>16.0) && ($weight_m3<=16.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 22*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>16.5) && ($weight_m3<=17.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 23*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>17.0) && ($weight_m3<=17.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 24*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>17.5) && ($weight_m3<=18.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 25*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>18.0) && ($weight_m3<=18.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 26*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>18.5) && ($weight_m3<=19.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 27*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>19.0) && ($weight_m3<=19.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 28*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>19.5) && ($weight_m3<=20.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 29*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>20.0) && ($weight_m3<=20.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 30*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>20.5) && ($weight_m3<=21.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 31*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>21.0) && ($weight_m3<=21.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 32*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>21.5) && ($weight_m3<=22.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 33*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>22.0) && ($weight_m3<=22.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 34*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>22.5) && ($weight_m3<=23.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 35*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>23.0) && ($weight_m3<=23.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 36*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>23.5) && ($weight_m3<=24.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 37*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>24.0) && ($weight_m3<=24.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 38*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>24.5) && ($weight_m3<=25.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 39*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>25.0) && ($weight_m3<=25.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 40*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>25.5) && ($weight_m3<=26.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 41*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>26.0) && ($weight_m3<=26.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 42*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>26.5) && ($weight_m3<=27.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 43*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>27.0) && ($weight_m3<=27.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 44*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>27.5) && ($weight_m3<=28.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 45*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>28.0) && ($weight_m3<=28.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 46*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>28.5) && ($weight_m3<=29.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 47*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>29.0) && ($weight_m3<=29.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 48*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>29.5) && ($weight_m3<=30.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 49*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>30.0) && ($weight_m3<=30.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 50*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>30.5) && ($weight_m3<=31.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 51*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>31.0) && ($weight_m3<=31.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 52*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>31.5) && ($weight_m3<=32.0)) {
-           $price_suffix = "weight50";
-           $price_inc = 53*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>32) && ($weight_m3<=32.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 54*$query_countries_price->weight_inc;
-        } elseif (($weight_m3>32.5) && ($weight_m3<=33)) {
-           $price_suffix = "weight50";
-           $price_inc = 55*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>33) && ($weight_m3<=33.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 56*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>33.5) && ($weight_m3<=34)) {
-           $price_suffix = "weight50";
-           $price_inc = 57*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>34) && ($weight_m3<=34.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 58*$query_countries_price->weight_inc;
-        }   elseif (($weight_m3>34.5) && ($weight_m3<=35)) {
-           $price_suffix = "weight50";
-           $price_inc = 59*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>35) && ($weight_m3<=35.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 60*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>35.5) && ($weight_m3<=36)) {
-           $price_suffix = "weight50";
-           $price_inc = 61*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>36) && ($weight_m3<=36.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 62*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>36.5) && ($weight_m3<=37)) {
-           $price_suffix = "weight50";
-           $price_inc = 63*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>37) && ($weight_m3<=37.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 64*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>37.5) && ($weight_m3<=38)) {
-           $price_suffix = "weight50";
-           $price_inc = 65*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>38) && ($weight_m3<=38.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 66*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>38.5) && ($weight_m3<=39)) {
-           $price_suffix = "weight50";
-           $price_inc = 67*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>39) && ($weight_m3<=39.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 68*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>39.5) && ($weight_m3<=40)) {
-           $price_suffix = "weight50";
-           $price_inc = 69*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>40.5) && ($weight_m3<=41)) {
-           $price_suffix = "weight50";
-           $price_inc = 70*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>41) && ($weight_m3<=41.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 71*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>41.5) && ($weight_m3<=42)) {
-           $price_suffix = "weight50";
-           $price_inc = 72*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>42) && ($weight_m3<=42.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 73*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>42.5) && ($weight_m3<=43)) {
-           $price_suffix = "weight50";
-           $price_inc = 74*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>43) && ($weight_m3<=43.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 75*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>43.5) && ($weight_m3<=44)) {
-           $price_suffix = "weight50";
-           $price_inc = 76*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>44) && ($weight_m3<=44.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 77*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>44.5) && ($weight_m3<=45)) {
-           $price_suffix = "weight50";
-           $price_inc = 78*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>45) && ($weight_m3<=45.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 79*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>45.5) && ($weight_m3<=46)) {
-           $price_suffix = "weight50";
-           $price_inc = 80*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>46) && ($weight_m3<=46.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 81*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>46.5) && ($weight_m3<=47)) {
-           $price_suffix = "weight50";
-           $price_inc = 82*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>47) && ($weight_m3<=47.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 83*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>47.5) && ($weight_m3<=48)) {
-           $price_suffix = "weight50";
-           $price_inc = 84*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>48) && ($weight_m3<=48.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 85*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>48.5) && ($weight_m3<=49)) {
-           $price_suffix = "weight50";
-           $price_inc = 86*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>49) && ($weight_m3<=49.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 87*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>49.5) && ($weight_m3<=50)) {
-           $price_suffix = "weight50";
-           $price_inc = 88*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>50) && ($weight_m3<=50.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 89*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>50.5) && ($weight_m3<=51)) {
-           $price_suffix = "weight50";
-           $price_inc = 90*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>51) && ($weight_m3<=51.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 91*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>51.5) && ($weight_m3<=52)) {
-           $price_suffix = "weight50";
-           $price_inc = 92*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>52) && ($weight_m3<=52.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 93*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>52.5) && ($weight_m3<=53)) {
-           $price_suffix = "weight50";
-           $price_inc = 94*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>53) && ($weight_m3<=53.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 95*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>53.5) && ($weight_m3<=54)) {
-           $price_suffix = "weight50";
-           $price_inc = 96*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>54) && ($weight_m3<=54.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 97*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>54.5) && ($weight_m3<=55)) {
-           $price_suffix = "weight50";
-           $price_inc = 98*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>55) && ($weight_m3<=55.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 99*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>55.5) && ($weight_m3<=56)) {
-           $price_suffix = "weight50";
-           $price_inc = 100*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>56) && ($weight_m3<=56.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 101*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>56.5) && ($weight_m3<=57)) {
-           $price_suffix = "weight50";
-           $price_inc = 102*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>57) && ($weight_m3<=57.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 103*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>57.5) && ($weight_m3<=58)) {
-           $price_suffix = "weight50";
-           $price_inc = 104*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>58) && ($weight_m3<=58.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 105*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>58.5) && ($weight_m3<=59)) {
-           $price_suffix = "weight50";
-           $price_inc = 106*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>59) && ($weight_m3<=59.5)) {
-           $price_suffix = "weight50";
-           $price_inc = 107*$query_countries_price->weight_inc;
-        }  elseif (($weight_m3>59.5) && ($weight_m3<=60)) {
-           $price_suffix = "weight50";
-           $price_inc = 108*$query_countries_price->weight_inc;
+        if ($_POST['receiver'] == 0){// в страны ес
+          if ($_POST['tarif_econom_import_ES'] != -1){ //если выбранна страна
+            // $econom_import_country_t4
+
+            $id = $_POST['tarif_econom_import_ES'] - 1;
+            $country_t4 = $econom_import_country_t4[$id];
+            $target_table = 4;
+            $t4_terms = "5-9";
+
+            if($weight <= 10){
+               (float)$price = (float)$country_t4->tarif_less10;
+            }else{
+               $weight_over = floor((float)$weight - 10);
+               (float)$price = ((float)$country_t4->tarif_plus_one * (float)$weight_over) + (float)$country_t4->tarif_less10;
+            }
+            (float)$final_price = (float)$price*(float)$EUR;
+          }
         }
 
-        $price = $query_countries_price->$price_suffix!='' ? $query_countries_price->$price_suffix:0;
+        if ($_POST['receiver'] == 1){// в города рф
+          if ($_POST['tarif_econom_import_RF'] != -1){ //если выбран город РФ
 
-        $price_base = 34;
-        if($weight_m3>0.5){
-            $weight_count=$weight_m3-0.5;
-            $weight_kol=$weight_count*2;
-            $price=$price_base+ceil($weight_kol)*6;
-        }else{
-         $price=$price_base;
+            $id = $_POST['tarif_econom_import_RF'];
+            $town_t5 = null;
+            $target_table = 5;
+
+            foreach($towns_rf_t5 as $item){
+              if ($item->id == $id){
+                $town_t5 = $item;
+                break;
+              }
+            }
+
+            if($weight <= 20.5){
+              (float)$price = (float)$town_t5->tarif_less_20;
+            }else{
+              $weight_over = floor(($weight - 20.50) / 0.5);
+              (float)$price = (float)$town_t5->tarif_less_20 + ((float)$weight_over * (float)$town_t5->tarif_next_05);
+            }
+            (float)$final_price = (float)$price*(float)$EUR;
+
+          }
         }
-
-        (float)$final_price = $price+$query_countries_price->ndox+$query_countries_price->expense+$query_countries_price->other_expense+$price_inc;
-        (float)$final_price = (float)$final_price*(float)$EUR;
       }
-        //echo (float)$weight_m3."<br>";
-        //echo $price."<br>";
-        //echo $price_suffix."<br>";
-        //echo $query_countries_price->$price_suffix;
-        //echo "<br /><br /><br />";
-        //print_r($query_countries_price);
+
+      if($_POST['type_speed'] == 1){ //экспресс
+
+      }
     }
-    $db->getQuery(true);
-    $db->setQuery("SELECT * FROM uni_countries WHERE id=".$_POST['calc_to_country']);
-    $query_country_name = $db->loadObject();
 
-    if($speed_dost==1)$speed_total="5-8 рабочих дней";
-    if($speed_dost==0)$speed_total="3-5 рабочих дней";
-    if($speed_dost==2)$speed_total="рабочих дня";
-    printf("<table class='calc_response'>");
-    printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",JText::_("PAGE_CALC_RS_COUNTRY"),$query_country_name->name_en);
-    printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",JText::_("PAGE_CALC_RS_WEIGHT"),$weight_m3,JText::_("PAGE_CALC_RS_WEIGHT_KG"));
-    printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",JText::_("PAGE_CALC_RS_TERM"),$speed_total,JText::_("PAGE_CALC_RS_TERM_D"));
-    printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_PRICE"),$price=='' ? 0:$price+$price_inc);
-    printf("<tr><td class='info'>%s</td><td class='data right'>+%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_NDOX"),$query_countries_price->ndox=='' ? 0:$query_countries_price->ndox);
-
-    printf("<tr><td class='info'>%s</td><td class='data right'>+%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_ADD_EXPENSES"),$query_countries_price->expense=='' ? 0:$query_countries_price->expense);
-    printf("<tr style='border:none;'><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_BORDER"),$query_countries_price->other_expense=='' ? 0:$query_countries_price->other_expense);
-    echo "<tr style='border:none;'><td colspan='2' style='text-align:center;'><hr style='width:100%;height:1px;color:#333;background-color: #555;margin:2px auto;border:none;'/></td></tr>";
-    printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
-    printf("</table>");
-
-    if ($weight_m3 != 0) {
-      //printf("Обьёмный вес: %0.3f <br>",$weight_m3);
+    // print($target_table);
+    if ($target_table == 1){
+      printf("<table class='calc_response'>");
+      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $country_obj->name_ru);
+      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
+      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $t1_terms ,JText::_("PAGE_CALC_RS_TERM_D"));
+      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
+      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
+      printf("</table>");
+      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
+      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
     }
-    echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
-    echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
-    //echo "<input class='btl-buttonsubmit btn' type='submit' onclick='history.back(-1);' value='".JText::_('BACK')."'/>";
-    //echo "<a href='./?do=command' class='btl-buttonsubmit btn'>Оформить заказ</a>";
+
+    if ($target_table == 2){
+      printf("<table class='calc_response'>");
+      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_TOWN"),    $city_obj->name_ru);
+      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
+      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $city_obj->terms, JText::_("PAGE_CALC_RS_TERM_D"));
+      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
+      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
+      printf("</table>");
+      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
+      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
+    }
+
+    if ($target_table == 3){
+      printf("<table class='calc_response'>");
+      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               "тип содержимого:", "документы/недокументы");
+      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $country_t3->name_ru);
+      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
+      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $country_t3->term, JText::_("PAGE_CALC_RS_TERM_D"));
+      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
+      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
+      printf("</table>");
+      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
+      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
+    }
+
+    if ($target_table == 4){
+      printf("<h3>Поучить эконом в страны ЕС</h3>");
+      printf("<table class='calc_response'>");
+      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $country_t4->name_ru);
+      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
+      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $t4_terms, JText::_("PAGE_CALC_RS_TERM_D"));
+      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
+      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
+      printf("</table>");
+      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
+      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
+    }
+
+    if ($target_table == 5){
+      printf("<h3>Поучить эконом в города РФ</h3>");
+      printf("<table class='calc_response'>");
+      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $town_t5->name_ru);
+      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
+      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $town_t5->terms, JText::_("PAGE_CALC_RS_TERM_D"));
+      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
+      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
+      printf("</table>");
+      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
+      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
+    }
+    // printf("<table class='calc_response'>");
+    // printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",JText::_("PAGE_CALC_RS_COUNTRY"),$country_obj->name_ru);
+    // printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",JText::_("PAGE_CALC_RS_WEIGHT"),$weight_m3,JText::_("PAGE_CALC_RS_WEIGHT_KG"));
+    // printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",JText::_("PAGE_CALC_RS_TERM"),$speed_total,JText::_("PAGE_CALC_RS_TERM_D"));
+    // printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_PRICE"),$price=='' ? 0:$price+$price_inc);
+    // printf("<tr><td class='info'>%s</td><td class='data right'>+%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_NDOX"),$query_countries_price->ndox=='' ? 0:$query_countries_price->ndox);
+    //
+    // printf("<tr><td class='info'>%s</td><td class='data right'>+%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_ADD_EXPENSES"),$query_countries_price->expense=='' ? 0:$query_countries_price->expense);
+    // printf("<tr style='border:none;'><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_BORDER"),$query_countries_price->other_expense=='' ? 0:$query_countries_price->other_expense);
+    // echo "<tr style='border:none;'><td colspan='2' style='text-align:center;'><hr style='width:100%;height:1px;color:#333;background-color: #555;margin:2px auto;border:none;'/></td></tr>";
+    // printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
+    // printf("</table>");
+    // echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
+    // echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
+
   }else{
   ?>
       <label><?php echo JText::_("PAGE_CALC_INFO"); ?></label>
       <form id="page_calc" action="" method="post" name="calculate_package">
       <div class="form_block">
+
         <!-- отправить -->
         <div class="field docs">
           <p class="calc-p"><label for="type_hu_you"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_WANT"); ?></label></p>
@@ -536,16 +282,12 @@ session_start();
           <p class="calc-p"><label for="type_speed"><?php echo JText::_("PAGE_CALC_SEND_SELECT_TARIF"); ?></label></p>
           <!-- эконом -->
           <div class="radio-block">
-            <!-- onclick="selectTarifType('econom',this)"  -->
-            <input value="1" type="radio" id="type_speed_eco" class="type-econom" name="type_speed"
-            <?php //echo ($_SESSION['type_speed'] == '1') ? 'checked="checked"' : ($_SESSION['type_speed'] == '')?'checked="checked"':''; ?> />
+            <input value="0" type="radio" id="type_speed_eco" class="type-econom" name="type_speed"/>
             <label for="type_speed_eco"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_ECO"); ?></label>
           </div>
           <!-- экспресс -->
           <div class="radio-block">
-            <!-- onclick="selectTarifType('express',this)" -->
-            <input value="0" type="radio" id="type_speed_exp" class="type-express" name="type_speed"
-            <?php //echo ($_SESSION['type_speed'] == '0') ? 'checked="checked"' : ''; ?>/>
+            <input value="1" type="radio" id="type_speed_exp" class="type-express" name="type_speed"/>
             <label for="type_speed_exp"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_EXP"); ?></label>
           </div>
         </div>
@@ -555,20 +297,21 @@ session_start();
           <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_SEND_TO_COUNTRYS"); ?></label></p>
           <!-- доставить в страны ес -->
           <div class="radio-block">
-            <input type="radio" id="to_countrys_eu" name="destination" value="0" onclick="selectES()"
-            <?php //echo ($_SESSION['to_eu'] == '1') ? 'checked="checked"' : ($_SESSION['to_eu'] == '')?'checked="checked"':''; ?> />
+            <input type="radio" id="to_countrys_eu" name="destination" value="0" onclick="selectES()"/>
             <label for="to_countrys_eu"> <?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?></label>
           </div>
           <!-- доставить в города рф -->
           <div class="radio-block">
-            <input type="radio" id="to_sities_rf" name="destination" value="1" onclick="selectRF()"
-            <?php //echo ($_SESSION['to_rf'] == '1') ? 'checked="checked"' : ($_SESSION['to_rf'] == '')?'checked="checked"':''; ?> />
+            <input type="radio" id="to_sities_rf" name="destination" value="1" onclick="selectRF()"/>
             <label for="to_sities_rf"><?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></label>
           </div>
         </div>
 
         <!-- отправить эконом в ЕС-->
         <div class="field hidden" id="block-ES-countries">
+          <p class="calc-p">
+            <label for="to_es"> <?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?> </label>
+          </p>
           <select id="to_es" name="calc_to_es_country" onchange="changeEScountry();">
             <?php if (isset($query_countries_eu_t1)){ ?>
               <option value="-1" ><?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?></option>
@@ -576,18 +319,26 @@ session_start();
               <option value="-1" ><?php echo JText::_("PAGE_CALC_NO_DATA"); ?></option>
             <?php }?>
 
-
             <?php
               foreach($query_countries_eu_t1 as $country_eu) {?>
-                <option value='<?php echo $country_eu->id;?>'<?php echo($_SESSION['country_eu'] == $country_eu->id) ? 'selected="selected"' : ''; ?> >
+                <option value='<?php echo $country_eu->id;?>'<?php echo($_SESSION['country_eu'] == $country_eu->id) ? 'selected="selected"' : ''; ?>
+                  data-name='<?php echo $country_eu->name_ru; ?>'
+                  data-price1='<?php echo $country_eu->tarif_less_10kg; ?>'
+                  data-price2='<?php echo $country_eu->tarif_plus_1kg; ?>'
+                  data-terms="<?php echo JText::_("PAGE_CALC_TERMS1"); ?>"
+                  >
                   <?php echo $country_eu->name_ru;?>
                 </option>
             <?php }?>
           </select>
+
         </div>
 
         <!-- отправить эконом в РФ-->
         <div class="field hidden" id="block-RF-cities">
+          <p class="calc-p">
+            <label for="to_rf"> <?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></label>
+          </p>
           <select id="to_rf" name="calc_to_rf_cities" onchange="changeRFcity();">
             <?php if (isset($query_city_rf_t2)){ ?>
               <option value="-1" ><?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></option>
@@ -598,7 +349,11 @@ session_start();
             <?php
               $disable = '';
               foreach($query_city_rf_t2 as $city_rf) {?>
-                <option value='<?php echo $city_rf->id;?>' <?php echo ($_SESSION['city_rf'] == $city_rf->id) ? 'selected="selected"' : ''; ?> >
+                <option value='<?php echo $city_rf->id;?>' <?php echo ($_SESSION['city_rf'] == $city_rf->id) ? 'selected="selected"' : ''; ?>
+                    data-name='<?php echo $city_rf->name_ru; ?>'
+                    data-tarif1='<?php echo $city_rf->tarif_less_20; ?>'
+                    data-tarif2='<?php echo $city_rf->tarif_next_05; ?>'
+                    data-terms='<?php echo $city_rf->terms; ?>'>
                   <?php echo $city_rf->name_ru;?>
                 </option>
             <?php }?>
@@ -615,9 +370,16 @@ session_start();
             <?php }?>
 
             <?php
-              foreach($query_tarif_express_export_t3 as $tarif_expres_export) {?>
-                <option value='<?php echo $tarif_expres_export->id;?>' <?php echo ($_SESSION['tarif_expres_export'] == $tarif_expres_export->id) ? 'selected="selected"' : ''; ?> >
-                  <?php echo $tarif_expres_export->name_ru;?>
+              foreach($query_tarif_express_export_t3 as $tarif_t3) {?>
+                <option value='<?php echo $tarif_t3->id;?>'
+                  <?php echo ($_SESSION['tarif_expres_export'] == $tarif_t3->id) ? 'selected="selected"' : ''; ?>
+                  data-name='<?php echo $tarif_t3->name_ru; ?>'
+                  data-docless05='<?php echo $tarif_t3->doc_less05; ?>'
+                  data-docmore05='<?php echo $tarif_t3->doc_more05; ?>'
+                  data-ndocless05='<?php echo $tarif_t3->not_doc_less05; ?>'
+                  data-ndocmore05='<?php echo $tarif_t3->not_doc_more05; ?>'
+                  data-term='<?php echo $tarif_t3->term; ?>'>
+                  <?php echo $tarif_t3->name_ru;?>
                 </option>
             <?php }?>
           </select>
@@ -639,7 +401,7 @@ session_start();
 
         <div class="field hidden" id="block-get-econom-ES">
           <label for="tarif_econom_import_ES">страны ЕС:</label>
-          <select id="tarif_econom_import_ES" name="tarif_econom_import_ES" onchange="">
+          <select id="tarif_econom_import_ES" name="tarif_econom_import_ES">
 
             <?php if (isset($econom_import_country_t4)){ ?>
               <option value="-1" ><?php echo  JText::_("PAGE_CALC_SEND_SELECT") ?></option>
@@ -658,9 +420,7 @@ session_start();
 
         <div class="field hidden" id="block-get-econom-RF">
           <label for="tarif_econom_import_RF">города РФ:</label>
-          <select id="tarif_econom_import_RF" name="" onchange="">
-
-
+          <select id="tarif_econom_import_RF" name="tarif_econom_import_RF">
             <?php if (isset($towns_rf_t5)){ ?>
               <option value="-1" ><?php echo JText::_("PAGE_CALC_SELECT_TOWN") ?></option>
             <?php }else{?>
@@ -678,7 +438,6 @@ session_start();
 
         <div class="field hidden" id="block-get-express-import">
           <p class="calc-p"><label for="tarif_express_import_global">Получить ИЗ:</label></p>
-
           <select id="tarif_express_import_global" name="" onchange="">
             <?php if (isset($express_import_country_t6)){ ?>
               <option value="-1" ><?php echo JText::_("PAGE_CALC_SEND_SELECT") ?></option>
@@ -691,17 +450,12 @@ session_start();
                 <?php echo $country->name_ru;?>
               </option>
             <?php }?>
-
           </select>
         </div>
-
-
-
 
         <div class="dostupnosti" style="float:left; display:none;color: #129014; font-size: 12px;">
           <?php echo JText::_("USLUGA_LETTER_EXPRESS"); ?>
         </div>
-
 
         <div id="letter_error" style="float:left; display:none; color:red; font-size:12px;line-height: 30px;">
           <?php echo JText::_("NET_DOSTUPA_LETTER"); ?>
@@ -739,30 +493,12 @@ session_start();
 
           <div class="field">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG"); ?><?php echo $_SESSION['calc_weight_kg'];?></p>
-              <input id="weight_kg" style="width:86px;" type="text" oninput="proverka()" min="0" max="30" value="<?php echo $_SESSION['calc_weight_kg']; ?>" placeholder=""  name="calc_weight_kg" />
-          <div id="weight_kg_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
-            <?php echo JText::_("FIZICAL_WEIGHT"); ?>
-          </div>
-          </div>
+              <input type="text" id="weight_kg" oninput="checkWeight()" value="<?php echo $_SESSION['calc_weight_kg']; ?>" placeholder="введите вес"  name="calc_weight_kg" />
+              <!-- <div id="weight_kg_error"><?php //echo JText::_("FIZICAL_WEIGHT"); ?></div> -->
 
-          <div class="field"  style="display:none;">
-              <p><?php echo JText::_("PAGE_CALC_SIZE"); ?></p>
-              <input id="calc_size_x" style="width:50px;" type="text" oninput="proverka()" min="0" max="300" value="<?php echo $_SESSION['calc_size_x']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_X"); ?>"  name="calc_size_x" />
-              <input id="calc_size_y" style="width:50px;" type="text" oninput="proverka()" min="0" max="300" value="<?php echo $_SESSION['calc_size_y']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_Y"); ?>"  name="calc_size_y" />
-              <input id="calc_size_z" style="width:50px;" type="text" oninput="proverka()" min="0" max="300" value="<?php echo $_SESSION['calc_size_z']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_Z"); ?>"  name="calc_size_z" />
-          <div id="weight_size_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
-            <?php echo JText::_("PAGE_CALC_SIZE_ERR"); ?>
+              <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
+              <div id="express_rf_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_RF_ERROR"); ?></div>
           </div>
-          </div>
-
-          <div class="field"  style="display:none;">
-              <p><?php echo JText::_("PAGE_CALC_VOLUME_KG"); ?><?php echo $_SESSION['calc_volume_kg'];?></p>
-              <input id="volume_kg" style="width:86px;" type="text" oninput="proverka()" min="0" max="30" value="<?php echo $_SESSION['calc_volume_kg']; ?>" placeholder=""  name="calc_volume_kg" />
-          <div id="volume_kg_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
-            <?php echo JText::_("FIZICAL_VOLUME"); ?>
-          </div>
-          </div>
-
 
           <div class="max_weight_message" style="float:left; color:red;line-height:30px; display:none;">
               <?php echo JText::_("MAXIMUM_WEIGHT"); ?>
@@ -791,10 +527,7 @@ session_start();
             </select>
           </div>
 
-          <div class="field" id="gabarits">
-
-          </div>
-
+          <div class="field" id="gabarits"></div>
 
           <div class="field" id="weight2" style="display:block;">
               <p><?php echo JText::_("PAGE_CALC_VOLUME_SIZE"); ?></p>
@@ -807,7 +540,7 @@ session_start();
 
           <div class="field" id="sentFromOfficeBlock">
             <label for="sentFromOffice"><?php echo JText::_("PAGE_CALC_SENT_FROME_OFFICE"); ?></label>
-            <input value="1" type="radio" id="sentFromOffice" name="sent_from_office" checked="checked">
+            <input value="1" type="radio" id="sentFromOffice" name="sent_from_office" >
           </div>
 
           <div class="field" id="getCurrierBlock">
@@ -826,6 +559,23 @@ session_start();
       </div>
       </form>
       <div class="form_img"></div>
+
+      <!-- <div class="response_container hidden">
+        <table class="calc_response">
+          <tbody>
+            <tr><td class="info">Страна назначения</td><td class="data point-country-cell"></td></tr>
+            <tr><td class="info">Вес/Объёмный вес</td><td class="data w-weight-cell"></td></tr>
+            <tr><td class="info">Срок доставки</td><td class="data terms-cell"></td></tr>
+            <tr><td class="info">Cтоимость доставки</td><td class="data right cost-cell"></td></tr>
+            <tr><td class="info">Сбор за не документы (NDOX)</td><td class="data right ndox-cell"></td></tr>
+            <tr><td class="info">Доп.расходы по доставке</td><td class="data right other-price-cell"></td></tr>
+
+            <tr style="border:none;"><td class="info">Сбор за таможенную очистку HAWB</td><td class="data right hawb"></td></tr>
+            <tr style="border:none;"><td colspan="2" style="text-align:center;"><hr style="width:100%;height:1px;color:#333;background-color: #555;margin:2px auto;border:none;"></td></tr>
+            <tr style="border:none;"><td class="info" style="font-weight:bold;">Предварительная стоимость</td><td class="data right price"></td></tr>
+          </tbody>
+        </table>
+      </div> -->
       <div id="clear"></div>
   <?php } ?>
   </div>

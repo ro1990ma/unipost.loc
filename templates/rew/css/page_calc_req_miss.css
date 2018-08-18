@@ -341,7 +341,7 @@ div.page_miss_call table tr td textarea {
 
 
 .page_calc .form_img{
-  display: none;
+  /*display: none;*/
 }
 
 
@@ -431,9 +431,11 @@ div.page_miss_call table tr td textarea {
 
 #block-ES-countries{
   float: right;
+  width: 100%;
 }
 #block-RF-cities{
-  float: right;
+    float: right;
+    width: 100%;
 }
 #block-get-import{
   float: right;
@@ -454,5 +456,27 @@ div.page_miss_call table tr td textarea {
   float: right;
 }
 #places-count{
+  width: 100%;
+}
+#weight_kg{
+  width: 86px;
+}
+#weight_kg_error{
+  display: none;
+  color:red;
+  float: right;
+  max-width: 200px;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+#express_es_error{
+  color: red;
+}
+#express_rf_error{
+  color: red;
+}
+.response_container{
+  /*border: 1px solid red;*/
+  float: left;
   width: 100%;
 }
