@@ -124,7 +124,7 @@ session_start();
       }
     }
 
-//**************************************************************************
+//получить_____________________________________________________________
 
 
     if ($_POST["type_hu_you"] == 1){ // получить
@@ -243,21 +243,6 @@ session_start();
       echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
       echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
     }
-    // printf("<table class='calc_response'>");
-    // printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",JText::_("PAGE_CALC_RS_COUNTRY"),$country_obj->name_ru);
-    // printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",JText::_("PAGE_CALC_RS_WEIGHT"),$weight_m3,JText::_("PAGE_CALC_RS_WEIGHT_KG"));
-    // printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",JText::_("PAGE_CALC_RS_TERM"),$speed_total,JText::_("PAGE_CALC_RS_TERM_D"));
-    // printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_PRICE"),$price=='' ? 0:$price+$price_inc);
-    // printf("<tr><td class='info'>%s</td><td class='data right'>+%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_NDOX"),$query_countries_price->ndox=='' ? 0:$query_countries_price->ndox);
-    //
-    // printf("<tr><td class='info'>%s</td><td class='data right'>+%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_ADD_EXPENSES"),$query_countries_price->expense=='' ? 0:$query_countries_price->expense);
-    // printf("<tr style='border:none;'><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",JText::_("PAGE_CALC_RS_BORDER"),$query_countries_price->other_expense=='' ? 0:$query_countries_price->other_expense);
-    // echo "<tr style='border:none;'><td colspan='2' style='text-align:center;'><hr style='width:100%;height:1px;color:#333;background-color: #555;margin:2px auto;border:none;'/></td></tr>";
-    // printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
-    // printf("</table>");
-    // echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
-    // echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
-
   }else{
   ?>
       <label><?php echo JText::_("PAGE_CALC_INFO"); ?></label>
@@ -559,23 +544,6 @@ session_start();
       </div>
       </form>
       <div class="form_img"></div>
-
-      <!-- <div class="response_container hidden">
-        <table class="calc_response">
-          <tbody>
-            <tr><td class="info">Страна назначения</td><td class="data point-country-cell"></td></tr>
-            <tr><td class="info">Вес/Объёмный вес</td><td class="data w-weight-cell"></td></tr>
-            <tr><td class="info">Срок доставки</td><td class="data terms-cell"></td></tr>
-            <tr><td class="info">Cтоимость доставки</td><td class="data right cost-cell"></td></tr>
-            <tr><td class="info">Сбор за не документы (NDOX)</td><td class="data right ndox-cell"></td></tr>
-            <tr><td class="info">Доп.расходы по доставке</td><td class="data right other-price-cell"></td></tr>
-
-            <tr style="border:none;"><td class="info">Сбор за таможенную очистку HAWB</td><td class="data right hawb"></td></tr>
-            <tr style="border:none;"><td colspan="2" style="text-align:center;"><hr style="width:100%;height:1px;color:#333;background-color: #555;margin:2px auto;border:none;"></td></tr>
-            <tr style="border:none;"><td class="info" style="font-weight:bold;">Предварительная стоимость</td><td class="data right price"></td></tr>
-          </tbody>
-        </table>
-      </div> -->
       <div id="clear"></div>
   <?php } ?>
   </div>
