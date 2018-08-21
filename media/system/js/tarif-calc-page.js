@@ -414,7 +414,7 @@ function addPlaces(){
 function checkWeight(){
   //ограничение веса по экспресс эконом для ес
   if ($("#to_countrys_eu").is(":checked")){
-    if ($('#weight_kg').val() > 60){
+    if ($('#weight_kg').val() > 70){
       $("#express_es_error").removeClass("hidden");
     }else{
       $("#express_es_error").addClass("hidden");
@@ -422,7 +422,7 @@ function checkWeight(){
   }
   // ограничение веса по тариф экспресс эконом для РФ
   if ($("#to_sities_rf").is(":checked")){
-    if ($('#weight_kg').val() > 70){
+    if ($('#weight_kg').val() > 80){
       $("#express_rf_error").removeClass("hidden");
     }else{
       $("#express_rf_error").addClass("hidden");
