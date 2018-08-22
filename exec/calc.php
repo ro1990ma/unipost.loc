@@ -364,7 +364,7 @@ session_start();
       <div class="form_block">
 
         <!-- отправить -->
-        <div class="field docs">
+        <div class="field docs eq0">
           <p class="calc-p"><label for="type_hu_you"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_WANT"); ?></label></p>
           <div class="radio-block">
             <input value="0" type="radio" id="type_hu_send" class="type-send" name="type_hu_you" checked="checked"/>
@@ -377,7 +377,7 @@ session_start();
           </div>
         </div>
 
-        <div class="field docs">
+        <div class="field docs eq1">
           <p class="calc-p"><label for="type_speed"><?php echo JText::_("PAGE_CALC_SEND_SELECT_TARIF"); ?></label></p>
           <!-- эконом -->
           <div class="radio-block">
@@ -392,7 +392,7 @@ session_start();
         </div>
 
 
-        <div class="field docs hidden" id="block-send-to-ES-RF">
+        <div class="field docs eq2 hidden" id="block-send-to-ES-RF">
           <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_SEND_TO_COUNTRYS"); ?></label></p>
           <!-- доставить в страны ес -->
           <div class="radio-block">
@@ -569,11 +569,11 @@ session_start();
 
         <div class="field docs content-type">
           <p class="calc-p"><label for="type_docs_ndocs"><?php echo JText::_("PAGE_CALC_TYPE_DOCS_NDOCS_INF"); ?>:</label></p>
-          <div id="input_NDOCS" style="display: inline;margin-right:30px;">
-            <input style="width:auto;height:auto;" value="0" onclick="showMe('letter_wrapper', this,0)" <?php echo ($_SESSION['type_docs_ndocs'] == '0') ? 'checked="checked"' : ''; ?>  type="radio" id="type_docs_ndocs" name="type_docs_ndocs"/>NDOCS
+          <div id="input_NDOCS">
+            <input value="0" onclick="showMe('letter_wrapper', this,0)" <?php echo ($_SESSION['type_docs_ndocs'] == '0') ? 'checked="checked"' : ''; ?>  type="radio" id="type_docs_ndocs" name="type_docs_ndocs"/>NDOCS
           </div>
-          <div id="input_DOCS" style="display: inline;">
-            <input style="width:auto;height:auto;" value="1" onclick="hideMe('letter_wrapper', this,0)" <?php echo ($_SESSION['type_docs_ndocs'] == '1') ? 'checked="checked"' : ($_SESSION['type_docs_ndocs'] == '')?'checked="checked"':''; ?> type="radio" id="type_docs_docs" name="type_docs_ndocs"/>DOCS
+          <div id="input_DOCS">
+            <input value="1" onclick="hideMe('letter_wrapper', this,0)" <?php echo ($_SESSION['type_docs_ndocs'] == '1') ? 'checked="checked"' : ($_SESSION['type_docs_ndocs'] == '')?'checked="checked"':''; ?> type="radio" id="type_docs_docs" name="type_docs_ndocs"/>DOCS
           </div>
         </div>
 
@@ -583,18 +583,22 @@ session_start();
             <div id="package-type">
               <label style="line-height:30px;height:30px;" for="convert"><?php echo JText::_("PAGE_CALC_PACKAGE"); ?></label>
               <div class="field" style="float:left;clear:none;" onload="hideMe()">
-                <input type="hidden" name="conv" value="0" />
-                <input type="hidden" name="box" value="0" />
-                <input style="width:auto;height:auto;float:left;" id="convert" type="radio" value="1" name="conv" <?php echo ($_SESSION['conv'] == '1') ? 'checked="checked"' : (empty($_SESSION['conv']))?'checked="checked"':''; ?>  onclick="showMe('weights', this, 1)"/><label for="conv"><?php echo JText::_("PAGE_CALC_PACKAGE_CONV"); ?></label>
-                <input style="width:auto;height:auto;float:left;margin-left:26px;" id="box" class="last" type="radio" value="2" name="conv" <?php echo ($_SESSION['conv'] == '2') ? 'checked="checked"' : ''; ?> onclick="hideMe('weights', this, 1)"/><label for="box"><?php echo JText::_("PAGE_CALC_PACKAGE_BOX"); ?></label>
+                <input type="hidden" name="conv" value="0"/>
+                <input type="hidden" name="box" value="0"/>
+                <div class="radio-block">
+                  <input id="convert" type="radio" value="1" name="conv" <?php echo ($_SESSION['conv'] == '1') ? 'checked="checked"' : (empty($_SESSION['conv']))?'checked="checked"':''; ?>  onclick="showMe('weights', this, 1)"/><label for="conv"><?php echo JText::_("PAGE_CALC_PACKAGE_CONV"); ?></label>
+                </div>
+                <div class="radio-block">
+                  <input id="box" class="last" type="radio" value="2" name="conv" <?php echo ($_SESSION['conv'] == '2') ? 'checked="checked"' : ''; ?> onclick="hideMe('weights', this, 1)"/><label for="box"><?php echo JText::_("PAGE_CALC_PACKAGE_BOX"); ?></label>
+                </div>
+
               </div>
             </div>
 
           <div class="field">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG"); ?><?php echo $_SESSION['calc_weight_kg'];?></p>
-              <input type="text" id="weight_kg" oninput="checkWeight()" value="<?php echo $_SESSION['calc_weight_kg']; ?>" placeholder="введите вес"  name="calc_weight_kg" />
-              <!-- <div id="weight_kg_error"><?php //echo JText::_("FIZICAL_WEIGHT"); ?></div> -->
-
+              <input type="text" id="weight_kg" oninput="checkWeight()" value="<?php echo $_SESSION['calc_weight_kg']; ?>"
+              placeholder="введите вес"  name="calc_weight_kg" class="t1" />
               <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
               <div id="express_rf_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_RF_ERROR"); ?></div>
           </div>

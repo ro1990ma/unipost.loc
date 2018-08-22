@@ -104,7 +104,7 @@ div.page_calc  input[type="radio"] {
 div.page_calc  input[type="radio"].last {
      width: auto;
      height: auto;
-     margin-left: 55px;
+     /* margin-left: 55px; */
 }
 div.page_calc  select{
      font-size: 12px;
@@ -479,4 +479,18 @@ div.page_miss_call table tr td textarea {
   /*border: 1px solid red;*/
   float: left;
   width: 100%;
+}
+#convert{
+  width:auto;
+  height:auto;
+  float:left;
+}
+#box{
+  width:auto;
+  height:auto;
+  float:left;
+  /* margin-left:26px; */
+}
+.alert{
+  border: 1px solid red !important;
 }

@@ -73,157 +73,169 @@ $('select').change(function() {
 });
 
 
-$("input#letter").live("click", function(){
-  if($(this).is(":checked")){
-    document.getElementById('weight_kg').value='0.49';
-
-    $(".dostupnosti").css("display","block");
-    $(".field.header").css("display","none");
-    $(".field.docs").css("display","none");
-    $("#letter_sub").css("display","none");
-
-    $("option[value='222']").attr("disabled", "true");
-    $("option[value='223']").attr("disabled", "true");
-    $("option[value='224']").attr("disabled", "true");
-    $("option[value='225']").attr("disabled", "true");
-    $("option[value='226']").attr("disabled", "true");
-    $("option[value='227']").attr("disabled", "true");
-    $("option[value='228']").attr("disabled", "true");
-    $("option[value='229']").attr("disabled", "true");
-    $("option[value='230']").attr("disabled", "true");
-    $("option[value='231']").attr("disabled", "true");
-    $("option[value='232']").attr("disabled", "true");
-    $("option[value='233']").attr("disabled", "true");
-    $("option[value='234']").attr("disabled", "true");
-    $("option[value='235']").attr("disabled", "true");
-    $("option[value='236']").attr("disabled", "true");
-    $("option[value='237']").attr("disabled", "true");
-    $("option[value='238']").attr("disabled", "true");
-    $("option[value='239']").attr("disabled", "true");
-    $("option[value='240']").attr("disabled", "true");
-    $("option[value='241']").attr("disabled", "true");
-    $("option[value='242']").attr("disabled", "true");
-    $("option[value='243']").attr("disabled", "true");
-    $("option[value='244']").attr("disabled", "true");
-    //$("input#wei").show();
-    $("input#wei").val('0');
-    // $("#input_NDOCS").hide();
-    $("#type_docs_docs").attr("checked","true");
-    $("#type_docs_ndocs").removeAttr('checked');
-  }else{
-    document.getElementById('weight_kg').value='';
-    $(".field.header").css("display","block");
-    $(".field.docs").css("display","block");
-    $("#letter_sub").css("display","block");
-    $("#letter_error").css("display","none");
-    $(".dostupnosti").css("display","none");
-
-    $("option[value='222']").removeAttr('disabled');
-    $("option[value='223']").removeAttr('disabled');
-    $("option[value='224']").removeAttr('disabled');
-    $("option[value='225']").removeAttr('disabled');
-    $("option[value='226']").removeAttr('disabled');
-    $("option[value='227']").removeAttr('disabled');
-    $("option[value='228']").removeAttr('disabled');
-    $("option[value='229']").removeAttr('disabled');
-    $("option[value='230']").removeAttr('disabled');
-    $("option[value='231']").removeAttr('disabled');
-    $("option[value='232']").removeAttr('disabled');
-    $("option[value='233']").removeAttr('disabled');
-    $("option[value='234']").removeAttr('disabled');
-    $("option[value='235']").removeAttr('disabled');
-    $("option[value='236']").removeAttr('disabled');
-    $("option[value='237']").removeAttr('disabled');
-    $("option[value='238']").removeAttr('disabled');
-    $("option[value='239']").removeAttr('disabled');
-    $("option[value='240']").removeAttr('disabled');
-    $("option[value='241']").removeAttr('disabled');
-    $("option[value='242']").removeAttr('disabled');
-    $("option[value='243']").removeAttr('disabled');
-    $("option[value='244']").removeAttr('disabled');
-
-    $("#letter_sub").show();
-    $("#input_NDOCS").show();
-    $("#type_docs_docs").attr("checked","true");
-  }
-});
-
-
-function changeFunc(){
-  var selectBox = document.getElementById("to_country");
-  var selectedValue = selectBox.options[selectBox.selectedIndex].value;
-  $("#letter_error").css("display","none");
-
-  if(selectedValue==141){
-    $("#input_NDOCS").css("display","none");
-    $("#israel_error").css("display","block");
-    return false;
-  }else{
-    $("#input_NDOCS").css("display","inline-block");
-    $("#israel_error").css("display","none");
-    return true;
-  }
-}
-
-
 $("#do_calculate").live("click", function(){
-  if(
-    $("select#to_country option:selected").val()==-1
-    && $("#weight_kg").val() == ''
-    && $("#len").val() == ''
-    && $("#wid").val() == ''
-    && $("#hei").val() == ''
-  ){
-    $("select#to_country, #weight_kg, #len, #wid, #hei").css("border-color","red");
-    return false;
-  }
+  var error = 0;
+  if ( $("#type_hu_send").is(':checked') == true ){ //отправить
 
-  if ($("select#to_country option:selected").val()==-1 ){
-    $("select#to_country").css("border-color","red");
-    return false;
-  }
-
-  if ($("#weight_kg").val() == '' ){
-    $("#weight_kg").css("border-color","red");
-    return false;
-  }
-
-  if ($("#box").prop("checked") == 1) {
-    if ($("#len").val() == '') {
-      $("#len").css("border-color","red");
-      return false;
+    // эконом/экспресс
+    if ( ($('#type_speed_eco').is(':checked') == false) && ($('#type_speed_exp').is(':checked') == false) ){
+      $('.eq1').addClass('alert');
+      error = 1;
+    }else{
+      $('.eq1').removeClass('alert');
     }
 
-    if ($("#wid").val() == '') {
-      $("#wid").css("border-color","red");
-      return false;
+    // отправить эконом
+    if (($('#type_speed_eco').is(':checked') == true)){
+      //если не выбранна не страны ЕС не города РФ
+      if ( ($('#to_countrys_eu').is(':checked') == false) && ($('#to_sities_rf').is(':checked') == false) ){
+        $('.eq1').removeClass('alert');
+        $('.eq2').addClass('alert');
+        error = 1;
+      }else{
+        $('.eq2').removeClass('alert');
+      }
+
+
+      // если выбранна страна ЕС
+      if (($("#to_countrys_eu").is(':checked') == true) && ($("select#to_es option:selected").val()==-1)){
+        $("select#to_es").addClass("alert");
+        error = 1;
+      }else{
+        $("select#to_es").removeClass("alert");
+      }
+
+      // ограничение веся для тарифа эконом по странам ес
+      if ($("select#to_es option:selected").val() != -1){
+        if( $("#weight_kg").val() > 70 ){
+          $(".t1").addClass("alert");
+          error = 1;
+        }else{
+          $("#weight_kg").removeClass("alert");
+        }
+      }
+
+
+
+      //если выбранны города РФ
+      if (($("#to_sities_rf").is(':checked') == true) && ($("select#to_rf option:selected").val()==-1)){
+        $("select#to_rf").addClass("alert");
+        error = 1;
+      }else{
+        $("select#to_rf").removeClass("alert");
+      }
+
+      // ограничение веся для тарифа эконом по городам РФ
+      if ( ($("#to_sities_rf").is(':checked') == true) && ($("select#to_rf option:selected").val() != -1) ){
+        if( $("#weight_kg").val() > 80 ){
+          $("#express_rf_error").removeClass("hidden");
+          $("#weight_kg").addClass("alert");
+          error = 1;
+        }else{
+          $("#express_rf_error").addClass("hidden");
+          $("#weight_kg").removeClass("alert");
+        }
+      }
+
     }
 
-    if ($("#hei").val() == '') {
-      $("#hei").css("border-color","red");
-      return false;
+
+
+
+    if (($('#type_speed_exp').is(':checked') == true)){
+      if ($("select#tarif_express_export_countries option:selected").val()==-1){
+        $("#tarif_express_export_countries").addClass("alert");
+        error = 1;
+      }else{
+        $("#tarif_express_export_countries").removeClass("alert");
+      }
     }
   }
+//----------------------------------------------------------------------------
 
-  var selectBox = document.getElementById("to_country");
-  var selectedValue = selectBox.options[selectBox.selectedIndex].value;
+  if ( $("#type_hu_rec").is(':checked') == true ){ //получить
+    // эконом
+    if ( ($('#type_speed_eco').is(':checked') == false) && ($('#type_speed_exp').is(':checked') == false) ){
+      $('.eq1').addClass('alert');
+      error = 1;
+    }else{
+      $('.eq1').removeClass('alert');
+    }
+    //страны ЕС
+    if ( ($("#type_speed_eco").is(':checked') == true) && ($("#get_from_country_es").is(':checked') == false) && ($("#get_from_town_rf").is(':checked') == false) ){
+      $(".eq1").removeClass("alert");
+      $("#block-get-from-ES-RF").addClass("alert");
+      error = 1;
+    }
+    //выбранная страна
+    if ( ($("#get_from_country_es").is(':checked') == true) && ($("select#tarif_econom_import_ES option:selected").val() == -1) ){
+      $("#block-get-from-ES-RF").removeClass("alert");
+      $("#tarif_econom_import_ES").addClass("alert");
+      error = 1;
+    }else{
+      $("#tarif_econom_import_ES").removeClass("alert");
+    }
+    //ограничение веса по ЕС при отправить эконом
+    if ($("select#tarif_econom_import_ES option:selected").val() != -1){
+      if( $("#weight_kg").val() > 70 ){
+        $(".t1").addClass("alert");
+        error = 1;
+      }else{
+        $("#weight_kg").removeClass("alert");
+      }
+    }
+    // ограничение веса по РФ при отправить эконом
+    if ($("select#tarif_econom_import_RF option:selected").val() != -1){
+      if( $("#weight_kg").val() > 80 ){
+        $("#weight_kg").addClass("alert");
+        error = 1;
+      }else{
+        $("#weight_kg").removeClass("alert");
+      }
+    }
 
-  if(selectedValue==222){
-    $("#letter_error").css("display","block");
-    return false;
-  }else{
-    $("#letter_error").css("display","none");
+
+    //города РФ
+    if ( ($("#get_from_town_rf").is(':checked') == true) && ($("select#tarif_econom_import_RF option:selected").val() == -1) ){
+      $("#block-get-from-ES-RF").removeClass("alert");
+      $("#tarif_econom_import_RF").addClass("alert");
+      error = 1;
+    }else{
+      $("#tarif_econom_import_RF").removeClass("alert");
+    }
+
+    if ( ($('#type_speed_exp').is(":checked") == true) && ($("select#tarif_express_import_global option:selected").val() == -1) ){
+      $("#tarif_express_import_global").addClass("alert");
+      error = 1;
+    }else{
+      $("#tarif_express_import_global").removeClass("alert");
+    }
+
+  }
+
+  $("#weight_kg, #len, #wid, #hei").each(function(i,e){
+    $(this).removeClass('alert');
+    if($(this).val() == ""){
+      $(this).addClass('alert');
+      error = 1;
+    }
+  });
+
+  if (error == 0){
     return true;
+  }else{
+    return false;
   }
+
 });
 
 
 $('#do_cancel').live("click", function(){
-  $("#len").val("");
-  $("#wid").val("");
-  $("#hei").val("");
-  $("#wei").val("");
-  $("#weight_kg").val("");
+  $("#len, #wid, #hei, #wei, #weight_kg").val("");
+  $("#to_es, #to_rf, #tarif_express_export_countries, #tarif_express_import_global").val("-1");
+  $("#type_speed_eco, #type_speed_exp, #to_countrys_eu, #to_sities_rf, #get_from_country_es, #get_from_town_rf").attr("checked", false);
+
+
   $('#gabarits').html("");
   $('#calc_places_lenght').val(0);
 });
@@ -313,40 +325,40 @@ $('.type-express').on('click', function(e){
 
 
 //функции обработчики radiobutton
-  function sendEconom(){
-    console.log("Отправить эконом");
-    $('#block-send-to-ES-RF').removeClass('hidden');
-    $('#block-all-countries').addClass("hidden");
-    $('#block-get-from-ES-RF').addClass("hidden");
-    $('#block-get-express-import').addClass("hidden");
-    $('#block-get-econom-ES, #block-get-econom-RF').addClass('hidden');
-    $('#to_countrys_eu, #to_sities_rf').attr('checked', false);
-  }
-  function sendExpress(){
-    console.log("Отправить экспресс");
-    $("#block-all-countries").removeClass("hidden");
-    $('.content-type, #package-type').removeClass('hidden');
-    $('#block-send-to-ES-RF').addClass('hidden');
-    $('#block-ES-countries, #block-RF-cities').addClass('hidden');
-    $('#to_countrys_eu, #to_sities_rf').attr('checked', false)
-    $('#block-get-express-import').addClass("hidden");
-  }
-  function recEconom(){
-    console.log("Получить эконом");
-    $("#block-get-from-ES-RF").removeClass("hidden");
-    $('#block-send-to-ES-RF').addClass("hidden");
-    $('#block-ES-countries, #block-RF-cities').addClass("hidden");
-    $('#block-get-express-import').addClass("hidden");
-    $('#block-all-countries').addClass("hidden");
-  }
-  function recExpress(){
-    console.log("Получить экспресс");
-    $("#block-get-from-ES-RF").addClass("hidden");
-    $('#block-get-econom-ES, #block-get-econom-RF').addClass("hidden");
-    $('#get_from_country_es, #get_from_town_rf').attr('checked', false);
-    $('#block-get-express-import').removeClass("hidden");
-    $('#block-all-countries').addClass("hidden");
-  }
+function sendEconom(){
+  console.log("Отправить эконом");
+  $('#block-send-to-ES-RF').removeClass('hidden');
+  $('#block-all-countries').addClass("hidden");
+  $('#block-get-from-ES-RF').addClass("hidden");
+  $('#block-get-express-import').addClass("hidden");
+  $('#block-get-econom-ES, #block-get-econom-RF').addClass('hidden');
+  $('#to_countrys_eu, #to_sities_rf').attr('checked', false);
+}
+function sendExpress(){
+  console.log("Отправить экспресс");
+  $("#block-all-countries").removeClass("hidden");
+  $('.content-type, #package-type').removeClass('hidden');
+  $('#block-send-to-ES-RF').addClass('hidden');
+  $('#block-ES-countries, #block-RF-cities').addClass('hidden');
+  $('#to_countrys_eu, #to_sities_rf').attr('checked', false)
+  $('#block-get-express-import').addClass("hidden");
+}
+function recEconom(){
+  console.log("Получить эконом");
+  $("#block-get-from-ES-RF").removeClass("hidden");
+  $('#block-send-to-ES-RF').addClass("hidden");
+  $('#block-ES-countries, #block-RF-cities').addClass("hidden");
+  $('#block-get-express-import').addClass("hidden");
+  $('#block-all-countries').addClass("hidden");
+}
+function recExpress(){
+  console.log("Получить экспресс");
+  $("#block-get-from-ES-RF").addClass("hidden");
+  $('#block-get-econom-ES, #block-get-econom-RF').addClass("hidden");
+  $('#get_from_country_es, #get_from_town_rf').attr('checked', false);
+  $('#block-get-express-import').removeClass("hidden");
+  $('#block-all-countries').addClass("hidden");
+}
 
 
 function selectES(){
@@ -365,16 +377,6 @@ function selectRF(){
 function changeEScountry(){
   $('.content-type').addClass('hidden');
   $('#package-type').addClass('hidden');
-
-  // t1_country = $('#to_es').find(":selected").attr("data-name");
-  // t1_tarif1 = $('#to_es').find(":selected").attr("data-price1");
-  // t1_tarif2 = $('#to_es').find(":selected").attr("data-price2");
-  // t1_terms = $('#to_es').find(":selected").attr("data-terms");
-  //
-  // $("#t1_country").val(t1_country);
-  // $("#t1_tarif1").val(t1_tarif1);
-  // $("#t1_tarif2").val(t1_tarif2);
-  // $("#t1_terms").val(t1_terms);
 }
 
 function changeRFcity(){
@@ -429,85 +431,3 @@ function checkWeight(){
     }
   }
 }
-
-
-$("#do_send").on("click", function(){
-
-  if ($("#type_hu_send").is(":checked")){ // отправить
-    if ($("#type_speed_eco").is(":checked")){ //эконом
-      // в страны ес
-      if(($("#to_countrys_eu").is(":checked")) && ($("#to_es option:selected").index() != 0) ){
-        export_econom_to_es();
-      }
-      // в города рф
-      if(($("#to_sities_rf").is(":checked")) && ($("#to_sities_rf option:select").index() != 0)){
-        export_econom_rf();
-      }
-
-    }
-
-    if ($("#type_speed_exp").is(":checked")){ //экспресс
-      console.log("отправить экспресс");
-    }
-  }
-
-
-  if ($("#type_hu_rec").is(":checked")){ //получить
-    if ($("#type_speed_eco").is(":checked")){ // эконом
-      console.log("получить эконом");
-    }
-
-    if ($("#type_speed_exp").is(":checked")){ // экспресс
-      console.log("получить экспресс");
-    }
-  }
-
-
-  function export_econom_to_es(){
-    var country_name = $("#to_es option:selected").data("name");
-    var tarif1 = parseFloat($("#to_es option:selected").data("price1"));
-    var tarif2 = parseFloat($("#to_es option:selected").data("price2"));
-    var terms = $("#to_es option:selected").data("terms");
-    var weight = parseFloat($("#weight_kg").val());
-
-    var ndoc = null; //сбор за недокументы
-    var additional_cost = null; // дополнительные расходы
-    var hawb = null; //сбор за таможенную очистку
-
-    if(weight > 10){
-      weight_over = weight - 10;
-      price = (tarif2 * weight_over) + tarif1;
-    }else{
-      price = $("#es_tarif1").val();
-    }
-
-    $(".response_container").removeClass("hidden");
-    $(".point-country-cell").text(country_name);
-    $(".w-weight-cell").text(weight);
-    $(".terms-cell").text(terms);
-    $(".cost-cell").text(price);
-    $(".ndox-cell").text(ndox-cell);
-    $(".other-price-cell").text(additional_cost);
-    $(".hawb").text(hawb);
-
-    return price;
-  }
-
-
-  function export_econom_rf(){
-    var weight = parseFloat($("#weight_kg").val());
-    var town_names = $("#to_rf option:selected").data("name");
-    var tarif1 = parseFloat($("#to_rf option:selected").data("tarif1"));
-    var tarif2 = parseFloat($("#to_rf option:selected").data("tarif2"));
-
-    if(weight <= 20.50){
-      price = tarif1;
-      console.log(price);
-    }else{
-      var weight_over = Math.floor((weight - 20.50) / 0.5);
-      price = tarif1 + (weight_over * tarif2);
-      console.log(price);
-    }
-  }
-
-});
