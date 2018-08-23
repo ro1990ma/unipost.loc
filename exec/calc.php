@@ -33,11 +33,12 @@ session_start();
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
     <div id="clear"></div>
 <?php
-  // echo "<pre>";
-  //   print_r($query_countries_eu_t1);
-  // echo "</pre>";
 
   if(isset($_POST['do_page_calc'])){
+    // echo "<pre>";
+    //   print_r($_POST['calc_size']);
+    // echo "</pre>";
+
 
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
     $_SESSION['calc_weight_kg'] =      $_POST['calc_weight_kg'];
@@ -595,7 +596,7 @@ session_start();
               </div>
             </div>
 
-          <div class="field">
+          <div class="field hidden">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG"); ?><?php echo $_SESSION['calc_weight_kg'];?></p>
               <input type="text" id="weight_kg" oninput="checkWeight()" value="<?php echo $_SESSION['calc_weight_kg']; ?>"
               placeholder="введите вес"  name="calc_weight_kg" class="t1" />
@@ -606,12 +607,13 @@ session_start();
           <div class="max_weight_message" style="float:left; color:red;line-height:30px; display:none;">
               <?php echo JText::_("MAXIMUM_WEIGHT"); ?>
           </div>
-          <div class="field field_s" id="weights" style="display:block;">
-              <p><?php echo JText::_("PAGE_CALC_SIZES_PLACES"); ?></p>
-              <input class="short" type="text" style="width:86px;" id="len" value="<?php echo $_SESSION['calc_size_lenght']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_L"); ?>" name="calc_size_lenght" />x
-              <input class="short" type="text" id="wid" value="<?php echo $_SESSION['calc_size_width']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_W"); ?>" name="calc_size_width" />x
-              <input class="short" type="text" id="hei" value="<?php echo $_SESSION['calc_size_height']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_H"); ?>" name="calc_size_height" />
-          </div>
+
+          <!-- <div class="field field_s" id="weights" style="display:block;">
+              <p><?php// echo JText::_("PAGE_CALC_SIZES_PLACES"); ?></p>
+              <input class="short" type="text" style="width:86px;" id="len" value="<?php// echo $_SESSION['calc_size_lenght']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_L"); ?>" name="calc_size_lenght" />x
+              <input class="short" type="text" id="wid" value="<?php //echo $_SESSION['calc_size_width']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_W"); ?>" name="calc_size_width" />x
+              <input class="short" type="text" id="hei" value="<?php //echo $_SESSION['calc_size_height']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_H"); ?>" name="calc_size_height" />
+          </div> -->
 
 
           <!-- Количество мест -->

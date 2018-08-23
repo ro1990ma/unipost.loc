@@ -66,7 +66,10 @@ div.page_calc  p {
      float:left;
      width:90px;
 }
-div.page_calc #letter_sub p {width:230px;}
+div.page_calc #letter_sub p{
+  /* width:230px; */
+  width: 220px;
+}
 div.page_calc  p.line {
      font-size: 12px;
      margin: 0px;
@@ -95,7 +98,8 @@ div.page_calc  input {
 }
 
 div.page_calc  input.short {
-     width: 76px;
+     /* width: 76px; */
+     width: 60px;
 }
 div.page_calc  input[type="radio"] {
      width: auto;
@@ -493,4 +497,7 @@ div.page_miss_call table tr td textarea {
 }
 .alert{
   border: 1px solid red !important;
+}
+.place-box{
+  float: left;
 }
