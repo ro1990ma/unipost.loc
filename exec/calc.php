@@ -35,10 +35,6 @@ session_start();
 <?php
 
   if(isset($_POST['do_page_calc'])){
-    // echo "<pre>";
-    //   print_r($_POST['calc_size']);
-    // echo "</pre>";
-
 
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
     $_SESSION['calc_weight_kg'] =      $_POST['calc_weight_kg'];
@@ -587,7 +583,10 @@ session_start();
                 <input type="hidden" name="conv" value="0"/>
                 <input type="hidden" name="box" value="0"/>
                 <div class="radio-block">
-                  <input id="convert" type="radio" value="1" name="conv" <?php echo ($_SESSION['conv'] == '1') ? 'checked="checked"' : (empty($_SESSION['conv']))?'checked="checked"':''; ?>  onclick="showMe('weights', this, 1)"/><label for="conv"><?php echo JText::_("PAGE_CALC_PACKAGE_CONV"); ?></label>
+                  <input id="convert" type="radio" value="1" name="conv"
+                  <?php echo ($_SESSION['conv'] == '1') ? 'checked="checked"' : (empty($_SESSION['conv']))?'checked="checked"':''; ?>
+                  onclick="showMe('weights', this, 1)"/>
+                  <label for="conv"><?php echo JText::_("PAGE_CALC_PACKAGE_CONV"); ?></label>
                 </div>
                 <div class="radio-block">
                   <input id="box" class="last" type="radio" value="2" name="conv" <?php echo ($_SESSION['conv'] == '2') ? 'checked="checked"' : ''; ?> onclick="hideMe('weights', this, 1)"/><label for="box"><?php echo JText::_("PAGE_CALC_PACKAGE_BOX"); ?></label>
@@ -598,8 +597,7 @@ session_start();
 
           <div class="field hidden">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG"); ?><?php echo $_SESSION['calc_weight_kg'];?></p>
-              <input type="text" id="weight_kg" oninput="checkWeight()" value="<?php echo $_SESSION['calc_weight_kg']; ?>"
-              placeholder="введите вес"  name="calc_weight_kg" class="t1" />
+              <input type="text" id="weight_kg" oninput="checkWeight()" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
               <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
               <div id="express_rf_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_RF_ERROR"); ?></div>
           </div>
@@ -607,14 +605,6 @@ session_start();
           <div class="max_weight_message" style="float:left; color:red;line-height:30px; display:none;">
               <?php echo JText::_("MAXIMUM_WEIGHT"); ?>
           </div>
-
-          <!-- <div class="field field_s" id="weights" style="display:block;">
-              <p><?php// echo JText::_("PAGE_CALC_SIZES_PLACES"); ?></p>
-              <input class="short" type="text" style="width:86px;" id="len" value="<?php// echo $_SESSION['calc_size_lenght']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_L"); ?>" name="calc_size_lenght" />x
-              <input class="short" type="text" id="wid" value="<?php //echo $_SESSION['calc_size_width']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_W"); ?>" name="calc_size_width" />x
-              <input class="short" type="text" id="hei" value="<?php //echo $_SESSION['calc_size_height']; ?>" placeholder="<?php echo JText::_("PAGE_CALC_SPACE_H"); ?>" name="calc_size_height" />
-          </div> -->
-
 
           <!-- Количество мест -->
           <div class="field" id="places-count">
