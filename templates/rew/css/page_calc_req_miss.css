@@ -448,16 +448,18 @@ div.page_miss_call table tr td textarea {
   width: 100%;
 }
 #tarif_econom_import_ES{
-  float: right;
+  /* float: right; */
+  float: left;
 }
 #block-get-econom-RF{
   width: 100%;
 }
 #tarif_econom_import_RF{
-  float: right;
+  /* float: right; */
+  float: left;
 }
 #block-get-express-import{
-  float: right;
+  float: left;
 }
 #places-count{
   width: 100%;
@@ -497,7 +499,31 @@ div.page_miss_call table tr td textarea {
 }
 .alert{
   border: 1px solid red !important;
+  border-radius: 5px;
 }
 .place-box{
   float: left;
 }
+.twrap{
+  float: left;
+}
+.places-row{
+  float: left;
+}
+.special{
+  background: silver;
+  font-weight: bold;
+}
+.error-msg-right{
+  float: left;
+  width: 100px;
+  color: red;
+}
+.error-msg-sub{
+  float: right;
+  width: 200px;
+  color: red;
+}
+.eq1{ width: 100%;}
+.eq2{ width: 100%;}
+#block-get-from-ES-RF{width: 100%;}

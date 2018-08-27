@@ -42,68 +42,72 @@ function funcCalcVolumeWeight(l, w, h) {
 
 function setCalcHandle(){
   var fn = function () {
-  var volweight = funcCalcVolumeWeight($('#len').attr('value'), $('#wid').attr('value'), $('#hei').attr('value'));
-  $('#wei').attr('value', volweight);
-  if ($('#wei').val() > 60)
-  {
-    $("#weight2_error").css("display","block");
-    $("#do_calculate").attr("disabled", "true");
-  }
-  else
-  {
-    $("#weight2_error").css("display","none");
-    $("#do_calculate").removeAttr('disabled');
-  }
+  // var volweight = funcCalcVolumeWeight($('#len').attr('value'), $('#wid').attr('value'), $('#hei').attr('value'));
+  var v1 = "";
+  var v2 = "";
+  var v3 = "";
+  var sum = 0;
+  // var sum_vg = 0;
+
+  v1 = $(this).closest(".place-box").find(".place_length").val();
+  v2 = $(this).closest(".place-box").find(".place_width").val();
+  v3 = $(this).closest(".place-box").find(".place_height").val();
+
+  var volweight = funcCalcVolumeWeight(v1, v2, v3);
+
+  // $('#wei').attr('value', volweight);
+  $(this).closest(".places-row").find(".place_vol_weight").attr('value', volweight);
+
+  $(".place_vol_weight").each(function(){
+    if($(this).val() != 0){
+      sum += parseFloat($(this).val());
+    }
+    $('#wei').attr('value', sum);
+  });
+
+
+  // if ($('#wei').val() > 60)
+  // {
+  //   $("#weight2_error").css("display","block");
+  //   $("#do_calculate").attr("disabled", "true");
+  // }
+  // else
+  // {
+  //   $("#weight2_error").css("display","none");
+  //   $("#do_calculate").removeAttr('disabled');
+  // }
 }
-  $('#len').keyup(fn);
-  $('#wid').keyup(fn);
-  $('#hei').keyup(fn);
-  $('#len').ForceNumericOnly();
-  $('#wid').ForceNumericOnly();
-  $('#hei').ForceNumericOnly();
-  $('#wei').ForceNumericOnly();
+  $('.place_length').keyup(fn);
+  $('.place_width').keyup(fn);
+  $('.place_height').keyup(fn);
+
+  $('.place_length').ForceNumericOnly();
+  $('.place_width').ForceNumericOnly();
+  $('.place_height').ForceNumericOnly();
+  $('.place_weight').ForceNumericOnly();
+
   $('#weight_kg').ForceNumericOnly();
   fn();
 }
 setCalcHandle();
-
-
 
 $('select').change(function() {
   $(this).siblings('select').children('option[value=' + this.value + ']').attr('disabled', true).siblings().removeAttr('disabled');
 });
 
 
- // суммирование весов--------------------------------------------------------
- function calcWeight(){
-
-   var weight_sum = 0;
-   $('.places-row').each(function(i,e){
-     if ($(this).find(".place_weight").val() != ""){
-       weight = parseFloat($(this).find(".place_weight").val());
-       weight_sum += weight;
-     }
-   });
-  $("#weight_kg").val(weight_sum);
-
-   if (weight_sum == 0){
-     error = 1;
-   }
- }
-
-
 $("#do_calculate").live("click", function(){
   var error = 0;
 
-  if ($("#weight_kg").val() == 0){
-    error = 1;
+  if ($("#calc_places_lenght").val() == -1){
+    $("#calc_places_lenght").addClass('alert');
+  }else{
+    $("#calc_places_lenght").removeClass('alert');
   }
-
 
   if ($(".places-row").size() != 0){
     // валидация габаритов----------------
     $('.places-row').each(function(i,e){
-      console.log("валидация размеров 1");
       var ln = 0;
       var wd = 0;
       var hg = 0;
@@ -127,6 +131,12 @@ $("#do_calculate").live("click", function(){
       }else{
         $(this).find(".place_height").removeClass('alert');
       }
+      // вес
+      if ($(this).find(".place_weight").val() == ""){
+        $(this).find(".place_weight").addClass('alert');
+      }else{
+        $(this).find(".place_weight").removeClass('alert');
+      }
 
       ln = parseFloat($(this).find(".place_length").val());
       wd = parseFloat($(this).find(".place_width").val());
@@ -135,18 +145,31 @@ $("#do_calculate").live("click", function(){
       if ((ln > 0) && (wd > 0) && (hg > 0)){
         sum = (ln + wd + hg);
       }else {
-        error = 1;
+        error = 2;
       }
 
       if (sum > 750){
         $(this).find(".place-box").addClass("alert");
-        error = 1;
+        error = 3;
       }else{
         $(this).find(".place-box").removeClass("alert");
       }
     });
 
-    calcWeight();
+ // суммирование весов--------------------------------------------------------
+    var weight_sum = 0;
+    $('.places-row').each(function(i,e){
+      if ($(this).find(".place_weight").val() != ""){
+        weight = parseFloat($(this).find(".place_weight").val());
+        weight_sum += weight;
+      }
+    });
+   $("#weight_kg").val(weight_sum);
+
+    if (weight_sum == 0){
+      error = 4;
+    }
+
   }
 
   //отправить
@@ -155,9 +178,13 @@ $("#do_calculate").live("click", function(){
     // если не выбран не эконом не экспресс
     if ( ($('#type_speed_eco').is(':checked') == false) && ($('#type_speed_exp').is(':checked') == false) ){
       $('.eq1').addClass('alert');
-      error = 1;
+      $(".eq1").find(".error-msg-right").removeClass("hidden");
+
+      error = 5;
     }else{
       $('.eq1').removeClass('alert');
+      $(".eq1").find(".error-msg-right").addClass("hidden");
+
     }
 
 
@@ -167,26 +194,33 @@ $("#do_calculate").live("click", function(){
       if ( ($('#to_countrys_eu').is(':checked') == false) && ($('#to_sities_rf').is(':checked') == false) ){
         $('.eq1').removeClass('alert');
         $('.eq2').addClass('alert');
-        error = 1;
+        $(".eq2").find(".error-msg-right").removeClass("hidden");
+
+        error = 6;
       }else{
         $('.eq2').removeClass('alert');
+        $(".eq2").find(".error-msg-right").addClass("hidden");
       }
 
 
       // если не выбранна страна ЕС из списка
       if (($("#to_countrys_eu").is(':checked') == true) && ($("select#to_es option:selected").val()==-1)){
         $("select#to_es").addClass("alert");
-        error = 1;
+        $("select#to_es").closest("#block-ES-countries").find(".error-msg-sub").removeClass("hidden");
+        error = 7;
       }else{
         $("select#to_es").removeClass("alert");
+        $("select#to_es").closest("#block-ES-countries").find(".error-msg-sub").addClass("hidden");
       }
 
       //если не выбран город РФ из списка
       if (($("#to_sities_rf").is(':checked') == true) && ($("select#to_rf option:selected").val()==-1)){
         $("select#to_rf").addClass("alert");
-        error = 1;
+        $('.error-msg4').removeClass('hidden');
+        error = 8;
       }else{
         $("select#to_rf").removeClass("alert");
+        $('.error-msg4').addClass('hidden');
       }
 
 
@@ -196,37 +230,40 @@ $("#do_calculate").live("click", function(){
         if ($("select#to_es option:selected").val() != -1){
           $(".place_weight").each(function(i,e){
             if ( ($(this).val() == "") || ($(this).val() > 70) ){
-              error = 1;
+              error = 9;
               $(this).addClass("alert");
             }else{
               $(this).removeClass("alert");
             }
           });
         }
-
       }
 
       // ограничение веся для тарифа эконом по городам РФ
-      if ( ($("#to_sities_rf").is(':checked') == true) && ($("select#to_rf option:selected").val() != -1) ){
+      if ($("#to_sities_rf").is(':checked') == true){
 
-        $(".place_weight").each(function(i,e){
-          if ( ($(this).val() == "") || ($(this).val() > 80) ){
-            error = 1;
-            $(this).addClass("alert");
-          }else{
-            $(this).removeClass("alert");
-          }
-        });
-
+        if ($("select#to_rf option:selected").val() != -1){
+            $(".place_weight").each(function(i,e){
+              if ( ($(this).val() == "") || ($(this).val() > 80) ){
+                error = 10;
+                $(this).addClass("alert");
+              }else{
+                $(this).removeClass("alert");
+              }
+            });
+        }
       }
+
     }
     // отправить экспресс
     if (($('#type_speed_exp').is(':checked') == true)){
 
       if ($("select#tarif_express_export_countries option:selected").val()==-1){
         $("#tarif_express_export_countries").addClass("alert");
-        error = 1;
+        $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-sub").removeClass("hidden");
+        error = 11;
       }else{
+        $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-sub").addClass("hidden");
         $("#tarif_express_export_countries").removeClass("alert");
       }
 
@@ -234,15 +271,13 @@ $("#do_calculate").live("click", function(){
       if ($("select#tarif_express_export_countries option:selected").val() != -1){
         $(".place_weight").each(function(i,e){
           if ($(this).val() == ""){
-            error = 1;
+            error = 12;
             $(this).addClass("alert");
           }else{
             $(this).removeClass("alert");
           }
         });
       }
-
-
     }
   }
 //----------------------------------------------------------------------------
@@ -251,46 +286,59 @@ $("#do_calculate").live("click", function(){
     // эконом
     if ( ($('#type_speed_eco').is(':checked') == false) && ($('#type_speed_exp').is(':checked') == false) ){
       $('.eq1').addClass('alert');
-      error = 1;
+      $(".eq1").find(".error-msg-right").removeClass("hidden");
+
+      error = 13;
     }else{
       $('.eq1').removeClass('alert');
+      $(".eq1").find(".error-msg-right").addClass("hidden");
     }
     //страны ЕС
     if ( ($("#type_speed_eco").is(':checked') == true) && ($("#get_from_country_es").is(':checked') == false) && ($("#get_from_town_rf").is(':checked') == false) ){
       $(".eq1").removeClass("alert");
       $("#block-get-from-ES-RF").addClass("alert");
-      error = 1;
+      $("#block-get-from-ES-RF").find(".error-msg-right").removeClass("hidden");
+      error = 14;
     }
     //выбранная страна
     if ( ($("#get_from_country_es").is(':checked') == true) && ($("select#tarif_econom_import_ES option:selected").val() == -1) ){
       $("#block-get-from-ES-RF").removeClass("alert");
+      $("#block-get-from-ES-RF").find(".error-msg-right").addClass('hidden');
+
       $("#tarif_econom_import_ES").addClass("alert");
-      error = 1;
+      $("#tarif_econom_import_ES").closest(".field").find('.error-msg-sub').removeClass("hidden");
+      error = 15;
     }else{
       $("#tarif_econom_import_ES").removeClass("alert");
+      $("#tarif_econom_import_ES").closest(".field").find('.error-msg-sub').addClass("hidden");
     }
 
 
     //города РФ
     if ( ($("#get_from_town_rf").is(':checked') == true) && ($("select#tarif_econom_import_RF option:selected").val() == -1) ){
       $("#block-get-from-ES-RF").removeClass("alert");
+      $("#block-get-from-ES-RF").find(".error-msg-right").addClass("hidden");
       $("#tarif_econom_import_RF").addClass("alert");
-      error = 1;
+      $("#tarif_econom_import_RF").closest(".field").find(".error-msg-sub").removeClass("hidden");
+      error = 16;
     }else{
       $("#tarif_econom_import_RF").removeClass("alert");
+      $("#tarif_econom_import_RF").closest(".field").find(".error-msg-sub").addClass("hidden");
     }
 
     if ( ($('#type_speed_exp').is(":checked") == true) && ($("select#tarif_express_import_global option:selected").val() == -1) ){
       $("#tarif_express_import_global").addClass("alert");
-      error = 1;
+      $("#tarif_express_import_global").closest(".field").find(".error-msg-sub").removeClass("hidden");
+      error = 17;
     }else{
       $("#tarif_express_import_global").removeClass("alert");
+      $("#tarif_express_import_global").closest(".field").find(".error-msg-sub").addClass("hidden");
     }
 
     if ( ($('#type_speed_exp').is(":checked") == true) && ($("select#tarif_express_import_global option:selected").val() != -1) ){
       $(".place_weight").each(function(i,e){
         if ($(this).val() == ""){
-          error = 1;
+          error = 18;
           $(this).addClass("alert");
         }else{
           $(this).removeClass("alert");
@@ -305,7 +353,7 @@ $("#do_calculate").live("click", function(){
       if ( ($("#get_from_country_es").is(':checked') == true) && ($("select#tarif_econom_import_ES option:selected").val() != -1) ){
         $(".place_weight").each(function(i,e){
           if ( ($(this).val() == "") || ($(this).val() > 70) ){
-            error = 1;
+            error = 19;
             $(this).addClass("alert");
           }else{
             $(this).removeClass("alert");
@@ -316,7 +364,7 @@ $("#do_calculate").live("click", function(){
       if ( ($("#get_from_town_rf").is(':checked') == true) && ($("select#tarif_econom_import_RF option:selected").val() != -1) ){
         $(".place_weight").each(function(i,e){
           if ( ($(this).val() == "") || ($(this).val() > 80) ){
-            error = 1;
+            error = 20;
             $(this).addClass("alert");
           }else{
             $(this).removeClass("alert");
@@ -331,9 +379,13 @@ $("#do_calculate").live("click", function(){
     $(this).removeClass('alert');
     if($(this).val() == ""){
       $(this).addClass('alert');
-      error = 1;
+      // error = 1;
     }
   });
+
+  if ($("#weight_kg").val() == 0){
+    error = 1;
+  }
 
   console.log("error status: " + error + "");
   if (error == 0){
@@ -522,11 +574,11 @@ function getFromTownRF(){
 
 // габариты для мест
 function addPlaces(){
-  var count = $("#calc_places_lenght option:selected").text();
+  var count = $("#calc_places_lenght option:selected").val();
   var row = "";
   $('#gabarits').html("");
 
-  for(var i=0; i<count; i++){
+  for(var i=1; i<count; i++){
     row = '<div class="places-row">' +
       '<p>Размеры отправляемых мест, см</p>' +
       '<div class="place-box">' +
@@ -535,12 +587,13 @@ function addPlaces(){
       '<input type="text" class="short place_height" id="hei_' + i + '" value="" placeholder="высота"  name="calc_size[' + i + '][height]">' +
       '</div>' +
       '<input type="text" class="short place_weight" id="weight_' + i + '" value="" placeholder="вec"  name="calc_size[' + i + '][weight]">' +
+      '<input type="text" class="short place_vol_weight hidden" id="vol_weight_' + i + '" value="" name="calc_size[' + i + '][vol_weight]">' +
       '</div>';
     $('#gabarits').append(row);
   }
 
   $(".place_weight").on("keyup", function(){
-    if ($("#type_speed_eco")){
+    if ( $("#type_speed_eco").is(':checked') ){
 
       if ( $("#to_countrys_eu").is(":checked") ){
         if ($(this).val() > 70){
@@ -563,6 +616,8 @@ function addPlaces(){
 
 
   $('.place_length, .place_width, .place_height, .place_weight').ForceNumericOnly();
+
+  setCalcHandle();
 }
 
 function checkWeight(){
