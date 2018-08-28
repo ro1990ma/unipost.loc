@@ -500,6 +500,8 @@ function sendEconom(){
   $('#block-get-express-import').addClass("hidden");
   $('#block-get-econom-ES, #block-get-econom-RF').addClass('hidden');
   $('#to_countrys_eu, #to_sities_rf').attr('checked', false);
+
+  $('.content-type, #package-type').addClass('hidden');
 }
 function sendExpress(){
   console.log("Отправить экспресс");
@@ -517,6 +519,8 @@ function recEconom(){
   $('#block-ES-countries, #block-RF-cities').addClass("hidden");
   $('#block-get-express-import').addClass("hidden");
   $('#block-all-countries').addClass("hidden");
+
+  $('.content-type, #package-type').addClass('hidden');
 }
 function recExpress(){
   console.log("Получить экспресс");
@@ -525,6 +529,8 @@ function recExpress(){
   $('#get_from_country_es, #get_from_town_rf').attr('checked', false);
   $('#block-get-express-import').removeClass("hidden");
   $('#block-all-countries').addClass("hidden");
+
+  $('.content-type, #package-type').removeClass('hidden');
 
   // скрыть Характер содержимого и Требуемый тип упаковки
   // $('.content-type').addClass('hidden');
