@@ -35,6 +35,7 @@ session_start();
   $db->setQuery("SELECT * FROM uni_tarif2_rf_get ORDER BY name_ru ASC");
   $special_rf_get = $db->loadObjectList();
 
+  $lang = JFactory::getLanguage();
 ?>
   <div class="page_calc">
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
@@ -59,22 +60,23 @@ session_start();
     $_SESSION['calc_size_z'] =         $_POST['calc_size_z'];
     $_SESSION['calc_volume_kg'] =      $_POST['calc_volume_kg'];
 
-    if ($_POST['calc_weight_kg'] > $_POST['calc_size_kg']){
-      $weight = (float)$_POST['calc_weight_kg'];  // физический вес
-    }else{
-      $weight = (float)$_POST['calc_size_kg'];    // объёмный вес
-    }
 
-    // $weight = (float)$_POST['calc_weight_kg'];
+    $fizical_weight = (float)$_POST['calc_weight_kg'];
+    $volume_weight = (float)$_POST['calc_size_kg'];
+    $qw_content = NULL;
+
+    // если объёмный вес больше физического то расчитывать по объёмному весу
+    if ($fizical_weight >= $volume_weight){
+      $weight = $fizical_weight;
+    }else{
+      $weight = $volume_weight;
+    }
 
     if($_POST['type_hu_you'] == 0){ // отправить
       if($_POST['type_speed'] == 0){ // эконом
 
         if($_POST['destination'] == 0){ // страны ес
           if ($_POST['calc_to_es_country'] != -1){ //если выбранна страна
-
-            $target_table = 1;
-            $t1_terms = "6-10";
 
             $id = $_POST['calc_to_es_country'];
             $country_obj = null;
@@ -98,13 +100,19 @@ session_start();
             }
 
             $final_price = (float)$price * (float)$EUR;
+
+            if ($lang->getTag() == 'ru-RU'){ $qw_name = $country_obj->name_ru; }
+            if ($lang->getTag() == 'en-GB'){ $qw_name = $country_obj->name_en; }
+            if ($lang->getTag() == 'ro-RO'){ $qw_name = $country_obj->name_ro; }
+            $qw_terms = $country_obj->terms;
+            $qw_price = $price;
+
           }
         }
 
         if($_POST['destination'] == 1){ // города рф
           if ($_POST['calc_to_rf_cities'] != -1){
 
-            $target_table = 2;
             $id = $_POST['calc_to_rf_cities'];
             $city_obj = null;
 
@@ -142,17 +150,20 @@ session_start();
               }
             }
 
-
             if($weight > 20.5){
               $weight_over = (float)(($weight - 20.50) / 0.5);
               (float)$price = (float)$city_obj->tarif_less_20 + ((float)$weight_over * (float)$city_obj->tarif_next_05);
             }
 
-
             if (isset($_POST['dispatch_from']) && $_POST['dispatch_from'] == 1){
               $price = $price + 1.80;
             }
 
+            if ($lang->getTag() == 'ru-RU'){ $qw_name = $city_obj->name_ru; }
+            if ($lang->getTag() == 'en-GB'){ $qw_name = $city_obj->name_en; }
+            if ($lang->getTag() == 'ro-RO'){ $qw_name = $city_obj->name_ro; }
+            $qw_terms = $city_obj->terms;
+            $qw_price = $price;
 
             (float)$final_price = (float)$price*(float)$EUR;
 
@@ -162,8 +173,6 @@ session_start();
 
       if($_POST['type_speed'] == 1){ // экспресс
         if ($_POST['tarif_express_export_countries'] != -1){
-
-          $target_table = 3;
 
           $id = $_POST['tarif_express_export_countries'];
           $country_t3 = null;
@@ -176,29 +185,37 @@ session_start();
           }
 
           if ($_POST['type_docs_ndocs'] == 1){//документы
+            $qw_content = 1;
 
             if($weight <= 0.5){
               (float)$price = (float)$country_t3->doc_less05;
             }else{
-
-              $weight_over = floor(($weight - 0.5) / 0.5);
+              // $weight_over = floor(($weight - 0.5) / 0.5);
+              $weight_over = (($weight - 0.5) / 0.5);
               (float)$price = (float)$country_t3->doc_less05 + ((float)$country_t3->doc_more05 * $weight_over); //если за каждых 0,5 кг
             }
           }
 
           if ($_POST['type_docs_ndocs'] == 0){//недокументы
+            $qw_content = 0;
+
             if($weight <= 0.5){
               (float)$price = (float)$country_t3->not_doc_less05;
             }else{
-              // $weight_over = floor(((float)$weight / 0.5));
               $weight_over = ( ((float)$weight - 0.5) / 0.5);
-              (float)$price = (float)$country_t3->not_doc_more05 * (float)$weight_over;
+              (float)$price = (float)$country_t3->not_doc_more05 * (float)$weight_over; // 5-я колонка * на вес до 0,5 + за каждые следующие 0,5
             }
           }
 
           if (isset($_POST['dispatch_from']) && $_POST['dispatch_from'] == 0){
             $price = $price - 1.80;
           }
+
+          if ($lang->getTag() == 'ru-RU'){ $qw_name = $country_t3->name_ru; }
+          if ($lang->getTag() == 'en-GB'){ $qw_name = $country_t3->name_en; }
+          if ($lang->getTag() == 'ro-RO'){ $qw_name = $country_t3->name_ro; }
+          $qw_terms = $country_t3->term;
+          $qw_price = $price;
 
           (float)$final_price = (float)$price*(float)$EUR;
 
@@ -218,7 +235,6 @@ session_start();
 
             $id = $_POST['tarif_econom_import_ES'];
             $country_t4 = null;
-            $target_table = 4;
             $t4_terms = "5-9";
 
             foreach($econom_import_country_t4 as $item){
@@ -240,6 +256,12 @@ session_start();
               $price = $price - 1.80;
             }
 
+            if ($lang->getTag() == 'ru-RU'){ $qw_name = $country_t4->name_ru; }
+            if ($lang->getTag() == 'en-GB'){ $qw_name = $country_t4->name_en; }
+            if ($lang->getTag() == 'ro-RO'){ $qw_name = $country_t4->name_ro; }
+            $qw_terms = $country_t4->terms;
+            $qw_price = $price;
+
             (float)$final_price = (float)$price * (float)$EUR;
 
           }
@@ -250,7 +272,6 @@ session_start();
 
             $id = $_POST['tarif_econom_import_RF'];
             $town_t5 = null;
-            $target_table = 5;
 
             foreach($towns_rf_t5 as $item){
               if ($item->id == $id){
@@ -295,6 +316,12 @@ session_start();
               $price = $price + 1.80;
             }
 
+            if ($lang->getTag() == 'ru-RU'){ $qw_name = $town_t5->name_ru; }
+            if ($lang->getTag() == 'en-GB'){ $qw_name = $town_t5->name_en; }
+            if ($lang->getTag() == 'ro-RO'){ $qw_name = $town_t5->name_ro; }
+            $qw_terms = $town_t5->terms;
+            $qw_price = $price;
+
             (float)$final_price = (float)$price*(float)$EUR;
 
           }
@@ -305,7 +332,6 @@ session_start();
 
         if ($_POST['tarif_express_import_global'] != -1){
           $id = $_POST['tarif_express_import_global'];
-          $target_table = 6;
           $country_t6 = null;
 
           foreach($express_import_country_t6 as $item){
@@ -315,117 +341,74 @@ session_start();
             }
           }
 
-
-          if ($_POST['type_docs_ndocs'] == 1){//документы
+          //документы
+          if ($_POST['type_docs_ndocs'] == 1){
+            $qw_content = 1;
             if($weight <= 0.5){
               (float)$price = (float)$country_t6->doc_less_05;
             }else{
-              (float)$price = (float)$country_t6->doc_less_05 + (float)$country_t6->doc_more_05;
+              // если сумма снимается за каждые 0,5 кг.
+              // $weight_over = ((float)$weight / 0.5);
+              // (float)$price = (float)$country_t6->doc_less_05 + ((float)$country_t6->doc_more_05 * (float)$weight_over);
+
+              // сумма снимается только 1 раз, если вес превышает 0,5
+              (float)$price = (float)$country_t6->doc_more_05;
             }
           }
 
-          if ($_POST['type_docs_ndocs'] == 0){//недокументы
+          //недокументы
+          if ($_POST['type_docs_ndocs'] == 0){
+            $qw_content = 0;
             if($weight <= 0.5){
               (float)$price = (float)$country_t6->other_less_05;
             }else{
-              $weight_over = floor(((float)$weight / 0.5));
-              (float)$price = (float)$country_t6->other_more_05 * (float)$weight_over;
+              $weight_over = ((float)$weight / 0.5);
+              // $weight_over = (((float)$weight - 0.5) / 0.5); // 0,5 кроме изначальных 0,5 кг.
+              // (float)$price =  (float)$country_t6->other_less_05 + ((float)$country_t6->other_more_05 * (float)$weight_over); // каждый следуйщий 0,5 + изходный 0,5
+              (float)$price =  (float)$country_t6->other_more_05 * (float)$weight_over;
             }
           }
-
 
           if (isset($_POST['dispatch_from']) && $_POST['dispatch_from'] == 0){
             $price = $price - 1.50;
           }
 
+          if ($lang->getTag() == 'ru-RU'){ $qw_name = $country_t6->name_ru; }
+          if ($lang->getTag() == 'en-GB'){ $qw_name = $country_t6->name_en; }
+          if ($lang->getTag() == 'ro-RO'){ $qw_name = $country_t6->name_ro; }
+          $qw_terms = $country_t6->terms;
+          $qw_price = $price;
+
           (float)$final_price = (float)$price * (float)$EUR;
-
         }
-
 
       }
     }
 
-    // для каждого вида тарифа отдельная таблицы, на случай, индивидуальных изменений к отдельному тарифу
-    if ($target_table == 1){
-      printf("<h3>Тариф отправить эконом в страны ЕС</h3>");
-      printf("<table class='calc_response'>");
-      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $country_obj->name_ru);
-      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
-      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $t1_terms ,JText::_("PAGE_CALC_RS_TERM_D"));
-      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
-      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
-      printf("</table>");
-      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
-      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
+    // print_r(" fiz= $fizical_weight");
+    // print_r(" vol= $volume_weight");
+    // print_r(" weight= $weight");
+
+    printf("<table class='calc_response'>");
+
+    if (!is_null($qw_content)){
+      if ($qw_content == 0){
+        printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>", JText::_("PAGE_CALC_TYPE_CONTENT"), JText::_("PAGE_CALC_TYPE_NDOC"));
+      }
+      if ($qw_content == 1){
+        printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>", JText::_("PAGE_CALC_TYPE_CONTENT"), JText::_("PAGE_CALC_TYPE_DOC"));
+      }
     }
 
-    if ($target_table == 2){
-      printf("<h3>Тариф отправить эконом в города РФ.</h3>");
-      printf("<table class='calc_response'>");
-      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_TOWN"),    $city_obj->name_ru);
-      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
-      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $city_obj->terms, JText::_("PAGE_CALC_RS_TERM_D"));
-      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
-      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
-      printf("</table>");
-      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
-      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
-    }
+    printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $qw_name);
+    printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
+    printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $qw_terms, JText::_("PAGE_CALC_RS_TERM_D"));
+    printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $qw_price);
+    printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>", JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
+    printf("</table>");
+    echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
+    echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
 
-    if ($target_table == 3){
-      printf("<h3>Тариф отправить экспрэсс.</h3>");
-      printf("<table class='calc_response'>");
-      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               "тип содержимого:", "документы/недокументы");
-      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $country_t3->name_ru);
-      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
-      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $country_t3->term, JText::_("PAGE_CALC_RS_TERM_D"));
-      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
-      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
-      printf("</table>");
-      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
-      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
-    }
-
-    if ($target_table == 4){
-      printf("<h3>Тариф получить эконом в страны ЕС</h3>");
-      printf("<table class='calc_response'>");
-      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $country_t4->name_ru);
-      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
-      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $t4_terms, JText::_("PAGE_CALC_RS_TERM_D"));
-      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
-      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
-      printf("</table>");
-      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
-      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
-    }
-
-    if ($target_table == 5){
-      printf("<h3>Тариф получить эконом в города РФ</h3>");
-      printf("<table class='calc_response'>");
-      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $town_t5->name_ru);
-      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
-      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $town_t5->terms, JText::_("PAGE_CALC_RS_TERM_D"));
-      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
-      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
-      printf("</table>");
-      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
-      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
-    }
-
-
-    if ($target_table == 6){
-      printf("<h3>Тариф получить экспресс</h3>");
-      printf("<table class='calc_response'>");
-      printf("<tr><td class='info'>%s</td><td class='data'>%s</td></tr>",               JText::_("PAGE_CALC_RS_COUNTRY"), $country_t6->name_ru);
-      printf("<tr><td class='info'>%s</td><td class='data'>%.3f %s</td></tr>",          JText::_("PAGE_CALC_RS_WEIGHT"),  $weight, JText::_("PAGE_CALC_RS_WEIGHT_KG"));
-      printf("<tr><td class='info'>%s</td><td class='data'>%s %s</td></tr>",            JText::_("PAGE_CALC_RS_TERM"),    $country_t6->terms, JText::_("PAGE_CALC_RS_TERM_D"));
-      printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $price=='' ? 0:$price );
-      printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>",JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
-      printf("</table>");
-      echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
-      echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
-    }
   }else{
   ?>
       <label><?php echo JText::_("PAGE_CALC_INFO"); ?></label>
@@ -491,13 +474,10 @@ session_start();
 
             <?php
               foreach($query_countries_eu_t1 as $country_eu) {?>
-                <option value='<?php echo $country_eu->id;?>'<?php echo($_SESSION['country_eu'] == $country_eu->id) ? 'selected="selected"' : ''; ?>
-                  data-name='<?php echo $country_eu->name_ru; ?>'
-                  data-price1='<?php echo $country_eu->tarif_less_10kg; ?>'
-                  data-price2='<?php echo $country_eu->tarif_plus_1kg; ?>'
-                  data-terms="<?php echo JText::_("PAGE_CALC_TERMS1"); ?>"
-                  >
-                  <?php echo $country_eu->name_ru;?>
+                <option value='<?php echo $country_eu->id;?>'<?php echo($_SESSION['country_eu'] == $country_eu->id) ? 'selected="selected"' : ''; ?>>
+                  <?php if ($lang->getTag() == 'ru-RU'){echo $country_eu->name_ru;}?>
+                  <?php if ($lang->getTag() == 'en-GB'){echo $country_eu->name_en;}?>
+                  <?php if ($lang->getTag() == 'ro-RO'){echo $country_eu->name_ro;}?>
                 </option>
             <?php }?>
           </select>
@@ -528,7 +508,10 @@ session_start();
                   }?>
                   class="<?php echo $option_class; ?>">
 
-                  <?php echo $city_rf->name_ru; ?>
+                  <?php if ($lang->getTag() == 'ru-RU'){echo $city_rf->name_ru;}?>
+                  <?php if ($lang->getTag() == 'en-GB'){echo $city_rf->name_en;}?>
+                  <?php if ($lang->getTag() == 'ro-RO'){echo $city_rf->name_ro;}?>
+
                 </option>
             <?php }?>
           </select>
@@ -547,14 +530,12 @@ session_start();
             <?php
               foreach($query_tarif_express_export_t3 as $tarif_t3) {?>
                 <option value='<?php echo $tarif_t3->id;?>'
-                  <?php echo ($_SESSION['tarif_expres_export'] == $tarif_t3->id) ? 'selected="selected"' : ''; ?>
-                  data-name='<?php echo $tarif_t3->name_ru; ?>'
-                  data-docless05='<?php echo $tarif_t3->doc_less05; ?>'
-                  data-docmore05='<?php echo $tarif_t3->doc_more05; ?>'
-                  data-ndocless05='<?php echo $tarif_t3->not_doc_less05; ?>'
-                  data-ndocmore05='<?php echo $tarif_t3->not_doc_more05; ?>'
-                  data-term='<?php echo $tarif_t3->term; ?>'>
-                  <?php echo $tarif_t3->name_ru;?>
+                  <?php echo ($_SESSION['tarif_expres_export'] == $tarif_t3->id) ? 'selected="selected"' : ''; ?>>
+
+                  <?php if ($lang->getTag() == 'ru-RU'){echo $tarif_t3->name_ru;}?>
+                  <?php if ($lang->getTag() == 'en-GB'){echo $tarif_t3->name_en;}?>
+                  <?php if ($lang->getTag() == 'ro-RO'){echo $tarif_t3->name_ro;}?>
+
                 </option>
             <?php }?>
           </select>
@@ -590,7 +571,11 @@ session_start();
 
             <?php foreach($econom_import_country_t4 as $country) {?>
               <option value='<?php echo $country->id;?>'<?php echo($_SESSION['country_eu'] == $country->id) ? 'selected="selected"' : ''; ?> >
-                <?php echo $country->name_ru;?>
+
+                <?php if ($lang->getTag() == 'ru-RU'){echo $country->name_ru;}?>
+                <?php if ($lang->getTag() == 'en-GB'){echo $country->name_en;}?>
+                <?php if ($lang->getTag() == 'ro-RO'){echo $country->name_ro;}?>
+
               </option>
             <?php }?>
           </select>
@@ -618,7 +603,10 @@ session_start();
                 }?>
                 class="<?php echo $option_class; ?>">
 
-                <?php echo $town->name_ru;?>
+                <?php if ($lang->getTag() == 'ru-RU'){echo $town->name_ru;}?>
+                <?php if ($lang->getTag() == 'en-GB'){echo $town->name_en;}?>
+                <?php if ($lang->getTag() == 'ro-RO'){echo $town->name_ro;}?>
+
               </option>
             <?php }?>
 
@@ -637,7 +625,11 @@ session_start();
 
             <?php foreach($express_import_country_t6 as $country) {?>
               <option value='<?php echo $country->id;?>'<?php echo($_SESSION['country_global'] == $country->id) ? 'selected="selected"' : ''; ?> >
-                <?php echo $country->name_ru;?>
+
+                <?php if ($lang->getTag() == 'ru-RU'){echo $country->name_ru;}?>
+                <?php if ($lang->getTag() == 'en-GB'){echo $country->name_en;}?>
+                <?php if ($lang->getTag() == 'ro-RO'){echo $country->name_ro;}?>
+
               </option>
             <?php }?>
           </select>
@@ -690,7 +682,7 @@ session_start();
               </div>
             </div>
 
-          <div class="field _hidden">
+          <div class="field hidden">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG"); ?><?php echo $_SESSION['calc_weight_kg'];?></p>
               <input type="text" id="weight_kg" oninput="checkWeight()" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
               <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
@@ -772,7 +764,7 @@ session_start();
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script src="/media/system/js/tarif-calc-page.js" type="text/javascript"></script>
-<script type="text/javascript"></script>
 
 <?php
-session_write_close(); ?>
+  session_write_close();
+?>

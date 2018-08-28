@@ -525,9 +525,10 @@ function recExpress(){
   $('#get_from_country_es, #get_from_town_rf').attr('checked', false);
   $('#block-get-express-import').removeClass("hidden");
   $('#block-all-countries').addClass("hidden");
+
   // скрыть Характер содержимого и Требуемый тип упаковки
-  $('.content-type').addClass('hidden');
-  $('#package-type').addClass('hidden');
+  // $('.content-type').addClass('hidden');
+  // $('#package-type').addClass('hidden');
 }
 
 
