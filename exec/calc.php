@@ -203,7 +203,8 @@ session_start();
               (float)$price = (float)$country_t3->not_doc_less05;
             }else{
               $weight_over = ( ((float)$weight - 0.5) / 0.5);
-              (float)$price = (float)$country_t3->not_doc_more05 * (float)$weight_over; // 5-я колонка * на вес до 0,5 + за каждые следующие 0,5
+              (float)$price = (float)$country_t3->not_doc_less05 + ((float)$country_t3->not_doc_more05 * (float)$weight_over);
+              // (float)$price = (float)$country_t3->not_doc_more05 * (float)$weight_over; // 5-я колонка * на вес до 0,5 + за каждые следующие 0,5
             }
           }
 
