@@ -65,17 +65,6 @@ function setCalcHandle(){
     $('#wei').attr('value', sum);
   });
 
-
-  // if ($('#wei').val() > 60)
-  // {
-  //   $("#weight2_error").css("display","block");
-  //   $("#do_calculate").attr("disabled", "true");
-  // }
-  // else
-  // {
-  //   $("#weight2_error").css("display","none");
-  //   $("#do_calculate").removeAttr('disabled');
-  // }
 }
   $('.place_length').keyup(fn);
   $('.place_width').keyup(fn);
@@ -84,7 +73,6 @@ function setCalcHandle(){
   $('.place_length').ForceNumericOnly();
   $('.place_width').ForceNumericOnly();
   $('.place_height').ForceNumericOnly();
-  $('.place_weight').ForceNumericOnly();
 
   $('#weight_kg').ForceNumericOnly();
   fn();
@@ -99,11 +87,19 @@ $('select').change(function() {
 $("#do_calculate").live("click", function(){
   var error = 0;
 
-  if ($("#calc_places_lenght").val() == -1){
-    $("#calc_places_lenght").addClass('alert');
+  if ($("#weight_kg").val() == 0){
+    error = 1;
+    $("#weight_kg").addClass('alert');
   }else{
-    $("#calc_places_lenght").removeClass('alert');
+    $("#weight_kg").removeClass('alert');
   }
+
+
+  // if ($("#calc_places_lenght").val() == -1){
+  //   $("#calc_places_lenght").addClass('alert');
+  // }else{
+  //   $("#calc_places_lenght").removeClass('alert');
+  // }
 
   if ($(".places-row").size() != 0){
     // валидация габаритов----------------
@@ -131,12 +127,6 @@ $("#do_calculate").live("click", function(){
       }else{
         $(this).find(".place_height").removeClass('alert');
       }
-      // вес
-      if ($(this).find(".place_weight").val() == ""){
-        $(this).find(".place_weight").addClass('alert');
-      }else{
-        $(this).find(".place_weight").removeClass('alert');
-      }
 
       ln = parseFloat($(this).find(".place_length").val());
       wd = parseFloat($(this).find(".place_width").val());
@@ -156,20 +146,6 @@ $("#do_calculate").live("click", function(){
       }
     });
 
- // суммирование весов--------------------------------------------------------
-    var weight_sum = 0;
-    $('.places-row').each(function(i,e){
-      if ($(this).find(".place_weight").val() != ""){
-        weight = parseFloat($(this).find(".place_weight").val());
-        weight_sum += weight;
-      }
-    });
-   $("#weight_kg").val(weight_sum);
-
-    if (weight_sum == 0){
-      error = 4;
-    }
-
   }
 
   //отправить
@@ -180,7 +156,7 @@ $("#do_calculate").live("click", function(){
       $('.eq1').addClass('alert');
       $(".eq1").find(".error-msg-right").removeClass("hidden");
 
-      error = 5;
+      error = 4;
     }else{
       $('.eq1').removeClass('alert');
       $(".eq1").find(".error-msg-right").addClass("hidden");
@@ -196,7 +172,7 @@ $("#do_calculate").live("click", function(){
         $('.eq2').addClass('alert');
         $(".eq2").find(".error-msg-right").removeClass("hidden");
 
-        error = 6;
+        error = 5;
       }else{
         $('.eq2').removeClass('alert');
         $(".eq2").find(".error-msg-right").addClass("hidden");
@@ -207,7 +183,7 @@ $("#do_calculate").live("click", function(){
       if (($("#to_countrys_eu").is(':checked') == true) && ($("select#to_es option:selected").val()==-1)){
         $("select#to_es").addClass("alert");
         $("select#to_es").closest("#block-ES-countries").find(".error-msg-sub").removeClass("hidden");
-        error = 7;
+        error = 6;
       }else{
         $("select#to_es").removeClass("alert");
         $("select#to_es").closest("#block-ES-countries").find(".error-msg-sub").addClass("hidden");
@@ -217,7 +193,7 @@ $("#do_calculate").live("click", function(){
       if (($("#to_sities_rf").is(':checked') == true) && ($("select#to_rf option:selected").val()==-1)){
         $("select#to_rf").addClass("alert");
         $('.error-msg4').removeClass('hidden');
-        error = 8;
+        error = 7;
       }else{
         $("select#to_rf").removeClass("alert");
         $('.error-msg4').addClass('hidden');
@@ -228,14 +204,14 @@ $("#do_calculate").live("click", function(){
       if ( ($("#to_countrys_eu").is(':checked') == true) ){
 
         if ($("select#to_es option:selected").val() != -1){
-          $(".place_weight").each(function(i,e){
-            if ( ($(this).val() == "") || ($(this).val() > 70) ){
-              error = 9;
-              $(this).addClass("alert");
-            }else{
-              $(this).removeClass("alert");
-            }
-          });
+
+          if  ( ($("#weight_kg").val() == "") || (parseInt( $("#weight_kg").val() ) > 70) ){
+            $("#weight_kg").addClass("alert");
+            error = 8;
+          }else{
+            $("#weight_kg").removeClass("alert");
+          }
+
         }
       }
 
@@ -243,14 +219,14 @@ $("#do_calculate").live("click", function(){
       if ($("#to_sities_rf").is(':checked') == true){
 
         if ($("select#to_rf option:selected").val() != -1){
-            $(".place_weight").each(function(i,e){
-              if ( ($(this).val() == "") || ($(this).val() > 80) ){
-                error = 10;
-                $(this).addClass("alert");
-              }else{
-                $(this).removeClass("alert");
-              }
-            });
+
+          if  ( ($("#weight_kg").val() == "") || (parseInt( $("#weight_kg").val() ) > 80) ){
+            $("#weight_kg").addClass("alert");
+            error = 9;
+          }else{
+            $("#weight_kg").removeClass("alert");
+          }
+
         }
       }
 
@@ -261,23 +237,12 @@ $("#do_calculate").live("click", function(){
       if ($("select#tarif_express_export_countries option:selected").val()==-1){
         $("#tarif_express_export_countries").addClass("alert");
         $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-sub").removeClass("hidden");
-        error = 11;
+        error = 10;
       }else{
         $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-sub").addClass("hidden");
         $("#tarif_express_export_countries").removeClass("alert");
       }
 
-      // проверка веса для каждого места при получить-экспресс
-      if ($("select#tarif_express_export_countries option:selected").val() != -1){
-        $(".place_weight").each(function(i,e){
-          if ($(this).val() == ""){
-            error = 12;
-            $(this).addClass("alert");
-          }else{
-            $(this).removeClass("alert");
-          }
-        });
-      }
     }
   }
 //----------------------------------------------------------------------------
@@ -288,7 +253,7 @@ $("#do_calculate").live("click", function(){
       $('.eq1').addClass('alert');
       $(".eq1").find(".error-msg-right").removeClass("hidden");
 
-      error = 13;
+      error = 11;
     }else{
       $('.eq1').removeClass('alert');
       $(".eq1").find(".error-msg-right").addClass("hidden");
@@ -298,7 +263,7 @@ $("#do_calculate").live("click", function(){
       $(".eq1").removeClass("alert");
       $("#block-get-from-ES-RF").addClass("alert");
       $("#block-get-from-ES-RF").find(".error-msg-right").removeClass("hidden");
-      error = 14;
+      error = 12;
     }
     //выбранная страна
     if ( ($("#get_from_country_es").is(':checked') == true) && ($("select#tarif_econom_import_ES option:selected").val() == -1) ){
@@ -307,7 +272,7 @@ $("#do_calculate").live("click", function(){
 
       $("#tarif_econom_import_ES").addClass("alert");
       $("#tarif_econom_import_ES").closest(".field").find('.error-msg-sub').removeClass("hidden");
-      error = 15;
+      error = 13;
     }else{
       $("#tarif_econom_import_ES").removeClass("alert");
       $("#tarif_econom_import_ES").closest(".field").find('.error-msg-sub').addClass("hidden");
@@ -320,7 +285,7 @@ $("#do_calculate").live("click", function(){
       $("#block-get-from-ES-RF").find(".error-msg-right").addClass("hidden");
       $("#tarif_econom_import_RF").addClass("alert");
       $("#tarif_econom_import_RF").closest(".field").find(".error-msg-sub").removeClass("hidden");
-      error = 16;
+      error = 14;
     }else{
       $("#tarif_econom_import_RF").removeClass("alert");
       $("#tarif_econom_import_RF").closest(".field").find(".error-msg-sub").addClass("hidden");
@@ -329,62 +294,36 @@ $("#do_calculate").live("click", function(){
     if ( ($('#type_speed_exp').is(":checked") == true) && ($("select#tarif_express_import_global option:selected").val() == -1) ){
       $("#tarif_express_import_global").addClass("alert");
       $("#tarif_express_import_global").closest(".field").find(".error-msg-sub").removeClass("hidden");
-      error = 17;
+      error = 15;
     }else{
       $("#tarif_express_import_global").removeClass("alert");
       $("#tarif_express_import_global").closest(".field").find(".error-msg-sub").addClass("hidden");
     }
 
-    if ( ($('#type_speed_exp').is(":checked") == true) && ($("select#tarif_express_import_global option:selected").val() != -1) ){
-      $(".place_weight").each(function(i,e){
-        if ($(this).val() == ""){
-          error = 18;
-          $(this).addClass("alert");
-        }else{
-          $(this).removeClass("alert");
-        }
-      });
-    }
 
     //валидация веса для получить эконом---------------------------------
     if (($('#type_speed_eco').is(':checked') == true)){
 
       // получить эконом для ес
       if ( ($("#get_from_country_es").is(':checked') == true) && ($("select#tarif_econom_import_ES option:selected").val() != -1) ){
-        $(".place_weight").each(function(i,e){
-          if ( ($(this).val() == "") || ($(this).val() > 70) ){
-            error = 19;
-            $(this).addClass("alert");
-          }else{
-            $(this).removeClass("alert");
-          }
-        });
+        if ( ($("#weight_kg").val() == "") || (parseInt( $("#weight_kg").val() ) > 70) ){
+          $("#weight_kg").addClass("alert");
+          error = 16;
+        }else{
+          $("#weight_kg").removeClass("alert");
+        }
       }
 
       if ( ($("#get_from_town_rf").is(':checked') == true) && ($("select#tarif_econom_import_RF option:selected").val() != -1) ){
-        $(".place_weight").each(function(i,e){
-          if ( ($(this).val() == "") || ($(this).val() > 80) ){
-            error = 20;
-            $(this).addClass("alert");
-          }else{
-            $(this).removeClass("alert");
-          }
-        });
+        if  ( ($("#weight_kg").val() == "") || (parseInt( $("#weight_kg").val() ) > 80) ){
+          $("#weight_kg").addClass("alert");
+          error = 17;
+        }else{
+          $("#weight_kg").removeClass("alert");
+        }
       }
 
     }
-  }
-
-  $("#weight_kg, #len, #wid, #hei").each(function(i,e){
-    $(this).removeClass('alert');
-    if($(this).val() == ""){
-      $(this).addClass('alert');
-      // error = 1;
-    }
-  });
-
-  if ($("#weight_kg").val() == 0){
-    error = 1;
   }
 
   console.log("error status: " + error + "");
@@ -398,13 +337,13 @@ $("#do_calculate").live("click", function(){
 
 
 $('#do_cancel').live("click", function(){
-  $("#len, #wid, #hei, #wei, #weight_kg").val("");
+  $("#len_0, #wid_0, #hei_0, #wei, #weight_kg").val("");
   $("#to_es, #to_rf, #tarif_express_export_countries, #tarif_express_import_global").val("-1");
   $("#type_speed_eco, #type_speed_exp, #to_countrys_eu, #to_sities_rf, #get_from_country_es, #get_from_town_rf").attr("checked", false);
 
-
   $('#gabarits').html("");
   $('#calc_places_lenght').val(0);
+  location.reload();
 });
 
 
@@ -430,6 +369,13 @@ function hideMe (it, box, it2) {
   };
 }
 
+function convType(){
+  $("#places-count, #gabarits0, #gabarits").addClass("hidden");
+}
+
+function boxType(){
+  $("#places-count, #gabarits0, #gabarits").removeClass("hidden");
+}
 
 var doc = $('input#type_docs_docs"').prop('checked');
 (doc == true) ? $('#letter_wrapper').show() : $('#letter_wrapper').hide();
@@ -593,36 +539,13 @@ function addPlaces(){
       '<input type="text" class="short place_width" id="wid_' + i + '" value="" placeholder="ширина"  name="calc_size[' + i + '][width]">x' +
       '<input type="text" class="short place_height" id="hei_' + i + '" value="" placeholder="высота"  name="calc_size[' + i + '][height]">' +
       '</div>' +
-      '<input type="text" class="short place_weight" id="weight_' + i + '" value="" placeholder="вec"  name="calc_size[' + i + '][weight]">' +
+      // '<input type="text" class="short place_weight _hidden" id="weight_' + i + '" value="" placeholder="вec"  name="calc_size[' + i + '][weight]">' +
       '<input type="text" class="short place_vol_weight hidden" id="vol_weight_' + i + '" value="" name="calc_size[' + i + '][vol_weight]">' +
       '</div>';
     $('#gabarits').append(row);
   }
 
-  $(".place_weight").on("keyup", function(){
-    if ( $("#type_speed_eco").is(':checked') ){
-
-      if ( $("#to_countrys_eu").is(":checked") ){
-        if ($(this).val() > 70){
-          $(this).addClass("alert");
-        }else{
-          $(this).removeClass("alert");
-        }
-      }
-
-      if ( $("#to_sities_rf").is(":checked") ){
-        if ($(this).val() > 80){
-          $(this).addClass("alert");
-        }else{
-          $(this).removeClass("alert");
-        }
-      }
-    }
-
-  });
-
-
-  $('.place_length, .place_width, .place_height, .place_weight').ForceNumericOnly();
+  $('.place_length, .place_width, .place_height').ForceNumericOnly();
 
   setCalcHandle();
 }
@@ -644,4 +567,24 @@ function checkWeight(){
       $("#express_rf_error").addClass("hidden");
     }
   }
+
+  // получить
+  if ($("#get_from_country_es").is(":checked")){
+    if ($('#weight_kg').val() > 70){
+      $("#express_rf_error").addClass("hidden");
+      $("#express_es_error").removeClass("hidden");
+    }else{
+      $("#express_es_error").addClass("hidden");
+    }
+  }
+
+  if ($("#get_from_town_rf").is(":checked")){
+    if ($('#weight_kg').val() > 80){
+      $("#express_es_error").addClass("hidden");
+      $("#express_rf_error").removeClass("hidden");
+    }else{
+      $("#express_rf_error").addClass("hidden");
+    }
+  }
+
 }

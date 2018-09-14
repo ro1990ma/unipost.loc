@@ -41,7 +41,6 @@ session_start();
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
     <div id="clear"></div>
 <?php
-
   if(isset($_POST['do_page_calc'])){
 
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
@@ -386,10 +385,6 @@ session_start();
       }
     }
 
-    // print_r(" fiz= $fizical_weight");
-    // print_r(" vol= $volume_weight");
-    // print_r(" weight= $weight");
-
     printf("<table class='calc_response'>");
 
     if (!is_null($qw_content)){
@@ -408,7 +403,8 @@ session_start();
     printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>", JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
     printf("</table>");
     echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
-    echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
+    echo "<a class='btl-buttonsubmit btn' href='/?do=calc'>".JText::_('BACK')."</a>";
+    // echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
 
   }else{
   ?>
@@ -670,21 +666,22 @@ session_start();
               <div class="field" style="float:left;clear:none;" onload="hideMe()">
                 <input type="hidden" name="conv" value="0"/>
                 <input type="hidden" name="box" value="0"/>
+
                 <div class="radio-block">
-                  <input id="convert" type="radio" value="1" name="conv"
-                  <?php echo ($_SESSION['conv'] == '1') ? 'checked="checked"' : (empty($_SESSION['conv']))?'checked="checked"':''; ?>
-                  onclick="showMe('weights', this, 1)"/>
+                  <input id="convert" type="radio" value="1" name="conv" onclick="convType()"/>
                   <label for="conv"><?php echo JText::_("PAGE_CALC_PACKAGE_CONV"); ?></label>
                 </div>
+
                 <div class="radio-block">
-                  <input id="box" class="last" type="radio" value="2" name="conv" <?php echo ($_SESSION['conv'] == '2') ? 'checked="checked"' : ''; ?> onclick="hideMe('weights', this, 1)"/><label for="box"><?php echo JText::_("PAGE_CALC_PACKAGE_BOX"); ?></label>
+                  <input id="box" class="last" type="radio" value="2" name="conv" onclick="boxType()"/>
+                  <label for="box"><?php echo JText::_("PAGE_CALC_PACKAGE_BOX"); ?></label>
                 </div>
 
               </div>
             </div>
 
-          <div class="field hidden">
-              <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG"); ?><?php echo $_SESSION['calc_weight_kg'];?></p>
+          <div class="field -hidden">
+              <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG_TOTAL"); ?></p>
               <input type="text" id="weight_kg" oninput="checkWeight()" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
               <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
               <div id="express_rf_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_RF_ERROR"); ?></div>
@@ -699,7 +696,7 @@ session_start();
             <p class="calc-p"><label for="calc_places_lenght"><?php echo JText::_("PAGE_CALC_COUNT_PLACES"); ?></label></p>
 
             <select class="calc_places_lenght" onchange="addPlaces()" id="calc_places_lenght" name="calc_places_lenght">
-              <!-- <option value="-1" ><?php //echo "выберите кол-во мест"; ?></option> -->
+              <option value="-1" ><?php echo JText::_("PAGE_CALC_SET_COUNT_PLACES"); ?></option>
 
               <?php
                 $count_mest=10;
@@ -710,7 +707,7 @@ session_start();
             </select>
           </div>
 
-          <div class="field">
+          <div class="field" id="gabarits0">
             <div class="places-row">
               <p>Размеры отправляемых мест, см</p>
               <div class="place-box">
@@ -718,7 +715,7 @@ session_start();
                 <input type="text" class="short place_width" id="wid_0" value="" placeholder="ширина" name="calc_size[0][width]">x
                 <input type="text" class="short place_height" id="hei_0" value="" placeholder="высота" name="calc_size[0][height]">
               </div>
-              <input type="text" class="short place_weight" id="weight_0" value="" placeholder="вec" name="calc_size[0][weight]">
+              <!-- <input type="text" class="short place_weight _hidden" id="weight_0" value="" placeholder="вec" name="calc_size[0][weight]"> -->
               <input type="text" class="short place_vol_weight hidden" id="vol_weight_0" value="" name="calc_size[0][vol_weight]">
             </div>
           </div>
