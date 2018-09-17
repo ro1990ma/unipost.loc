@@ -725,7 +725,7 @@ session_start();
 
           </div>
 
-          <div class="field" id="weight2" style="display:block;">
+          <div class="field" id="weight2">
               <p><?php echo JText::_("PAGE_CALC_VOLUME_SIZE"); ?></p>
               <input style="width:86px;" id="wei" type="text" readonly="readonly" value="<?php echo $_SESSION['calc_size_kg']; ?>" maxlength="7" placeholder="" name="calc_size_kg"/>
                <div id="weight2_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">

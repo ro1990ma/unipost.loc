@@ -370,11 +370,17 @@ function hideMe (it, box, it2) {
 }
 
 function convType(){
+  console.log("CONVERT");
   $("#places-count, #gabarits0, #gabarits").addClass("hidden");
+
+  if ($("#type_docs_docs").prop("checked") == true){
+    $("#weight2").addClass("hidden");
+  }
 }
 
 function boxType(){
   $("#places-count, #gabarits0, #gabarits").removeClass("hidden");
+  $("#weight2").removeClass("hidden");
 }
 
 var doc = $('input#type_docs_docs"').prop('checked');
