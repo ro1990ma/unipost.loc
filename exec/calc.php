@@ -41,6 +41,7 @@ session_start();
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
     <div id="clear"></div>
 <?php
+  print_r((float)$EUR);
   if(isset($_POST['do_page_calc'])){
 
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
@@ -754,7 +755,7 @@ session_start();
 
       </div>
       </form>
-      <div class="form_img"></div>
+      <div class="form_img" style="display: none;"></div>
       <div id="clear"></div>
   <?php } ?>
   </div>
