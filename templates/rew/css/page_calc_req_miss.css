@@ -527,3 +527,8 @@ div.page_miss_call table tr td textarea {
 .eq1{ width: 100%;}
 .eq2{ width: 100%;}
 #block-get-from-ES-RF{width: 100%;}
+
+
+#error_by_enter_value{
+  color: red;
+}

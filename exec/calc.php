@@ -650,7 +650,7 @@ session_start();
           <label class="calc_s_title"><?php echo JText::_("PAGE_CALC_SEND_INF"); ?></label>
         </div>
 
-        <div class="field docs content-type">
+        <div class="field docs content-type hidden">
           <p class="calc-p"><label for="type_docs_ndocs"><?php echo JText::_("PAGE_CALC_TYPE_DOCS_NDOCS_INF"); ?>:</label></p>
           <div id="input_NDOCS">
             <input value="0" <?php echo ($_SESSION['type_docs_ndocs'] == '0') ? 'checked="checked"' : ''; ?>  type="radio" id="type_docs_ndocs" name="type_docs_ndocs"/>NDOCS
@@ -663,7 +663,7 @@ session_start();
         <div id="clear"></div>
         <div id="letter_sub">
           <div class="field">
-            <div id="package-type">
+            <div id="package-type" class="hidden">
               <label style="line-height:30px;height:30px;" for="convert"><?php echo JText::_("PAGE_CALC_PACKAGE"); ?></label>
               <div class="field" style="float:left;clear:none;" onload="hideMe()">
                 <input type="hidden" name="conv" value="0"/>
@@ -682,9 +682,10 @@ session_start();
               </div>
             </div>
 
-          <div class="field -hidden">
+          <div class="field fizical_weight">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG_TOTAL"); ?></p>
               <input type="text" id="weight_kg" oninput="checkWeight()" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
+              <div id="error_by_enter_value" class="hidden"><?php echo JText::_("ENTERED_VALUE_ERROR") ?> </div>
               <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
               <div id="express_rf_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_RF_ERROR"); ?></div>
           </div>

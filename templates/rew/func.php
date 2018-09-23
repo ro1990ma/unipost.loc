@@ -7,7 +7,7 @@ $db_eur = $db_currency->current_val;
 // Currency exchange rates START.
 		$data= date("d.m.Y",time());
 		$data_currency= date("d.m.y",time());
-		@$currency = simplexml_load_file("http://www.bnm.md/md/official_exchange_rates?get_xml=1&date=".$data);
+		$currency = simplexml_load_file("http://www.bnm.md/md/official_exchange_rates?get_xml=1&date=".$data);
 		$numb=0;
 		$EUR=0;
 		$USD=0;
@@ -22,7 +22,7 @@ $db_eur = $db_currency->current_val;
 				$RUB = $curr->Value;
 			}
 		   if($numb == 3){break;}
-		}				
+		}
 if ($db_eur !=0) {
 	$EUR = $db_eur;
 }

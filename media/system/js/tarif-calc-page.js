@@ -18,6 +18,17 @@ jQuery.fn.ForceNumericOnly = function(){
   });
 };
 
+$("#weight_kg").keydown(function(e){
+  if (e.key == ','){
+    $(this).addClass("alert");
+    $(this).closest(".fizical_weight").find("#error_by_enter_value").removeClass("hidden");
+    error = 20;
+  }else{
+    $(this).removeClass("alert");
+    $(this).closest(".fizical_weight").find("#error_by_enter_value").addClass("hidden");
+  }
+});
+
 
 //проверка физического веса
 function proverka(){
@@ -96,7 +107,6 @@ $("#do_calculate").live("click", function(){
 
   if (  ($(".places-row").size() != 0) && ($("#convert").is(':checked') == false)  ){
     // валидация габаритов----------------
-    console.log("0000");
     $('.places-row').each(function(i,e){
       var ln = 0;
       var wd = 0;
