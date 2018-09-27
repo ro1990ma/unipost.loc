@@ -96,7 +96,6 @@ $("#do_calculate").live("click", function(){
 
   if (  ($(".places-row").size() != 0) && ($("#convert").is(':checked') == false)  ){
     // валидация габаритов----------------
-    console.log("0000");
     $('.places-row').each(function(i,e){
       var ln = 0;
       var wd = 0;
@@ -386,7 +385,6 @@ function hideMe (it, box, it2) {
 }
 
 function convType(){
-  console.log("CONVERT***");
   $("#places-count, #gabarits0, #gabarits, #weight2").addClass("hidden");
 
   if ($("#type_docs_docs").prop("checked") == true){
@@ -408,6 +406,7 @@ var box = $('input#box').prop('checked');
 $('.my-ctrl-1').click(function(){
   $('.my-field-2').hide();
   $('.my-field-1').show();
+
 });
 
 $('.my-ctrl-2').click(function(){

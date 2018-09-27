@@ -532,3 +532,21 @@ div.page_miss_call table tr td textarea {
 #error_by_enter_value{
   color: red;
 }
+
+
+
+
+@-moz-document url-prefix(){
+  div.page_calc h3.page_title{
+    font-size: 18px;
+  }
+  div.page_calc label{
+    font-size: 11px;
+  }
+  div.page_calc select{
+    font-size: 11px;
+  }
+  div.page_calc input{
+    font-size: 11px;
+  }
+}

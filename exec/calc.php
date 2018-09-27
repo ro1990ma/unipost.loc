@@ -757,7 +757,7 @@ session_start();
 
       </div>
       </form>
-      <div class="form_img" style="display: none;"></div>
+      <div class="form_img"></div>
       <div id="clear"></div>
   <?php } ?>
   </div>
