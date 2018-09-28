@@ -41,7 +41,9 @@ session_start();
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
     <div id="clear"></div>
 <?php
-
+  print_r("W=");
+  $qw = "1.200";
+  print_r(ceil($qw));
 
   if(isset($_POST['do_page_calc'])){
 
@@ -140,7 +142,8 @@ session_start();
                 if($weight <= 0.5){
                   (float)$price = (float)$special_rf_town->tarif_less_05;
                 }else{
-                  $weight1 = (float)(($weight - 0.5) / 0.5);
+                  // $weight1 = (float)(($weight - 0.5) / 0.5);
+                  $weight1 = ceil(($weight - 0.5) / 0.5); // (1.6 - 0.5) = 1.1;  (1.1 / 0.5) = 2.2~ 3 ; 15 + (3 * 2.80)
                   (float)$price = (float)$special_rf_town->tarif_less_05 + ((float)$weight1 * (float)$special_rf_town->tarif_next_05);
                 }
 
@@ -152,8 +155,7 @@ session_start();
             }
 
             if($weight > 20.5){
-              // $weight_over = (float)(($weight - 20.50) / 0.5); // остаточный вес не округляется
-              $weight_over = round( ($weight - 20.50) / 0.5); //  остаточный вес округляется вперёд
+              $weight_over = ceil(($weight - 20.50) / 0.5); //  остаточный вес округляется вперёд
               (float)$price = (float)$city_obj->tarif_less_20 + ((float)$weight_over * (float)$city_obj->tarif_next_05);
             }
 
@@ -193,7 +195,7 @@ session_start();
               (float)$price = (float)$country_t3->doc_less05;
             }else{
               // $weight_over = floor(($weight - 0.5) / 0.5);
-              $weight_over = (($weight - 0.5) / 0.5);
+              $weight_over = ceil(($weight - 0.5) / 0.5);
               (float)$price = (float)$country_t3->doc_less05 + ((float)$country_t3->doc_more05 * $weight_over); //если за каждых 0,5 кг
             }
           }
@@ -204,7 +206,7 @@ session_start();
             if($weight <= 0.5){
               (float)$price = (float)$country_t3->not_doc_less05;
             }else{
-              $weight_over = ( ((float)$weight - 0.5) / 0.5);
+              $weight_over = ceil(($weight - 0.5) / 0.5);
               (float)$price = (float)$country_t3->not_doc_less05 + ((float)$country_t3->not_doc_more05 * (float)$weight_over);
               // (float)$price = (float)$country_t3->not_doc_more05 * (float)$weight_over; // 5-я колонка * на вес до 0,5 + за каждые следующие 0,5
             }
@@ -684,7 +686,8 @@ session_start();
 
           <div class="field fizical_weight">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG_TOTAL"); ?></p>
-              <input type="text" id="weight_kg" oninput="checkWeight()" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
+              <input type="text" id="weight_kg" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
+              <!-- <input type="text" id="weight_kg" oninput="checkWeight()" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" /> -->
               <div id="error_by_enter_value" class="hidden"><?php echo JText::_("ENTERED_VALUE_ERROR") ?> </div>
               <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
               <div id="express_rf_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_RF_ERROR"); ?></div>

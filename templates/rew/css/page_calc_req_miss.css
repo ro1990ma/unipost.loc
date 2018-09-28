@@ -345,7 +345,7 @@ div.page_miss_call table tr td textarea {
 
 
 .page_calc .form_img{
-  /*display: none;*/
+  display: none;
 }
 
 
@@ -500,6 +500,7 @@ div.page_miss_call table tr td textarea {
 .alert{
   border: 1px solid red !important;
   border-radius: 5px;
+  padding: 3px;
 }
 .place-box{
   float: left;

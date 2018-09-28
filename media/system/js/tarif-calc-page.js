@@ -18,6 +18,41 @@ jQuery.fn.ForceNumericOnly = function(){
   });
 };
 
+function clearFields(){
+  $('#type_speed_eco, #type_speed_exp').prop("checked", false);
+  $("#weight_kg, .place_length, .place_width, .place_height").val("");
+  $("#wei").val("");
+  $("#calc_places_lenght").val(0);
+}
+
+clearFields();
+
+$("#weight_kg").keyup(function(e){
+  var str = $(this).val();
+  var rezult = str.match(/[^0-9.]/g);
+
+  if(rezult == null){
+    $('.fizical_weight').removeClass("alert");
+    $("#error_by_enter_value").addClass("hidden");
+  }else{
+    $('.fizical_weight').addClass("alert");
+    $("#error_by_enter_value").removeClass("hidden");
+  }
+
+});
+
+$(".place_length, .place_width, .place_height").keyup(function(e){
+  var entered_value = $(this).val();
+  var rezult_str = entered_value.match(/[^0-9.]/g);
+
+  if(rezult_str == null){
+    $(this).removeClass("alert");
+  }else{
+    $(this).addClass("alert");
+  }
+
+});
+
 
 //проверка физического веса
 function proverka(){
