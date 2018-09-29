@@ -41,10 +41,6 @@ session_start();
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
     <div id="clear"></div>
 <?php
-  print_r("W=");
-  $qw = "1.200";
-  print_r(ceil($qw));
-
   if(isset($_POST['do_page_calc'])){
 
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
@@ -261,9 +257,18 @@ session_start();
               $price = $price - 1.80;
             }
 
-            if ($lang->getTag() == 'ru-RU'){ $qw_name = $country_t4->name_ru; }
-            if ($lang->getTag() == 'en-GB'){ $qw_name = $country_t4->name_en; }
-            if ($lang->getTag() == 'ro-RO'){ $qw_name = $country_t4->name_ro; }
+            if ($lang->getTag() == 'ru-RU'){
+              // $qw_name = $country_t4->name_ru;
+              $qw_name = "Молдавия";
+            }
+            if ($lang->getTag() == 'en-GB'){
+              // $qw_name = $country_t4->name_en;
+              $qw_name = "Moldova";
+            }
+            if ($lang->getTag() == 'ro-RO'){
+              // $qw_name = $country_t4->name_ro;
+              $qw_name = "Moldova";
+            }
             $qw_terms = $country_t4->terms;
             $qw_price = $price;
 
@@ -300,7 +305,8 @@ session_start();
                   if($weight <= 0.5){
                     (float)$price = (float)$special_getter->tarif_less_05;
                   }else{
-                    $weight1 = (float)(($weight - 0.5) / 0.5);
+                    // $weight1 = (float)(($weight - 0.5) / 0.5);
+                    $weight1 = ceil(($weight - 0.5) / 0.5);
                     (float)$price = (float)$special_getter->tarif_less_05 + ((float)$weight1 * (float)$special_getter->tarif_next_05);
                   }
                   $town_t5->terms = $special_getter->terms;
@@ -313,7 +319,7 @@ session_start();
 
             if($weight > 20.5){
               // $weight_over = floor(($weight - 20.50) / 0.5); //округление
-              $weight_over = (($weight - 20.50) / 0.5);
+              $weight_over = ceil(($weight - 20.50) / 0.5);
               (float)$price = (float)$town_t5->tarif_less_20 + ((float)$weight_over * (float)$town_t5->tarif_next_05);
             }
 
@@ -354,7 +360,7 @@ session_start();
             }else{
               // если сумма снимается за каждые 0,5 кг. которые превыщают первые 0,5 кг.
               // $weight_over = ((float)$weight / 0.5);
-              $weight_over = (((float)$weight - 0.5) / 0.5); // (1,6 - 0,5) = 1,1;    1.1 / 0.5 = 2.2
+              $weight_over = ceil(($weight - 0.5) / 0.5); // (1,6 - 0,5) = 1,1;    1.1 / 0.5 = 2.2
               (float)$price = (float)$country_t6->doc_less_05 + ((float)$country_t6->doc_more_05 * (float)$weight_over);
             }
           }
@@ -365,8 +371,8 @@ session_start();
             if($weight <= 0.5){
               (float)$price = (float)$country_t6->other_less_05;
             }else{
-              // $weight_over = ((float)$weight / 0.5);
-              $weight_over = (((float)$weight - 0.5) / 0.5); // 0,5 кроме изначальных 0,5 кг.
+              // $weight_over = (((float)$weight - 0.5) / 0.5); // 0,5 кроме изначальных 0,5 кг.
+              $weight_over = ceil(($weight - 0.5) / 0.5); // 0,5 кроме изначальных 0,5 кг.
               (float)$price =  (float)$country_t6->other_less_05 + ((float)$country_t6->other_more_05 * (float)$weight_over);
               // каждый следуйщий 0,5 + изходный 0,5
 
