@@ -42,6 +42,9 @@ session_start();
     <div id="clear"></div>
 <?php
   if(isset($_POST['do_page_calc'])){
+    echo "<pre>";
+      print_r($_POST);
+    echo "</pre>";
 
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
     $_SESSION['calc_weight_kg'] =      $_POST['calc_weight_kg'];
@@ -60,7 +63,8 @@ session_start();
     $_SESSION['calc_volume_kg'] =      $_POST['calc_volume_kg'];
 
     $_SESSION['destination'] = $_POST['destination'];
-
+    $_SESSION['calc_to_es_country'] = $_POST['calc_to_es_country'];
+    $_SESSION['calc_to_rf_cities'] = $_POST['calc_to_rf_cities'];
 
     $fizical_weight = (float)$_POST['calc_weight_kg'];
     $volume_weight = (float)$_POST['calc_size_kg'];
@@ -420,6 +424,21 @@ session_start();
 
   }else{
   ?>
+
+  <?php
+    // echo "<pre>";
+    // echo "QW: ";
+    // if(isset($_SESSION['destination'])){
+    //   echo "1";
+    // }else{
+    //   echo "0";
+    // }
+    //
+    // echo "<br><br><br>";
+    // print_r($_SESSION);
+    // echo "</pre>";
+
+  ?>
       <label><?php echo JText::_("PAGE_CALC_INFO"); ?></label>
       <form id="page_calc" action="" method="post" name="calculate_package">
       <div class="form_block">
@@ -429,12 +448,12 @@ session_start();
           <p class="calc-p"><label for="type_hu_you"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_WANT"); ?></label></p>
           <div class="radio-block">
 
-            <input value="0" <?php echo ($_SESSION['type_hu_you'] == '0') ? 'checked="checked"' : ''; ?> type="radio" id="type_hu_send" class="type-send" name="type_hu_you" />
+            <input value="0" <?php if (isset($_SESSION['type_hu_you'])){  echo ($_SESSION['type_hu_you'] == '0') ? 'checked="checked"' : '';  }else{ echo 'checked="checked"'; } ?> type="radio" id="type_hu_send" class="type-send" name="type_hu_you" />
             <label for="type_hu_send"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_DO_SEND"); ?></label>
           </div>
           <!-- получить -->
           <div class="radio-block">
-            <input value="1" <?php echo ($_SESSION['type_hu_you'] == '1') ? 'checked="checked"' : ''; ?> type="radio" id="type_hu_rec" class="type-rec" name="type_hu_you"/>
+            <input value="1" <?php if (isset($_SESSION['type_hu_you'])){  echo ($_SESSION['type_hu_you'] == '1') ? 'checked="checked"' : '';  } ?> type="radio" id="type_hu_rec" class="type-rec" name="type_hu_you"/>
             <label for="type_hu_rec"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_DO_REC"); ?></label>
           </div>
         </div>
@@ -457,23 +476,23 @@ session_start();
         </div>
 
 
-        <div class="field docs eq2 <?php if (empty($_SESSION['destination'])){ echo "hidden"; } ?>" id="block-send-to-ES-RF">
+        <div class="field docs eq2 <?php if ( isset($_SESSION['destination']) ){ echo ""; }else{ echo "hidden"; } ?>" id="block-send-to-ES-RF">
           <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_SEND_TO_COUNTRYS"); ?></label></p>
           <!-- доставить в страны ес -->
           <div class="radio-block">
-            <input type="radio" id="to_countrys_eu" name="destination" value="0" onclick="selectES()"/>
+            <input <?php echo ($_SESSION['destination'] == '0') ? 'checked="checked"' : ''; ?> type="radio" id="to_countrys_eu" name="destination" value="0" onclick="selectES()"/>
             <label for="to_countrys_eu"> <?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?></label>
           </div>
           <!-- доставить в города рф -->
           <div class="radio-block">
-            <input type="radio" id="to_sities_rf" name="destination" value="1" onclick="selectRF()"/>
+            <input <?php echo ($_SESSION['destination'] == '1') ? 'checked="checked"' : ''; ?> type="radio" id="to_sities_rf" name="destination" value="1" onclick="selectRF()"/>
             <label for="to_sities_rf"><?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></label>
           </div>
           <div class="error-msg-right hidden"><?php echo JText::_("PAGE_CALC_ERROR_MSG2"); ?></div>
         </div>
 
         <!-- отправить эконом в ЕС-->
-        <div class="field hidden" id="block-ES-countries">
+        <div class="field <?php if ( isset($_SESSION['calc_to_es_country']) && isset($_SESSION['destination']) && $_SESSION['destination'] == 0 ){ echo ""; }else{ echo "hidden";} ?>" id="block-ES-countries">
           <p class="calc-p">
             <label for="to_es"> <?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?> </label>
           </p>
@@ -486,7 +505,7 @@ session_start();
 
             <?php
               foreach($query_countries_eu_t1 as $country_eu) {?>
-                <option value='<?php echo $country_eu->id;?>'<?php echo($_SESSION['country_eu'] == $country_eu->id) ? 'selected="selected"' : ''; ?>>
+                <option value='<?php echo $country_eu->id;?>'<?php echo($_SESSION['calc_to_es_country'] == $country_eu->id) ? 'selected="selected"' : ''; ?>>
                   <?php if ($lang->getTag() == 'ru-RU'){echo $country_eu->name_ru;}?>
                   <?php if ($lang->getTag() == 'en-GB'){echo $country_eu->name_en;}?>
                   <?php if ($lang->getTag() == 'ro-RO'){echo $country_eu->name_ro;}?>
@@ -497,7 +516,7 @@ session_start();
         </div>
 
         <!-- отправить эконом в РФ-->
-        <div class="field hidden" id="block-RF-cities">
+        <div class="field <?php if ( isset($_SESSION['calc_to_rf_cities']) && isset($_SESSION['destination']) && $_SESSION['destination'] == 1  ){ echo ""; }else{ echo "hidden"; } ?>" id="block-RF-cities">
           <p class="calc-p">
             <label for="to_rf"> <?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></label>
           </p>
@@ -511,7 +530,7 @@ session_start();
             <?php
               $disable = '';
               foreach($query_city_rf_t2 as $city_rf) {?>
-                <option value='<?php echo $city_rf->id;?>' <?php echo ($_SESSION['city_rf'] == $city_rf->id) ? 'selected="selected"' : ''; ?>
+                <option value='<?php echo $city_rf->id;?>' <?php echo ($_SESSION['calc_to_rf_cities'] == $city_rf->id) ? 'selected="selected"' : ''; ?>
 
                   <?php if ($city_rf->special != 0){
                     $option_class = 'special';
