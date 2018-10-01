@@ -18,14 +18,14 @@ jQuery.fn.ForceNumericOnly = function(){
   });
 };
 
-function clearFields(){
-  $('#type_speed_eco, #type_speed_exp').prop("checked", false);
-  $("#weight_kg, .place_length, .place_width, .place_height").val("");
-  $("#wei").val("");
-  $("#calc_places_lenght").val(0);
-}
+// function clearFields(){
+//   $('#type_speed_eco, #type_speed_exp').prop("checked", false);
+//   $("#weight_kg, .place_length, .place_width, .place_height").val("");
+//   $("#wei").val("");
+//   $("#calc_places_lenght").val(0);
+// }
 
-clearFields();
+// clearFields();
 
 $("#weight_kg").keyup(function(e){
   var str = $(this).val();

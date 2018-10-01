@@ -59,6 +59,8 @@ session_start();
     $_SESSION['calc_size_z'] =         $_POST['calc_size_z'];
     $_SESSION['calc_volume_kg'] =      $_POST['calc_volume_kg'];
 
+    $_SESSION['destination'] = $_POST['destination'];
+
 
     $fizical_weight = (float)$_POST['calc_weight_kg'];
     $volume_weight = (float)$_POST['calc_size_kg'];
@@ -426,12 +428,13 @@ session_start();
         <div class="field docs eq0">
           <p class="calc-p"><label for="type_hu_you"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_WANT"); ?></label></p>
           <div class="radio-block">
-            <input value="0" type="radio" id="type_hu_send" class="type-send" name="type_hu_you" checked="checked"/>
+
+            <input value="0" <?php echo ($_SESSION['type_hu_you'] == '0') ? 'checked="checked"' : ''; ?> type="radio" id="type_hu_send" class="type-send" name="type_hu_you" />
             <label for="type_hu_send"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_DO_SEND"); ?></label>
           </div>
           <!-- получить -->
           <div class="radio-block">
-            <input value="1" type="radio" id="type_hu_rec" class="type-rec" name="type_hu_you"/>
+            <input value="1" <?php echo ($_SESSION['type_hu_you'] == '1') ? 'checked="checked"' : ''; ?> type="radio" id="type_hu_rec" class="type-rec" name="type_hu_you"/>
             <label for="type_hu_rec"><?php echo JText::_("PAGE_CALC_TYPE_YOU_HU_DO_REC"); ?></label>
           </div>
         </div>
@@ -440,19 +443,21 @@ session_start();
           <p class="calc-p"><label for="type_speed"><?php echo JText::_("PAGE_CALC_SEND_SELECT_TARIF"); ?></label></p>
           <!-- эконом -->
           <div class="radio-block">
-            <input value="0" type="radio" id="type_speed_eco" class="type-econom" name="type_speed"/>
+            <input value="0" <?php echo ($_SESSION['type_speed'] == '0') ? 'checked="checked"' : ''; ?> type="radio" id="type_speed_eco" class="type-econom" name="type_speed"/>
+            <!-- <input value="0" type="radio" id="type_speed_eco" class="type-econom" name="type_speed"/> -->
             <label for="type_speed_eco"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_ECO"); ?></label>
           </div>
           <!-- экспресс -->
           <div class="radio-block">
-            <input value="1" type="radio" id="type_speed_exp" class="type-express" name="type_speed"/>
+            <input value="1" <?php echo ($_SESSION['type_speed'] == '1') ? 'checked="checked"' : ''; ?> type="radio" id="type_speed_exp" class="type-express" name="type_speed"/>
+            <!-- <input value="1" type="radio" id="type_speed_exp" class="type-express" name="type_speed"/> -->
             <label for="type_speed_exp"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_EXP"); ?></label>
           </div>
           <div class="error-msg-right hidden"><?php echo JText::_("PAGE_CALC_ERROR_MSG1"); ?></div>
         </div>
 
 
-        <div class="field docs eq2 hidden" id="block-send-to-ES-RF">
+        <div class="field docs eq2 <?php if (empty($_SESSION['destination'])){ echo "hidden"; } ?>" id="block-send-to-ES-RF">
           <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_SEND_TO_COUNTRYS"); ?></label></p>
           <!-- доставить в страны ес -->
           <div class="radio-block">
@@ -692,7 +697,7 @@ session_start();
 
           <div class="field fizical_weight">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG_TOTAL"); ?></p>
-              <input type="text" id="weight_kg" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
+              <input type="text" id="weight_kg" value="<?php echo $_SESSION['calc_weight_kg'];?>" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
               <!-- <input type="text" id="weight_kg" oninput="checkWeight()" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" /> -->
               <div id="error_by_enter_value" class="hidden"><?php echo JText::_("ENTERED_VALUE_ERROR") ?> </div>
               <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
