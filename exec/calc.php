@@ -41,8 +41,8 @@ session_start();
     <h3 class="page_title"><?php echo JText::_('CALC_TITLE1'); ?></h3>
     <div id="clear"></div>
 <?php
-  if(isset($_POST['do_page_calc'])){
 
+  if(isset($_POST['do_page_calc'])){
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
     $_SESSION['calc_weight_kg'] =      $_POST['calc_weight_kg'];
     $_SESSION['tariff'] =              $_POST['tariff'];
@@ -338,9 +338,18 @@ session_start();
               $price = $price + 1.80;
             }
 
-            if ($lang->getTag() == 'ru-RU'){ $qw_name = $town_t5->name_ru; }
-            if ($lang->getTag() == 'en-GB'){ $qw_name = $town_t5->name_en; }
-            if ($lang->getTag() == 'ro-RO'){ $qw_name = $town_t5->name_ro; }
+            if ($lang->getTag() == 'ru-RU'){
+              // $qw_name = $town_t5->name_ru;
+              $qw_name = "Молдавия";
+            }
+            if ($lang->getTag() == 'en-GB'){
+              // $qw_name = $town_t5->name_en;
+              $qw_name = "Moldova";
+            }
+            if ($lang->getTag() == 'ro-RO'){
+              // $qw_name = $town_t5->name_ro;
+              $qw_name = "Moldova";
+            }
             $qw_terms = $town_t5->terms;
             $qw_price = $price;
 
@@ -394,9 +403,19 @@ session_start();
             $price = $price - 1.50;
           }
 
-          if ($lang->getTag() == 'ru-RU'){ $qw_name = $country_t6->name_ru; }
-          if ($lang->getTag() == 'en-GB'){ $qw_name = $country_t6->name_en; }
-          if ($lang->getTag() == 'ro-RO'){ $qw_name = $country_t6->name_ro; }
+          if ($lang->getTag() == 'ru-RU'){
+            $qw_name = "Молдавия";
+            // $qw_name = $country_t6->name_ru;
+          }
+          if ($lang->getTag() == 'en-GB'){
+            $qw_name = "Moldova";
+            // $qw_name = $country_t6->name_en;
+          }
+          if ($lang->getTag() == 'ro-RO'){
+            $qw_name = "Moldova";
+            // $qw_name = $country_t6->name_ro;
+          }
+
           $qw_terms = $country_t6->terms;
           $qw_price = $price;
 
@@ -428,11 +447,14 @@ session_start();
     // echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
 
   }else{
-    print_r(isset($_SESSION['calc_size']));
+  // echo "<pre>";
+  // print_r($_SESSION);
+  // echo "</pre>";
   ?>
 
-      <label><?php echo JText::_("PAGE_CALC_INFO"); ?></label>
-      <form id="page_calc" action="" method="post" name="calculate_package">
+
+  <label><?php echo JText::_("PAGE_CALC_INFO"); ?></label>
+  <form id="page_calc" action="" method="post" name="calculate_package">
       <div class="form_block">
 
         <!-- отправить -->
@@ -743,7 +765,7 @@ session_start();
 
         <div class="field docs content-type
           <?php
-            if ( ($_SESSION['type_hu_you'] == 1) && ($_SESSION['type_speed'] == 1) && (isset($_SESSION['tarif_express_import_global'])) ){
+            if ( ($_SESSION['type_speed'] == 1) && (isset($_SESSION['tarif_express_import_global'])) ){
               echo "";
             }else{
               echo "hidden";
@@ -764,7 +786,7 @@ session_start();
           <div class="field">
             <div id="package-type" class="
               <?php
-                if ( ($_SESSION['type_hu_you'] == 1) && ($_SESSION['type_speed'] == 1) && (isset($_SESSION['tarif_express_import_global'])) ){
+                if ( ($_SESSION['type_speed'] == 1) && (isset($_SESSION['tarif_express_import_global'])) ){
                   echo "";
                 }else{
                   echo "hidden";
@@ -791,7 +813,6 @@ session_start();
           <div class="field fizical_weight">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG_TOTAL"); ?></p>
               <input type="text" id="weight_kg" value="<?php echo $_SESSION['calc_weight_kg'];?>" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
-              <!-- <input type="text" id="weight_kg" oninput="checkWeight()" value="" placeholder="введите вес"  name="calc_weight_kg" class="t1" /> -->
               <div id="error_by_enter_value" class="hidden"><?php echo JText::_("ENTERED_VALUE_ERROR") ?> </div>
               <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
               <div id="express_rf_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_RF_ERROR"); ?></div>
@@ -802,7 +823,7 @@ session_start();
           </div>
 
           <!-- Количество мест -->
-          <div class="field" id="places-count">
+          <div class="field <?php if ($_SESSION['conv'] == 1){echo "hidden";}else{echo "";} ?>" id="places-count">
             <p class="calc-p"><label for="calc_places_lenght"><?php echo JText::_("PAGE_CALC_COUNT_PLACES"); ?></label></p>
 
             <select class="calc_places_lenght" onchange="addPlaces()" id="calc_places_lenght" name="calc_places_lenght">
@@ -812,7 +833,8 @@ session_start();
                 if(isset($_SESSION['calc_places_lenght'])){
                   echo $_SESSION['calc_places_lenght'];
                 }else{
-                  echo "-1";
+                  // echo "-1";
+                  echo JText::_("PAGE_CALC_SET_COUNT_PLACES");
                 }?>">
 
               <?php
@@ -834,7 +856,7 @@ session_start();
             </select>
           </div>
 
-          <div class="field" id="gabarits">
+          <div class="field <?php if ($_SESSION['conv'] == 1){echo "hidden";}else{echo "";} ?>" id="gabarits">
 
             <?php if(isset($_SESSION['calc_size'])){
               $arr = $_SESSION['calc_size'];
@@ -847,7 +869,7 @@ session_start();
                     <input type="text" class="short place_width" id="wid_<?php echo $key;?>" value="<?php echo $val['width']; ?>" placeholder="ширина" name="calc_size[<?php echo $key; ?>][width]">x
                     <input type="text" class="short place_height" id="hei_<?php echo $key;?>" value="<?php echo $val['height']; ?>" placeholder="высота" name="calc_size[<?php echo $key; ?>][height]">
                   </div>
-                  <input type="text" class="short place_vol_weight hidden" id="vol_weight_<?php echo $key;?>" value="" name="calc_size[<?php echo $key;?>][vol_weight]">
+                  <input type="text" class="short place_vol_weight hidden" id="vol_weight_<?php echo $key;?>" value="<?php echo $val['vol_weight'];?>" name="calc_size[<?php echo $key;?>][vol_weight]">
                 </div>
 
             <?php } }else{ ?>
@@ -865,17 +887,16 @@ session_start();
             <?php } ?>
           </div>
 
+          <div class="field <?php if ($_SESSION['conv'] == 1){echo "hidden";}else{echo "";} ?>" id="weight2">
+            <p><?php echo JText::_("PAGE_CALC_VOLUME_SIZE"); ?></p>
 
-          <!-- <div class="field" id="gabarits"></div> -->
 
-          <div class="field" id="weight2">
-              <p><?php echo JText::_("PAGE_CALC_VOLUME_SIZE"); ?></p>
-              <input style="width:86px;" id="wei" type="text" readonly="readonly" value="<?php echo $_SESSION['calc_size_kg']; ?>" maxlength="7" placeholder="" name="calc_size_kg"/>
-               <div id="weight2_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
-               <?php echo JText::_("VOLUME_WEIGHT"); ?>
-               </div>
-                </div>
+            <input id="wei" type="text" readonly="readonly" value="<?php echo $_SESSION['calc_size_kg']; ?>" maxlength="7" placeholder="" name="calc_size_kg"/>
+            <div id="weight2_error" style="display: none; color:red;  float: right;  max-width: 200px;  margin-top: 10px;  margin-left: 5px;">
+             <?php echo JText::_("VOLUME_WEIGHT"); ?>
+            </div>
           </div>
+        </div>
 
           <div class="field" id="sentFromOfficeBlock">
             <label for="sentFromOffice"><?php echo JText::_("PAGE_CALC_SENT_FROME_OFFICE"); ?></label>
@@ -891,8 +912,8 @@ session_start();
         <div id="clear"></div>
 
         <div class="btn-group">
-          <button type="submit" class="btl-buttonsubmit" id="do_calculate"name="do_page_calc"><?php echo JText::_("PAGE_CALC_DO_CALC"); ?></button>
-          <button type="button" class="btl-buttonsubmit" id="do_cancel"> <?php echo JText::_("PAGE_CALC_DO_CANCEL"); ?></button>
+          <button type="submit" class="btl-buttonsubmit" id="do_calculate" name="do_page_calc"><?php echo JText::_("PAGE_CALC_DO_CALC"); ?></button>
+          <button type="button" class="btl-buttonsubmit" id="do_cancel" name="do_cancel"> <?php echo JText::_("PAGE_CALC_DO_CANCEL"); ?></button>
         </div>
 
       </div>

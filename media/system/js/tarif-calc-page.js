@@ -595,7 +595,6 @@ function addPlaces(){
       '<input type="text" class="short place_width" id="wid_' + i + '" value="" placeholder="ширина"  name="calc_size[' + i + '][width]">x' +
       '<input type="text" class="short place_height" id="hei_' + i + '" value="" placeholder="высота"  name="calc_size[' + i + '][height]">' +
       '</div>' +
-      // '<input type="text" class="short place_weight _hidden" id="weight_' + i + '" value="" placeholder="вec"  name="calc_size[' + i + '][weight]">' +
       '<input type="text" class="short place_vol_weight hidden" id="vol_weight_' + i + '" value="" name="calc_size[' + i + '][vol_weight]">' +
       '</div>';
     $('#gabarits').append(row);
