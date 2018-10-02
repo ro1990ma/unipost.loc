@@ -42,9 +42,6 @@ session_start();
     <div id="clear"></div>
 <?php
   if(isset($_POST['do_page_calc'])){
-    echo "<pre>";
-      print_r($_POST);
-    echo "</pre>";
 
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
     $_SESSION['calc_weight_kg'] =      $_POST['calc_weight_kg'];
@@ -62,9 +59,17 @@ session_start();
     $_SESSION['calc_size_z'] =         $_POST['calc_size_z'];
     $_SESSION['calc_volume_kg'] =      $_POST['calc_volume_kg'];
 
-    $_SESSION['destination'] = $_POST['destination'];
+    $_SESSION['destination'] =  $_POST['destination'];
     $_SESSION['calc_to_es_country'] = $_POST['calc_to_es_country'];
     $_SESSION['calc_to_rf_cities'] = $_POST['calc_to_rf_cities'];
+    $_SESSION['tarif_express_export_countries'] = $_POST['tarif_express_export_countries'];
+    $_SESSION['receiver'] = $_POST['receiver'];
+    $_SESSION['tarif_econom_import_ES'] = $_POST['tarif_econom_import_ES'];
+    $_SESSION['tarif_econom_import_RF'] = $_POST['tarif_econom_import_RF'];
+    $_SESSION['tarif_express_import_global'] = $_POST['tarif_express_import_global'];
+    $_SESSION['calc_places_lenght'] = $_POST['calc_places_lenght'];
+    $_SESSION['calc_size'] = $_POST['calc_size'];
+
 
     $fizical_weight = (float)$_POST['calc_weight_kg'];
     $volume_weight = (float)$_POST['calc_size_kg'];
@@ -423,22 +428,9 @@ session_start();
     // echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
 
   }else{
+    print_r(isset($_SESSION['calc_size']));
   ?>
 
-  <?php
-    // echo "<pre>";
-    // echo "QW: ";
-    // if(isset($_SESSION['destination'])){
-    //   echo "1";
-    // }else{
-    //   echo "0";
-    // }
-    //
-    // echo "<br><br><br>";
-    // print_r($_SESSION);
-    // echo "</pre>";
-
-  ?>
       <label><?php echo JText::_("PAGE_CALC_INFO"); ?></label>
       <form id="page_calc" action="" method="post" name="calculate_package">
       <div class="form_block">
@@ -463,20 +455,27 @@ session_start();
           <!-- эконом -->
           <div class="radio-block">
             <input value="0" <?php echo ($_SESSION['type_speed'] == '0') ? 'checked="checked"' : ''; ?> type="radio" id="type_speed_eco" class="type-econom" name="type_speed"/>
-            <!-- <input value="0" type="radio" id="type_speed_eco" class="type-econom" name="type_speed"/> -->
             <label for="type_speed_eco"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_ECO"); ?></label>
           </div>
           <!-- экспресс -->
           <div class="radio-block">
             <input value="1" <?php echo ($_SESSION['type_speed'] == '1') ? 'checked="checked"' : ''; ?> type="radio" id="type_speed_exp" class="type-express" name="type_speed"/>
-            <!-- <input value="1" type="radio" id="type_speed_exp" class="type-express" name="type_speed"/> -->
             <label for="type_speed_exp"><?php echo JText::_("PAGE_CALC_TYPE_SPEED_EXP"); ?></label>
           </div>
           <div class="error-msg-right hidden"><?php echo JText::_("PAGE_CALC_ERROR_MSG1"); ?></div>
         </div>
 
 
-        <div class="field docs eq2 <?php if ( isset($_SESSION['destination']) ){ echo ""; }else{ echo "hidden"; } ?>" id="block-send-to-ES-RF">
+        <div class="field docs eq2
+          <?php
+            if ( ($_SESSION['type_hu_you'] == 0) && ($_SESSION['type_speed'] == 0) && (isset($_SESSION['destination'])) ){
+              echo "";
+            }else{
+              echo "hidden";
+            }
+          ?>"
+          id="block-send-to-ES-RF">
+
           <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_SEND_TO_COUNTRYS"); ?></label></p>
           <!-- доставить в страны ес -->
           <div class="radio-block">
@@ -492,7 +491,14 @@ session_start();
         </div>
 
         <!-- отправить эконом в ЕС-->
-        <div class="field <?php if ( isset($_SESSION['calc_to_es_country']) && isset($_SESSION['destination']) && $_SESSION['destination'] == 0 ){ echo ""; }else{ echo "hidden";} ?>" id="block-ES-countries">
+        <div class="field
+          <?php if( ($_SESSION['type_hu_you'] == 0) && ($_SESSION['type_speed'] == 0) && ($_SESSION['destination'] == 0) && (isset($_SESSION['calc_to_es_country'])) ){
+            echo "";
+          }else{
+            echo "hidden";
+          } ?>"
+          id="block-ES-countries">
+
           <p class="calc-p">
             <label for="to_es"> <?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?> </label>
           </p>
@@ -516,7 +522,14 @@ session_start();
         </div>
 
         <!-- отправить эконом в РФ-->
-        <div class="field <?php if ( isset($_SESSION['calc_to_rf_cities']) && isset($_SESSION['destination']) && $_SESSION['destination'] == 1  ){ echo ""; }else{ echo "hidden"; } ?>" id="block-RF-cities">
+        <div class="field
+          <?php if ( ($_SESSION['type_hu_you'] == 0) && ($_SESSION['type_speed'] == 0) && ($_SESSION['destination'] == 1) && (isset($_SESSION['calc_to_rf_cities']))  ){
+            echo "";
+          }else{
+            echo "hidden";
+          } ?>"
+          id="block-RF-cities">
+
           <p class="calc-p">
             <label for="to_rf"> <?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></label>
           </p>
@@ -549,9 +562,18 @@ session_start();
           <div class="error-msg-sub hidden"><?php echo JText::_("PAGE_CALC_ERROR_MSG4"); ?></div>
         </div>
         <!-- тариф отправить экспресс -->
-        <div class="field hidden" id="block-all-countries">
+        <div class="field
+          <?php
+            if ( ($_SESSION['type_hu_you'] == 0) && ($_SESSION['type_speed'] == 1) && (isset($_SESSION['tarif_express_export_countries'])) ){
+              echo "";
+            }else{
+              echo "hidden";
+            }
+          ?>"
+          id="block-all-countries">
+
           <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_SEND_TO_COUNTRYS"); ?></label></p>
-          <select id="tarif_express_export_countries" name="tarif_express_export_countries" onchange="">
+          <select id="tarif_express_export_countries" name="tarif_express_export_countries" >
             <?php if (isset($query_city_rf_t2)){ ?>
               <option value="-1" ><?php echo JText::_("PAGE_CALC_SEND_SELECT"); ?></option>
             <?php }else{?>
@@ -561,7 +583,7 @@ session_start();
             <?php
               foreach($query_tarif_express_export_t3 as $tarif_t3) {?>
                 <option value='<?php echo $tarif_t3->id;?>'
-                  <?php echo ($_SESSION['tarif_expres_export'] == $tarif_t3->id) ? 'selected="selected"' : ''; ?>>
+                  <?php echo ($_SESSION['tarif_express_export_countries'] == $tarif_t3->id) ? 'selected="selected"' : ''; ?>>
 
                   <?php if ($lang->getTag() == 'ru-RU'){echo $tarif_t3->name_ru;}?>
                   <?php if ($lang->getTag() == 'en-GB'){echo $tarif_t3->name_en;}?>
@@ -574,21 +596,39 @@ session_start();
         </div>
 
         <!-- получить эконом -->
-        <div class="field hidden" id="block-get-from-ES-RF">
+        <div class="field
+          <?php
+            if ( ($_SESSION['type_hu_you'] == 1) && ($_SESSION['type_speed'] == 0) && ( isset($_SESSION['receiver']) ) ){
+              echo "";
+            }else{
+              echo "hidden";
+            }
+          ?>"
+          id="block-get-from-ES-RF">
+
           <p class="calc-p"><label for=""><?php echo JText::_("PAGE_CALC_GET_FROM"); ?></label></p>
           <div class="radio-block">
-            <input id="get_from_country_es" type="radio" name="receiver" value="0" onclick="getFromCountryES()"/>
+            <input <?php echo ($_SESSION['receiver'] == '0') ? 'checked="checked"' : '';?> id="get_from_country_es" type="radio" name="receiver" value="0" onclick="getFromCountryES()"/>
             <label for="get_from_country_es"> <?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?></label>
           </div>
           <div class="radio-block">
-            <input id="get_from_town_rf" type="radio" name="receiver" value="1" onclick="getFromTownRF()"/>
+            <input <?php echo ($_SESSION['receiver'] == '1') ? 'checked="checked"' : '';?> id="get_from_town_rf" type="radio" name="receiver" value="1" onclick="getFromTownRF()"/>
             <label for="get_from_town_rf"><?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></label>
           </div>
           <div class="error-msg-right hidden"><?php echo JText::_("PAGE_CALC_ERROR_MSG6"); ?></div>
         </div>
 
 
-        <div class="field hidden" id="block-get-econom-ES">
+        <div class="field
+          <?php
+            if(  ($_SESSION['type_hu_you'] == 1) && ($_SESSION['type_speed'] == 0) && ($_SESSION['receiver'] == 0) && (isset($_SESSION['tarif_econom_import_ES']))  ){
+              echo "";
+            }else{
+              echo "hidden";
+            }
+          ?>"
+          id="block-get-econom-ES">
+
           <p class="calc-p">
             <label for="tarif_econom_import_ES"><?php echo JText::_("PAGE_CALC_COUNTRIS_EU"); ?></label>
           </p>
@@ -601,7 +641,7 @@ session_start();
             <?php }?>
 
             <?php foreach($econom_import_country_t4 as $country) {?>
-              <option value='<?php echo $country->id;?>'<?php echo($_SESSION['country_eu'] == $country->id) ? 'selected="selected"' : ''; ?> >
+              <option value='<?php echo $country->id;?>'<?php echo($_SESSION['tarif_econom_import_ES'] == $country->id) ? 'selected="selected"' : ''; ?> >
 
                 <?php if ($lang->getTag() == 'ru-RU'){echo $country->name_ru;}?>
                 <?php if ($lang->getTag() == 'en-GB'){echo $country->name_en;}?>
@@ -613,7 +653,17 @@ session_start();
           <div class="error-msg-sub hidden"><?php echo JText::_("PAGE_CALC_ERROR_MSG5"); ?></div>
         </div>
 
-        <div class="field hidden" id="block-get-econom-RF">
+
+        <div class="field
+          <?php
+            if(  ($_SESSION['type_hu_you'] == 1) && ($_SESSION['type_speed'] == 0) && ($_SESSION['receiver'] == 1) && (isset($_SESSION['tarif_econom_import_RF']))  ){
+              echo "";
+            }else{
+              echo "hidden";
+            }
+          ?>"
+          id="block-get-econom-RF">
+
           <p class="calc-p">
             <label for="tarif_econom_import_RF"><?php echo JText::_("PAGE_CALC_CITIES_RF"); ?></label>
           </p>
@@ -625,7 +675,7 @@ session_start();
             <?php }?>
 
             <?php foreach($towns_rf_t5 as $town) {?>
-              <option value='<?php echo $town->id;?>'<?php echo($_SESSION['country_eu'] == $town->id) ? 'selected="selected"' : ''; ?>
+              <option value='<?php echo $town->id;?>'<?php echo($_SESSION['tarif_econom_import_RF'] == $town->id) ? 'selected="selected"' : ''; ?>
 
                 <?php if ($town->spec != 0){
                   $option_class = 'special';
@@ -645,7 +695,16 @@ session_start();
           <div class="error-msg-sub hidden"><?php echo JText::_("PAGE_CALC_ERROR_MSG5"); ?></div>
         </div>
 
-        <div class="field hidden" id="block-get-express-import">
+        <div class="field
+          <?php
+            if (  ($_SESSION['type_hu_you'] == 1) && ($_SESSION['type_speed'] == 1) && (isset($_SESSION['tarif_express_import_global'])) ){
+              echo "";
+            }else{
+              echo "hidden";
+            }
+          ?>"
+          id="block-get-express-import">
+
           <p class="calc-p"><label for="tarif_express_import_global"><?php echo JText::_("PAGE_CALC_GET_FROM"); ?></label></p>
           <select id="tarif_express_import_global" name="tarif_express_import_global">
             <?php if (isset($express_import_country_t6)){ ?>
@@ -655,7 +714,7 @@ session_start();
             <?php }?>
 
             <?php foreach($express_import_country_t6 as $country) {?>
-              <option value='<?php echo $country->id;?>'<?php echo($_SESSION['country_global'] == $country->id) ? 'selected="selected"' : ''; ?> >
+              <option value='<?php echo $country->id;?>'<?php echo($_SESSION['tarif_express_import_global'] == $country->id) ? 'selected="selected"' : ''; ?> >
 
                 <?php if ($lang->getTag() == 'ru-RU'){echo $country->name_ru;}?>
                 <?php if ($lang->getTag() == 'en-GB'){echo $country->name_en;}?>
@@ -682,7 +741,15 @@ session_start();
           <label class="calc_s_title"><?php echo JText::_("PAGE_CALC_SEND_INF"); ?></label>
         </div>
 
-        <div class="field docs content-type hidden">
+        <div class="field docs content-type
+          <?php
+            if ( ($_SESSION['type_hu_you'] == 1) && ($_SESSION['type_speed'] == 1) && (isset($_SESSION['tarif_express_import_global'])) ){
+              echo "";
+            }else{
+              echo "hidden";
+            }
+          ?>">
+
           <p class="calc-p"><label for="type_docs_ndocs"><?php echo JText::_("PAGE_CALC_TYPE_DOCS_NDOCS_INF"); ?>:</label></p>
           <div id="input_NDOCS">
             <input value="0" <?php echo ($_SESSION['type_docs_ndocs'] == '0') ? 'checked="checked"' : ''; ?>  type="radio" id="type_docs_ndocs" name="type_docs_ndocs"/>NDOCS
@@ -695,19 +762,26 @@ session_start();
         <div id="clear"></div>
         <div id="letter_sub">
           <div class="field">
-            <div id="package-type" class="hidden">
+            <div id="package-type" class="
+              <?php
+                if ( ($_SESSION['type_hu_you'] == 1) && ($_SESSION['type_speed'] == 1) && (isset($_SESSION['tarif_express_import_global'])) ){
+                  echo "";
+                }else{
+                  echo "hidden";
+                }
+              ?>">
               <label style="line-height:30px;height:30px;" for="convert"><?php echo JText::_("PAGE_CALC_PACKAGE"); ?></label>
               <div class="field" style="float:left;clear:none;" onload="hideMe()">
                 <input type="hidden" name="conv" value="0"/>
                 <input type="hidden" name="box" value="0"/>
 
                 <div class="radio-block">
-                  <input id="convert" type="radio" value="1" name="conv" onclick="convType()"/>
+                  <input <?php echo ($_SESSION['conv'] == '1') ? 'checked="checked"' : ''; ?> id="convert" type="radio" value="1" name="conv" onclick="convType()"/>
                   <label for="conv"><?php echo JText::_("PAGE_CALC_PACKAGE_CONV"); ?></label>
                 </div>
 
                 <div class="radio-block">
-                  <input id="box" class="last" type="radio" value="2" name="conv" onclick="boxType()"/>
+                  <input <?php echo ($_SESSION['conv'] == '2') ? 'checked="checked"' : ''; ?> id="box" class="last" type="radio" value="2" name="conv" onclick="boxType()"/>
                   <label for="box"><?php echo JText::_("PAGE_CALC_PACKAGE_BOX"); ?></label>
                 </div>
 
@@ -732,7 +806,24 @@ session_start();
             <p class="calc-p"><label for="calc_places_lenght"><?php echo JText::_("PAGE_CALC_COUNT_PLACES"); ?></label></p>
 
             <select class="calc_places_lenght" onchange="addPlaces()" id="calc_places_lenght" name="calc_places_lenght">
-              <option value="-1" ><?php echo JText::_("PAGE_CALC_SET_COUNT_PLACES"); ?></option>
+
+              <option value="
+              <?php
+                if(isset($_SESSION['calc_places_lenght'])){
+                  echo $_SESSION['calc_places_lenght'];
+                }else{
+                  echo "-1";
+                }?>">
+
+              <?php
+                if (isset($_SESSION['calc_places_lenght'])){
+                  echo $_SESSION['calc_places_lenght'];
+                }else{
+                  echo JText::_("PAGE_CALC_SET_COUNT_PLACES");
+                }
+              ?>
+              </option>
+
 
               <?php
                 $count_mest=10;
@@ -743,23 +834,39 @@ session_start();
             </select>
           </div>
 
-          <div class="field" id="gabarits0">
-            <div class="places-row">
-              <p>Размеры отправляемых мест, см</p>
-              <div class="place-box">
-                <input type="text" class="short place_length" id="len_0" value="" placeholder="длина" name="calc_size[0][lenght]">x
-                <input type="text" class="short place_width" id="wid_0" value="" placeholder="ширина" name="calc_size[0][width]">x
-                <input type="text" class="short place_height" id="hei_0" value="" placeholder="высота" name="calc_size[0][height]">
-              </div>
-              <!-- <input type="text" class="short place_weight _hidden" id="weight_0" value="" placeholder="вec" name="calc_size[0][weight]"> -->
-              <input type="text" class="short place_vol_weight hidden" id="vol_weight_0" value="" name="calc_size[0][vol_weight]">
-            </div>
-          </div>
-
-
           <div class="field" id="gabarits">
 
+            <?php if(isset($_SESSION['calc_size'])){
+              $arr = $_SESSION['calc_size'];
+              foreach($arr as $key => $val){
+              ?>
+                <div class="places-row">
+                  <p>Размеры отправляемых мест, см</p>
+                  <div class="place-box">
+                    <input type="text" class="short place_length" id="len_<?php echo $key;?>" value="<?php echo $val['lenght']; ?>" placeholder="длина" name="calc_size[<?php echo $key; ?>][lenght]">x
+                    <input type="text" class="short place_width" id="wid_<?php echo $key;?>" value="<?php echo $val['width']; ?>" placeholder="ширина" name="calc_size[<?php echo $key; ?>][width]">x
+                    <input type="text" class="short place_height" id="hei_<?php echo $key;?>" value="<?php echo $val['height']; ?>" placeholder="высота" name="calc_size[<?php echo $key; ?>][height]">
+                  </div>
+                  <input type="text" class="short place_vol_weight hidden" id="vol_weight_<?php echo $key;?>" value="" name="calc_size[<?php echo $key;?>][vol_weight]">
+                </div>
+
+            <?php } }else{ ?>
+
+                <div class="places-row">
+                  <p>Размеры отправляемых мест, см</p>
+                  <div class="place-box">
+                    <input type="text" class="short place_length" id="len_0" value="" placeholder="длина" name="calc_size[0][lenght]">x
+                    <input type="text" class="short place_width" id="wid_0" value="" placeholder="ширина" name="calc_size[0][width]">x
+                    <input type="text" class="short place_height" id="hei_0" value="" placeholder="высота" name="calc_size[0][height]">
+                  </div>
+                  <input type="text" class="short place_vol_weight hidden" id="vol_weight_0" value="" name="calc_size[0][vol_weight]">
+                </div>
+
+            <?php } ?>
           </div>
+
+
+          <!-- <div class="field" id="gabarits"></div> -->
 
           <div class="field" id="weight2">
               <p><?php echo JText::_("PAGE_CALC_VOLUME_SIZE"); ?></p>

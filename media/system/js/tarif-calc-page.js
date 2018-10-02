@@ -587,7 +587,7 @@ function addPlaces(){
   var row = "";
   $('#gabarits').html("");
 
-  for(var i=1; i<count; i++){
+  for(var i=0; i<count; i++){
     row = '<div class="places-row">' +
       '<p>Размеры отправляемых мест, см</p>' +
       '<div class="place-box">' +
