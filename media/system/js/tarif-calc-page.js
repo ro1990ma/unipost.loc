@@ -262,12 +262,23 @@ $("#do_calculate").live("click", function(){
     // отправить экспресс
     if (($('#type_speed_exp').is(':checked') == true)){
 
+      var opt = $("select#tarif_express_export_countries option:selected").val();
+
       if ($("select#tarif_express_export_countries option:selected").val()==-1){
         $("#tarif_express_export_countries").addClass("alert");
         $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-sub").removeClass("hidden");
         error = 10;
+      }else if ( ($("#type_docs_ndocs").prop("checked") == true) && (opt == 8) ){ //если армения
+        $("#tarif_express_export_countries").addClass("alert");
+        $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-no-service").removeClass("hidden");
+        error = 101;
+      }else if ( ($("#type_docs_ndocs").prop("checked") == true) && (opt == 13) ){// если беларусь
+        $("#tarif_express_export_countries").addClass("alert");
+        $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-no-service").removeClass("hidden");
+        error = 101;
       }else{
         $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-sub").addClass("hidden");
+        $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-no-service").addClass("hidden");
         $("#tarif_express_export_countries").removeClass("alert");
       }
 
@@ -385,16 +396,16 @@ $("#do_calculate").live("click", function(){
 
 });
 
-
-$('#do_cancel').live("click", function(){
-  $("#len_0, #wid_0, #hei_0, #wei, #weight_kg").val("");
-  $("#to_es, #to_rf, #tarif_express_export_countries, #tarif_express_import_global").val("-1");
-  $("#type_speed_eco, #type_speed_exp, #to_countrys_eu, #to_sities_rf, #get_from_country_es, #get_from_town_rf").attr("checked", false);
-
-  $('#gabarits').html("");
-  $('#calc_places_lenght').val(0);
-  location.reload();
-});
+// clear form by click to cancel
+// $('#do_cancel').live("click", function(){
+//   $("#len_0, #wid_0, #hei_0, #wei, #weight_kg").val("");
+//   $("#to_es, #to_rf, #tarif_express_export_countries, #tarif_express_import_global").val("-1");
+//   $("#type_speed_eco, #type_speed_exp, #to_countrys_eu, #to_sities_rf, #get_from_country_es, #get_from_town_rf").attr("checked", false);
+//
+//   $('#gabarits').html("");
+//   $('#calc_places_lenght').val(0);
+//   location.reload();
+// });
 
 
 function showMe (it, box, it2) {

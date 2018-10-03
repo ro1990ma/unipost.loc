@@ -42,6 +42,24 @@ session_start();
     <div id="clear"></div>
 <?php
 
+  if(isset($_POST['do_cancel'])){
+    $_SESSION['type_speed'] = null;
+    $_SESSION['destination'] = null;
+    $_SESSION['calc_to_es_country'] = null;
+    $_SESSION['calc_to_rf_cities'] = null;
+    $_SESSION['tarif_express_export_countries'] = null;
+    $_SESSION['tarif_express_import_global'] = null;
+    $_SESSION['receiver'] = null;
+    $_SESSION['tarif_econom_import_ES'] = null;
+    $_SESSION['tarif_econom_import_RF'] = null;
+    $_SESSION['type_docs_ndocs'] = null;
+    $_SESSION['conv'] = null;
+    $_SESSION['calc_weight_kg'] = null;
+    $_SESSION['calc_places_lenght'] = null;
+    $_SESSION['calc_size'] = null;
+  }
+
+
   if(isset($_POST['do_page_calc'])){
     $_SESSION['calc_size_kg'] =        $_POST['calc_size_kg'];
     $_SESSION['calc_weight_kg'] =      $_POST['calc_weight_kg'];
@@ -54,9 +72,6 @@ session_start();
     $_SESSION['calc_size_height'] =    $_POST['calc_size_height'];
     $_SESSION['type_hu_you'] =         $_POST['type_hu_you'];
     $_SESSION['type_speed'] =          $_POST['type_speed'];
-    $_SESSION['calc_size_x'] =         $_POST['calc_size_x'];
-    $_SESSION['calc_size_y'] =         $_POST['calc_size_y'];
-    $_SESSION['calc_size_z'] =         $_POST['calc_size_z'];
     $_SESSION['calc_volume_kg'] =      $_POST['calc_volume_kg'];
 
     $_SESSION['destination'] =  $_POST['destination'];
@@ -444,12 +459,8 @@ session_start();
     printf("</table>");
     echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
     echo "<a class='btl-buttonsubmit btn' href='/?do=calc'>".JText::_('BACK')."</a>";
-    // echo "<a class='btl-buttonsubmit btn' href='https://unipost.md/ru/?do=calc'>".JText::_('BACK')."</a>";
 
   }else{
-  // echo "<pre>";
-  // print_r($_SESSION);
-  // echo "</pre>";
   ?>
 
 
@@ -615,6 +626,7 @@ session_start();
             <?php }?>
           </select>
           <div class="error-msg-sub hidden"><?php echo JText::_("PAGE_CALC_ERROR_MSG5"); ?></div>
+          <div class="error-msg-no-service hidden"><?php echo JText::_("PAGE_CALC_ERROR_NO_SERVICE"); ?></div>
         </div>
 
         <!-- получить эконом -->
@@ -913,7 +925,7 @@ session_start();
 
         <div class="btn-group">
           <button type="submit" class="btl-buttonsubmit" id="do_calculate" name="do_page_calc"><?php echo JText::_("PAGE_CALC_DO_CALC"); ?></button>
-          <button type="button" class="btl-buttonsubmit" id="do_cancel" name="do_cancel"> <?php echo JText::_("PAGE_CALC_DO_CANCEL"); ?></button>
+          <button type="submit" class="btl-buttonsubmit" id="do_cancel" name="do_cancel"> <?php echo JText::_("PAGE_CALC_DO_CANCEL"); ?></button>
         </div>
 
       </div>

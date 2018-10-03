@@ -525,6 +525,12 @@ div.page_miss_call table tr td textarea {
   width: 200px;
   color: red;
 }
+.error-msg-no-service{
+  float: right;
+  width: 300px;
+  color: red;
+}
+
 .eq1{ width: 100%;}
 .eq2{ width: 100%;}
 #block-get-from-ES-RF{width: 100%;}
