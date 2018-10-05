@@ -268,15 +268,17 @@ $("#do_calculate").live("click", function(){
         $("#tarif_express_export_countries").addClass("alert");
         $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-sub").removeClass("hidden");
         error = 10;
-      }else if ( ($("#type_docs_ndocs").prop("checked") == true) && (opt == 8) ){ //если армения
-        $("#tarif_express_export_countries").addClass("alert");
-        $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-no-service").removeClass("hidden");
-        error = 101;
-      }else if ( ($("#type_docs_ndocs").prop("checked") == true) && (opt == 13) ){// если беларусь
-        $("#tarif_express_export_countries").addClass("alert");
-        $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-no-service").removeClass("hidden");
-        error = 101;
-      }else{
+      }
+      // else if ( ($("#type_docs_ndocs").prop("checked") == true) && (opt == 8) ){ //если армения
+      //   $("#tarif_express_export_countries").addClass("alert");
+      //   $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-no-service").removeClass("hidden");
+      //   error = 101;
+      // }else if ( ($("#type_docs_ndocs").prop("checked") == true) && (opt == 13) ){// если беларусь
+      //   $("#tarif_express_export_countries").addClass("alert");
+      //   $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-no-service").removeClass("hidden");
+      //   error = 101;
+      // }
+      else{
         $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-sub").addClass("hidden");
         $("#tarif_express_export_countries").closest("#block-all-countries").find(".error-msg-no-service").addClass("hidden");
         $("#tarif_express_export_countries").removeClass("alert");
