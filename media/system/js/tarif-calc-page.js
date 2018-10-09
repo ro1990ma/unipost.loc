@@ -600,13 +600,32 @@ function addPlaces(){
   var row = "";
   $('#gabarits').html("");
 
+  if (window.location.search.split('=').pop() == 'ru'){
+    var ln1 = "Длина";
+    var ln2 = "Ширина";
+    var ln3 = "Высота";
+    var dim = "Размеры отправляемых мест, см:"
+  }
+  if (window.location.search.split('=').pop() == 'en'){
+    var ln1 = "Length";
+    var ln2 = "Width";
+    var ln3 = "Height";
+    var dim = "Dimensions of the piece(s) to send, cm:"
+  }
+  if (window.location.search.split('=').pop() == 'ro'){
+    var ln1 = "lungime";
+    var ln2 = "lățime";
+    var ln3 = "înălțime";
+    var dim = "Dimensiunile locului de expediere, cm:"
+  }
+
   for(var i=0; i<count; i++){
     row = '<div class="places-row">' +
-      '<p>Размеры отправляемых мест, см</p>' +
+      '<p>' + dim + '</p>' +
       '<div class="place-box">' +
-      '<input type="text" class="short place_length" id="len_' + i + '" value="" placeholder="длина"   name="calc_size[' + i + '][lenght]">x' +
-      '<input type="text" class="short place_width" id="wid_' + i + '" value="" placeholder="ширина"  name="calc_size[' + i + '][width]">x' +
-      '<input type="text" class="short place_height" id="hei_' + i + '" value="" placeholder="высота"  name="calc_size[' + i + '][height]">' +
+      '<input type="text" class="short place_length" id="len_' + i + '" value="" placeholder=' + ln1 + '   name="calc_size[' + i + '][lenght]">x' +
+      '<input type="text" class="short place_width" id="wid_' + i + '" value="" placeholder=' + ln2 + '  name="calc_size[' + i + '][width]">x' +
+      '<input type="text" class="short place_height" id="hei_' + i + '" value="" placeholder=' + ln3 + '  name="calc_size[' + i + '][height]">' +
       '</div>' +
       '<input type="text" class="short place_vol_weight hidden" id="vol_weight_' + i + '" value="" name="calc_size[' + i + '][vol_weight]">' +
       '</div>';

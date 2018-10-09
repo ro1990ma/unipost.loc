@@ -875,7 +875,9 @@ session_start();
               foreach($arr as $key => $val){
               ?>
                 <div class="places-row">
-                  <p>Размеры отправляемых мест, см</p>
+                  <p>
+                    <?php echo JText::_("PAGE_CALC_GABARITS"); ?>
+                  </p>
                   <div class="place-box">
                     <input type="text" class="short place_length" id="len_<?php echo $key;?>" value="<?php echo $val['lenght']; ?>" placeholder="длина" name="calc_size[<?php echo $key; ?>][lenght]">x
                     <input type="text" class="short place_width" id="wid_<?php echo $key;?>" value="<?php echo $val['width']; ?>" placeholder="ширина" name="calc_size[<?php echo $key; ?>][width]">x
@@ -887,7 +889,9 @@ session_start();
             <?php } }else{ ?>
 
                 <div class="places-row">
-                  <p>Размеры отправляемых мест, см</p>
+                  <p>
+                    <?php echo JText::_("PAGE_CALC_GABARITS"); ?>
+                  </p>
                   <div class="place-box">
                     <input type="text" class="short place_length" id="len_0" value="" placeholder="длина" name="calc_size[0][lenght]">x
                     <input type="text" class="short place_width" id="wid_0" value="" placeholder="ширина" name="calc_size[0][width]">x
