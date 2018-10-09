@@ -784,7 +784,7 @@ session_start();
             }
           ?>">
 
-          <p class="calc-p"><label for="type_docs_ndocs"><?php echo JText::_("PAGE_CALC_TYPE_DOCS_NDOCS_INF"); ?>:</label></p>
+          <p class="calc-p"><label for="type_docs_ndocs"><?php echo JText::_("PAGE_CALC_TYPE_DOCS_NDOCS_INF"); ?></label></p>
           <div id="input_NDOCS">
             <input value="0" <?php echo ($_SESSION['type_docs_ndocs'] == '0') ? 'checked="checked"' : ''; ?>  type="radio" id="type_docs_ndocs" name="type_docs_ndocs"/>NDOCS
           </div>
