@@ -378,7 +378,7 @@ $("#do_calculate").live("click", function(){
       }
 
       if ( ($("#get_from_town_rf").is(':checked') == true) && ($("select#tarif_econom_import_RF option:selected").val() != -1) ){
-        if  ( ($("#weight_kg").val() == "") || (parseInt( $("#weight_kg").val() ) > 80) ){
+        if  ( ($("#weight_kg").val() == "") || (parseFloat( $("#weight_kg").val() ) > 80) ){
           $("#weight_kg").addClass("alert");
           error = 19;
         }else{
@@ -387,6 +387,27 @@ $("#do_calculate").live("click", function(){
       }
 
     }
+
+
+    // получить экспресс <<
+    if (($('#type_speed_exp').is(':checked') == true)){
+      if ($("select#tarif_express_import_global option:selected").val() != -1){
+        if ($("#type_docs_docs").is(':checked') == true){
+          if ($("#convert").is(':checked') == true){
+
+            if ( ($("#weight_kg").val() == "") || (parseFloat( $("#weight_kg").val() ) > 0.70) ){
+              $("#weight_kg").addClass("alert");
+              error = 20;
+            }else{
+              $("#weight_kg").removeClass("alert");
+            }
+
+          }
+        }
+      }
+    }
+    // получить экспресс >>
+
   }
 
   console.log("error status: " + error + "");
