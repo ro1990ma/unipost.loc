@@ -600,19 +600,19 @@ function addPlaces(){
   var row = "";
   $('#gabarits').html("");
 
-  if (window.location.search.split('=').pop() == 'ru'){
+  if ((window.location.search.split('=').pop() == 'ru') || (window.location.href.match("/ru/") != null)){
     var ln1 = "Длина";
     var ln2 = "Ширина";
     var ln3 = "Высота";
     var dim = "Размеры отправляемых мест, см:"
   }
-  if (window.location.search.split('=').pop() == 'en'){
+  if ((window.location.search.split('=').pop() == 'en') || (window.location.href.match("/en/") != null)){
     var ln1 = "length";
     var ln2 = "width";
     var ln3 = "height";
     var dim = "Dimensions of the piece(s) to send, cm:"
   }
-  if (window.location.search.split('=').pop() == 'ro'){
+  if ((window.location.search.split('=').pop() == 'ro') || (window.location.href.match("/ro/") != null)){
     var ln1 = "lungimea";
     var ln2 = "lățime";
     var ln3 = "înălțimea";
