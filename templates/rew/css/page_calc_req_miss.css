@@ -465,7 +465,7 @@ div.page_miss_call table tr td textarea {
   width: 100%;
 }
 #weight_kg{
-  width: 86px;
+  width: 100px;
 }
 #weight_kg_error{
   display: none;

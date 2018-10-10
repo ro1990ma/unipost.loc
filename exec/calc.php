@@ -824,7 +824,7 @@ session_start();
 
           <div class="field fizical_weight">
               <p><?php echo JText::_("PAGE_CALC_WEIGHT_KG_TOTAL"); ?></p>
-              <input type="text" id="weight_kg" value="<?php echo $_SESSION['calc_weight_kg'];?>" placeholder="введите вес"  name="calc_weight_kg" class="t1" />
+              <input type="text" id="weight_kg" value="<?php echo $_SESSION['calc_weight_kg'];?>" placeholder="<?php echo JText::_("PAGE_CALC_SET_WEIGHT");?>"  name="calc_weight_kg" class="t1" />
               <div id="error_by_enter_value" class="hidden"><?php echo JText::_("ENTERED_VALUE_ERROR") ?> </div>
               <div id="express_es_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_ES_ERROR"); ?></div>
               <div id="express_rf_error" class="hidden"><?php echo JText::_("FIZICAL_WEIGHT_SEND_EXPRESS_RF_ERROR"); ?></div>
@@ -893,9 +893,9 @@ session_start();
                     <?php echo JText::_("PAGE_CALC_GABARITS"); ?>
                   </p>
                   <div class="place-box">
-                    <input type="text" class="short place_length" id="len_0" value="" placeholder="длина" name="calc_size[0][lenght]">x
-                    <input type="text" class="short place_width" id="wid_0" value="" placeholder="ширина" name="calc_size[0][width]">x
-                    <input type="text" class="short place_height" id="hei_0" value="" placeholder="высота" name="calc_size[0][height]">
+                    <input type="text" class="short place_length" id="len_0" value="" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_X");?>" name="calc_size[0][lenght]">x
+                    <input type="text" class="short place_width" id="wid_0" value="" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_Y");?>" name="calc_size[0][width]">x
+                    <input type="text" class="short place_height" id="hei_0" value="" placeholder="<?php echo JText::_("PAGE_CALC_SIZE_Z");?>" name="calc_size[0][height]">
                   </div>
                   <input type="text" class="short place_vol_weight hidden" id="vol_weight_0" value="" name="calc_size[0][vol_weight]">
                 </div>

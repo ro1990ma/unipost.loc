@@ -607,15 +607,15 @@ function addPlaces(){
     var dim = "Размеры отправляемых мест, см:"
   }
   if (window.location.search.split('=').pop() == 'en'){
-    var ln1 = "Length";
-    var ln2 = "Width";
-    var ln3 = "Height";
+    var ln1 = "length";
+    var ln2 = "width";
+    var ln3 = "height";
     var dim = "Dimensions of the piece(s) to send, cm:"
   }
   if (window.location.search.split('=').pop() == 'ro'){
-    var ln1 = "lungime";
+    var ln1 = "lungimea";
     var ln2 = "lățime";
-    var ln3 = "înălțime";
+    var ln3 = "înălțimea";
     var dim = "Dimensiunile locului de expediere, cm:"
   }
 
