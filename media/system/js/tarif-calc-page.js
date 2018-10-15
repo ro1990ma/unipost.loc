@@ -284,6 +284,24 @@ $("#do_calculate").live("click", function(){
         $("#tarif_express_export_countries").removeClass("alert");
       }
 
+      // валидация отправить-экспересс-документы-конверт не более 0,7
+      if ($("select#tarif_express_export_countries option:selected").val() != -1){
+
+        if ($("#type_docs_docs").is(':checked') == true){
+          if ($("#convert").is(':checked') == true){
+
+            if ( ($("#weight_kg").val() == "") || (parseFloat( $("#weight_kg").val() ) > 0.70) ){
+              $("#weight_kg").addClass("alert");
+              error = 11;
+            }else{
+              $("#weight_kg").removeClass("alert");
+            }
+
+          }
+        }
+
+      }
+
     }
   }
 //----------------------------------------------------------------------------
@@ -293,7 +311,7 @@ $("#do_calculate").live("click", function(){
     if ( ($('#type_speed_eco').is(':checked') == false) && ($('#type_speed_exp').is(':checked') == false) ){
       $('.eq1').addClass('alert');
       $(".eq1").find(".error-msg-right").removeClass("hidden");
-      error = 11;
+      error = 12;
     }else{
       $('.eq1').removeClass('alert');
       $(".eq1").find(".error-msg-right").addClass("hidden");
@@ -303,7 +321,7 @@ $("#do_calculate").live("click", function(){
       $(".eq1").removeClass("alert");
       $("#block-get-from-ES-RF").addClass("alert");
       $("#block-get-from-ES-RF").find(".error-msg-right").removeClass("hidden");
-      error = 12;
+      error = 13;
     }
     //выбранная страна
     if ( ($("#get_from_country_es").is(':checked') == true) && ($("select#tarif_econom_import_ES option:selected").val() == -1) ){
@@ -312,7 +330,7 @@ $("#do_calculate").live("click", function(){
 
       $("#tarif_econom_import_ES").addClass("alert");
       $("#tarif_econom_import_ES").closest(".field").find('.error-msg-sub').removeClass("hidden");
-      error = 13;
+      error = 14;
     }else{
       $("#tarif_econom_import_ES").removeClass("alert");
       $("#tarif_econom_import_ES").closest(".field").find('.error-msg-sub').addClass("hidden");
@@ -325,7 +343,7 @@ $("#do_calculate").live("click", function(){
       $("#block-get-from-ES-RF").find(".error-msg-right").addClass("hidden");
       $("#tarif_econom_import_RF").addClass("alert");
       $("#tarif_econom_import_RF").closest(".field").find(".error-msg-sub").removeClass("hidden");
-      error = 14;
+      error = 15;
     }else{
       $("#tarif_econom_import_RF").removeClass("alert");
       $("#tarif_econom_import_RF").closest(".field").find(".error-msg-sub").addClass("hidden");
@@ -337,7 +355,7 @@ $("#do_calculate").live("click", function(){
       if ($("select#tarif_express_import_global option:selected").val() == -1){  // если страна не выбранна
         $("#tarif_express_import_global").addClass("alert");
         $("#tarif_express_import_global").closest(".field").find(".error-msg-sub").removeClass("hidden");
-        error = 15;
+        error = 16;
       }else{
         $("#tarif_express_import_global").removeClass("alert");
         $("#tarif_express_import_global").closest(".field").find(".error-msg-sub").addClass("hidden");
@@ -346,7 +364,7 @@ $("#do_calculate").live("click", function(){
       // если страна не выбранна, коробка/конверт - не выбранно
       if ( ($("#convert").is(':checked') == false) && ($("#box").is(':checked') == false)  ){
         $("#package-type").addClass('alert');
-        error = 16;
+        error = 17;
       }else{
         $("#package-type").removeClass('alert');
       }
@@ -355,7 +373,7 @@ $("#do_calculate").live("click", function(){
       if ($("select#tarif_express_import_global option:selected").val() != -1){
         if ( ($("#convert").is(':checked') == false) && ($("#box").is(':checked') == false)  ){
           $("#package-type").addClass('alert');
-          error = 17;
+          error = 18;
         }else{
           $("#package-type").removeClass('alert');
         }
@@ -371,7 +389,7 @@ $("#do_calculate").live("click", function(){
       if ( ($("#get_from_country_es").is(':checked') == true) && ($("select#tarif_econom_import_ES option:selected").val() != -1) ){
         if ( ($("#weight_kg").val() == "") || (parseInt( $("#weight_kg").val() ) > 70) ){
           $("#weight_kg").addClass("alert");
-          error = 18;
+          error = 19;
         }else{
           $("#weight_kg").removeClass("alert");
         }
@@ -380,7 +398,7 @@ $("#do_calculate").live("click", function(){
       if ( ($("#get_from_town_rf").is(':checked') == true) && ($("select#tarif_econom_import_RF option:selected").val() != -1) ){
         if  ( ($("#weight_kg").val() == "") || (parseFloat( $("#weight_kg").val() ) > 80) ){
           $("#weight_kg").addClass("alert");
-          error = 19;
+          error = 20;
         }else{
           $("#weight_kg").removeClass("alert");
         }
@@ -397,7 +415,7 @@ $("#do_calculate").live("click", function(){
 
             if ( ($("#weight_kg").val() == "") || (parseFloat( $("#weight_kg").val() ) > 0.70) ){
               $("#weight_kg").addClass("alert");
-              error = 20;
+              error = 21;
             }else{
               $("#weight_kg").removeClass("alert");
             }

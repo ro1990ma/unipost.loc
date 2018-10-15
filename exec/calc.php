@@ -457,7 +457,7 @@ session_start();
     printf("<tr><td class='info'>%s</td><td class='data right'>%s &euro;</td></tr>",  JText::_("PAGE_CALC_RS_PRICE"),   $qw_price);
     printf("<tr style='border:none;'><td class='info' style='font-weight:bold;'>%s</td><td class='data right'>%.2f %s</td></tr>", JText::_("PAGE_CALC_RS_TEMP_PRICE"),$final_price,JText::_("PAGE_CALC_RS_TEMP_PRICE_CURRENCY"));
     printf("</table>");
-    echo "<div class='row'><a href='/?do=command' target='blank'> ".JText::_("PAGE_CALC_FILL_FORM")."</a></div>";
+    // echo "<div class='row'><a href='/?do=command' target='blank'> ".JText::_("PAGE_CALC_FILL_FORM")."</a></div>";
     echo "<div class='podhodit'>".JText::_('PAGE_CALC_PODHODIT')."</div>";
     echo "<a class='btl-buttonsubmit btn' href='/?do=calc'>".JText::_('BACK')."</a>";
 
