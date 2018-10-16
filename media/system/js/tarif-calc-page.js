@@ -574,6 +574,9 @@ function recEconom(){
   $('#block-get-express-import').addClass("hidden");
   $('#block-all-countries').addClass("hidden");
 
+  $('.label2').removeClass("hidden");
+  $('.label1').addClass("hidden");
+
   $('.content-type, #package-type').addClass('hidden');
 }
 function recExpress(){
@@ -585,6 +588,9 @@ function recExpress(){
   $('#block-all-countries').addClass("hidden");
 
   $('.content-type, #package-type').removeClass('hidden');
+
+  $('.label2').removeClass("hidden");
+  $('.label1').addClass("hidden");
 
   // скрыть Характер содержимого и Требуемый тип упаковки
   // $('.content-type').addClass('hidden');

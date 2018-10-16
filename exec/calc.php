@@ -284,7 +284,7 @@ session_start();
 
             if ($lang->getTag() == 'ru-RU'){
               // $qw_name = $country_t4->name_ru;
-              $qw_name = "Молдавия";
+              $qw_name = "Молдова";
             }
             if ($lang->getTag() == 'en-GB'){
               // $qw_name = $country_t4->name_en;
@@ -354,7 +354,7 @@ session_start();
 
             if ($lang->getTag() == 'ru-RU'){
               // $qw_name = $town_t5->name_ru;
-              $qw_name = "Молдавия";
+              $qw_name = "Молдова";
             }
             if ($lang->getTag() == 'en-GB'){
               // $qw_name = $town_t5->name_en;
@@ -414,11 +414,12 @@ session_start();
           }
 
           if (isset($_POST['dispatch_from']) && $_POST['dispatch_from'] == 0){
-            $price = $price - 1.50;
+            // $price = $price - 1.50;
+            $price = $price - 1.8;
           }
 
           if ($lang->getTag() == 'ru-RU'){
-            $qw_name = "Молдавия";
+            $qw_name = "Молдова";
             // $qw_name = $country_t6->name_ru;
           }
           if ($lang->getTag() == 'en-GB'){
@@ -918,7 +919,13 @@ session_start();
         </div>
 
           <div class="field" id="sentFromOfficeBlock">
-            <label for="sentFromOffice"><?php echo JText::_("PAGE_CALC_SENT_FROME_OFFICE"); ?></label>
+            <label for="sentFromOffice" class="label1 <?php if ($_SESSION['type_hu_you'] == 1){ echo "hidden"; }else{ echo "";}?>">
+              <?php echo JText::_("PAGE_CALC_SENT_FROME_OFFICE"); ?>
+            </label>
+
+            <label for="sentFromOffice" class="label2 <?php if ($_SESSION['type_hu_you'] == 1){ echo ""; }else{ echo "hidden"; }?>">
+              <?php echo JText::_("PAGE_CALC_RECEIVE_FROME_OFFICE"); ?>
+            </label>
             <input value="0" type="radio" id="sentFromOffice" name="dispatch_from" >
           </div>
 
